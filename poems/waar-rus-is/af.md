@@ -1,0 +1,12 @@
+*Waar rus is*
+
+Middernag - 
+klokke sonder klepels lui klankloos in my kop
+en weergalm die oproep: "Kom laat ons na die huis van die Here gaan"
+om daar in die gemeenskap van mede doof-stommes
+op my bors te slaan: "nietig, nietig, nietig is ek"
+maar dit klink hol, geyk en sonder sin
+hier in die stilte van die kapel
+waar 'n sagte wind van buite 
+die kerse fladder wyl die klokke ritmies, wiegend  in stilte roep
+na almal wat moeg is

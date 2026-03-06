@@ -1,0 +1,31 @@
+{
+  "name": "poetry-anthology",
+  "version": "1.0.0",
+  "description": "A cinematic anthology of poems with Remotion",
+  "type": "module",
+  "scripts": {
+    "dev": "npm run generate-poems && remotion studio src/index.ts",
+    "render": "npm run generate-poems && npx tsx scripts/renderPoem.ts",
+  "translate": "npx tsx scripts/translate-poems.ts",    
+  "render:all": "npm run generate-poems && npx tsx scripts/renderAll.ts",
+    "generate-poems": "npx tsx scripts/generatePoemsData.ts"
+  },
+  "dependencies": {
+    "@remotion/bundler": "^4.0.0",
+    "@remotion/cli": "^4.0.434",
+    "@remotion/renderer": "^4.0.0",
+    "openai": "^6.27.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remotion": "^4.0.434"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/react": "^18.2.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  },
+
+
+  "private": true
+}

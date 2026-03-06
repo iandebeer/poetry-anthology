@@ -1,0 +1,28 @@
+import fs from "fs";
+import path from "path";
+import OpenAI from "openai";
+
+const client = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+const poemsDir = "./poems";
+
+async function translate(text: string) {
+  const response = await client.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content:
+          "Translate Afrikaans poetry into natural poetic English while preserving meaning and rhythm.",
+      },
+      {
+        role: "user",
+        content: text,
+      },
+    ],
+  });
+
+  return response.choices[0].message.content;
+}

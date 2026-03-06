@@ -1,0 +1,87 @@
+[
+  {
+    "id": "minus-days-station",
+    "config": {
+      "id": "minus-days-station",
+      "titleAf": "Minus dae stasie",
+      "titleEn": "Minus days station",
+      "author": "Anonymous",
+      "lineDuration": 5,
+      "linePause": 1,
+      "introDuration": 3,
+      "outroDuration": 5
+    },
+    "af": [
+      "*min dae stasie*",
+      "tik-tik, tik-tik; tik-tik, tik-tik…",
+      "dis mý trein se wiele wat so ritmies klik",
+      "tik-tik, tik-tik; tik-tik, tik-tik…",
+      "die kompartement was eens vol maar nou is hy leeg",
+      "my mede-pasasiers het een-vir-een aanbeweeg",
+      "sommige het gegroet, ander is stil-stil uit;",
+      "nou lê ek sommer dwars oor die bank met my kop teen die ruit.",
+      "tik-tik, tik-tik; tik-tik, tik-tik…",
+      "ek kan maar  indommel as die reelmaat my kop laat knik",
+      "tik-tik, tik-tik; tik-tik, tik-tik…",
+      "my bagasie staan reg, my kaartjie is geknip",
+      "die Kondukteur het my roete lank vooraf reeds uitgestip",
+      "Hy sal sorg dat ek betyds ontwaak",
+      "om my  laaste goedjies bymekaar te kan maak",
+      "tik-tik, tik-tik; tik-tik, tik-tik…",
+      "my lyf is seer en my gemoed onverkwik",
+      "tik-tik, tik-tik; tik-tik, tik-tik…",
+      "dit reis was lank en ek voel moeg en leeg getap",
+      "ek dink ek is reg om nou af te stap",
+      "maar nou moet eers wag  — wie is dan in beheer?",
+      "iewers in die nag is my trok op ’n sy-lyn rangeer"
+    ],
+    "en": [
+      "Minus days station",
+      "The train stops here,",
+      "where time slows down,",
+      "and the platform waits",
+      "for passengers who never come.",
+      "Minus days until departure,",
+      "minus hours until arrival,",
+      "in the station of expectation,",
+      "where anything can still happen."
+    ]
+  },
+  {
+    "id": "waar-rus-is",
+    "config": {
+      "id": "waar-rus-is",
+      "titleAf": "Waar rus is",
+      "titleEn": "Where rest is",
+      "author": "Anonymous",
+      "lineDuration": 6,
+      "linePause": 1.5,
+      "introDuration": 2,
+      "outroDuration": 4
+    },
+    "af": [
+      "*Waar rus is*",
+      "Middernag -",
+      "klokke sonder klepels lui klankloos in my kop",
+      "en weergalm die oproep: \"Kom laat ons na die huis van die Here gaan\"",
+      "om daar in die gemeenskap van mede doof-stommes",
+      "op my bors te slaan: \"nietig, nietig, nietig is ek\"",
+      "maar dit klink hol, geyk en sonder sin",
+      "hier in die stilte van die kapel",
+      "waar 'n sagte wind van buite",
+      "die kerse fladder wyl die klokke ritmies, wiegend  in stilte roep",
+      "na almal wat moeg is"
+    ],
+    "en": [
+      "Where rest is",
+      "The sun sinks slowly over the plain,",
+      "where the wind whispers through the grass,",
+      "and the clouds drift like thoughts",
+      "across the blue infinity.",
+      "Here, between heaven and earth,",
+      "the soul finds its silence,",
+      "where rest is,",
+      "where rest is."
+    ]
+  }
+]
