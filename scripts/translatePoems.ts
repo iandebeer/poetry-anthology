@@ -1,16 +1,50 @@
-/**
- * Placeholder for poem translation utilities.
- * Can be extended to integrate with translation APIs (e.g. DeepL, Google Translate)
- * or to validate/manage bilingual poem pairs.
- */
+import OpenAI from "openai";
 
-import { loadPoems } from "../engine/loadPoems.js";
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+import fs from "fs";
+import path from "path";
+
+const poemsDir = "./poems";
+
+const poems = fs.readdirSync(poemsDir);
+
+async function translate(text: string) {
+  const response = await openai.chat.completions.create({
+    model: "gpt-4o-mini",
+    messages: [
+      {
+        role: "system",
+        content:
+          "Translate Afrikaans poetry into natural poetic English while preserving tone, rhythm, and imagery.",
+      },
+      {
+        role: "user",
+        content: text,
+      },
+    ],
+  });
+  return response.choices[0].message.content;
+}
 
 async function main() {
-  const poems = loadPoems();
-  console.log(`Found ${poems.length} poems with Afrikaans and English versions.`);
-  for (const p of poems) {
-    console.log(`  - ${p.id}: ${p.af.length} lines (af), ${p.en.length} lines (en)`);
+  if (!process.env.OPENAI_API_KEY) {
+    console.error("Set OPENAI_API_KEY in your environment. Get a key at https://platform.openai.com/api-keys");
+    process.exit(1);
+  }
+  for (const poem of poems) {
+    const afPath = path.join(poemsDir, poem, "af.md");
+    if (!fs.existsSync(afPath)) continue;
+
+    const afText = fs.readFileSync(afPath, "utf8");
+    console.log("Afrikaans text:");
+    console.log(afText);
+
+    const english = await translate(afText);
+    const enPath = path.join(poemsDir, poem, "en.generated.md");
+    fs.writeFileSync(enPath, english ?? "");
+    console.log("Translated:", poem);
   }
 }
 

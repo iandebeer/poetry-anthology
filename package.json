@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "npm run generate-poems && remotion studio src/index.ts",
     "render": "npm run generate-poems && npx tsx scripts/renderPoem.ts",
-  "translate": "npx tsx scripts/translate-poems.ts",    
-  "render:all": "npm run generate-poems && npx tsx scripts/renderAll.ts",
+   "translate": "npx tsx scripts/translatePoems.ts",
+   "render:all": "npm run generate-poems && npx tsx scripts/renderAll.ts",
     "generate-poems": "npx tsx scripts/generatePoemsData.ts"
   },
   "dependencies": {

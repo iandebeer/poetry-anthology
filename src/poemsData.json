@@ -12,7 +12,12 @@
       "outroDuration": 5
     },
     "af": [
-      "*min dae stasie*",
+      "---",
+      "title: min dae stasie",
+      "lang: af",
+      "last_translation: 2026-03-07",
+      "---",
+      "**min dae stasie**",
       "tik-tik, tik-tik; tik-tik, tik-tik…",
       "dis mý trein se wiele wat so ritmies klik",
       "tik-tik, tik-tik; tik-tik, tik-tik…",
@@ -36,7 +41,12 @@
       "iewers in die nag is my trok op ’n sy-lyn rangeer"
     ],
     "en": [
-      "Minus days station",
+      "---",
+      "title: Minus Days Station",
+      "lang: en",
+      "source_hash: 83f9a2",
+      "---",
+      "\"Min dae\" station",
       "The train stops here,",
       "where time slows down,",
       "and the platform waits",
