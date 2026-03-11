@@ -1,4 +1,4 @@
-###min dae stasie
+# min dae stasie
 
 tik-tik, tik-tik; tik-tik, tik-tik…  
 dis mý trein se wiele wat so ritmies klik  
@@ -22,6 +22,6 @@ my lyf is seer en my gemoed onverkwik
 tik-tik, tik-tik; tik-tik, tik-tik…  
 
 dit reis was lank en ek voel moeg en leeg getap  
-ek dink ek is reg om nou af te stap  
-maar nou moet eers wag  — wie is dan in beheer?  
-iewers in die nag is my trok op ’n sy-lyn rangeer  
+ek dink ek is reg om nou af te stap,  
+nie langer sal ek die oomblik met vrees beheen  
+ek vind nou my rus in die Een  

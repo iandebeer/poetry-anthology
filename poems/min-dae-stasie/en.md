@@ -1,7 +1,7 @@
-###"Min dae" station  
+# "Min dae" station  
 
 tick-tick, tick-tick; tick-tick, tick-tick...  
-it’s the rhythmic click of my train’s wheels,  
+is the sound of the wheels that rythmically click,  
 tick-tick, tick-tick; tick-tick, tick-tick...  
 
 the compartment once brimming is now but bare,  
@@ -10,7 +10,7 @@ some with waves, others quietly withdrew;
 now I lie across the bench with my head by the glass anew.  
 
 tick-tick, tick-tick; tick-tick, tick-tick...  
-I can nod off as the rhythm makes my head lean,  
+I feel I will nod off with the rhythmic click,  
 tick-tick, tick-tick; tick-tick, tick-tick...  
 
 my luggage stands straight, my ticket has been clipped,  
@@ -24,5 +24,5 @@ tick-tick, tick-tick; tick-tick, tick-tick...
 
 this ride was lengthy, and I feel drained and spent,  
 I think I’m ready to alight and relent,  
-but first I must wait — who’s in control?  
-somewhere in the night my truck has lost its role.  
+for no longer will fear cloud my sight  
+as I again with the One unite.  
