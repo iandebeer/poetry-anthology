@@ -3,7 +3,8 @@ title: min dae stasie
 lang: af
 last_translation: 2026-03-07
 ---
-**min dae stasie**
+###min dae stasie
+
 tik-tik, tik-tik; tik-tik, tik-tik…
 dis mý trein se wiele wat so ritmies klik
 tik-tik, tik-tik; tik-tik, tik-tik…
@@ -15,7 +16,7 @@ nou lê ek sommer dwars oor die bank met my kop teen die ruit.
 tik-tik, tik-tik; tik-tik, tik-tik…
 ek kan maar  indommel as die reelmaat my kop laat knik
 tik-tik, tik-tik; tik-tik, tik-tik…
-my bagasie staan reg, my kaartjie is geknip 
+my bagasie staan reg, my kaartjie is geknip
 die Kondukteur het my roete lank vooraf reeds uitgestip
 Hy sal sorg dat ek betyds ontwaak
 om my  laaste goedjies bymekaar te kan maak

@@ -3,7 +3,7 @@ title: min dae stasie
 lang: af
 last_translation: 2026-03-07
 ---
-**soos ’n wolkie voor die son**
+### soos ’n wolkie voor die son
 
 ek blyk bloot ’n wolk van vergetelheid te wees
 vlietend gevorm en wasig belyn;
