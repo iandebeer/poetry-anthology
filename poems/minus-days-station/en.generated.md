@@ -5,9 +5,9 @@ last_translation: 2026-03-07
 ---
 **brief station of few days**  
 tick-tick, tick-tick; tick-tick, tick-tick...  
-there’s the rhythm of my train wheels clicking along  
+it is my train's wheels that so  rhythmically click
 tick-tick, tick-tick; tick-tick, tick-tick...  
-the compartment once brimmed with life, now it’s bare  
+the compartment once full now is bare  
 my fellow passengers have moved on, each in their own way  
 some offered farewells, while others slipped away in silence;  
 now I stretch out across the seat, my head pressed to the glass.  
