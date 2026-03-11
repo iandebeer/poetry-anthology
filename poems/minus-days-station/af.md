@@ -1,4 +1,4 @@
-###min dae stasie
+# min dae stasie
 
 tik-tik, tik-tik; tik-tik, tik-tik…  
 dis mý trein se wiele wat so ritmies klik  

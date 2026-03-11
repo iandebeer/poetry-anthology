@@ -1,4 +1,4 @@
-###"Min dae" station  
+# "Min dae" station  
 
 tick-tick, tick-tick; tick-tick, tick-tick...  
 it’s the rhythmic click of my train’s wheels,  
