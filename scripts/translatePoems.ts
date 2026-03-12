@@ -25,7 +25,10 @@ async function translate(text: string) {
       },
     ],
   });
-  return response.choices[0].message.content;
+  let result = response.choices[0].message.content ?? "";
+  // Fix common LLM typos
+  result = result.replace(/\brhymically\b/gi, "rhythmically");
+  return result;
 }
 
 async function main() {

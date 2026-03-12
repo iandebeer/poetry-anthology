@@ -7,6 +7,10 @@
     "dev": "npm run generate-poems && remotion studio src/index.ts",
     "render": "npm run generate-poems && npx tsx scripts/renderPoem.ts",
    "translate": "npx tsx scripts/translatePoems.ts",
+    "convert-poems": "npx tsx scripts/convertPoemsToHtmlAndText.ts",
+    "add-poem": "npx tsx scripts/addPoem.ts",
+    "addPoem": "npm run add-poem",
+    "generate-af-dict": "npx tsx scripts/generateAfrikaansDictionary.ts",
    "render:all": "npm run generate-poems && npx tsx scripts/renderAll.ts",
     "generate-poems": "npx tsx scripts/generatePoemsData.ts"
   },
