@@ -1,0 +1,3 @@
+# Translation pending
+
+Run `npm run translate` to generate en.generated.md, then copy to en.md.
