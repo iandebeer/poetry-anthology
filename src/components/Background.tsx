@@ -1,18 +1,28 @@
 import React from "react";
-import { AbsoluteFill, OffthreadVideo, staticFile } from "remotion";
+import { AbsoluteFill, OffthreadVideo, Img, staticFile } from "remotion";
 
 interface BackgroundProps {
-  /** Filename relative to public/media/backgrounds/ (e.g. "waves.mp4") */
+  /** Video: "waves.mp4" (legacy) or "poems/<id>/video.mp4" */
   src?: string | null;
+  /** Image fallback: "poems/<id>/image.jpg" */
+  imageSrc?: string | null;
   /** Opacity overlay (0-1) to darken for text readability */
   overlayOpacity?: number;
 }
 
 export const Background: React.FC<BackgroundProps> = ({
   src,
+  imageSrc,
   overlayOpacity = 0.4,
 }) => {
-  if (!src) {
+  const videoPath = src
+    ? staticFile(src.startsWith("poems/") ? `media/${src}` : `media/backgrounds/${src}`)
+    : null;
+  const imgPath = imageSrc
+    ? staticFile(`media/${imageSrc}`)
+    : null;
+
+  if (!videoPath && !imgPath) {
     return (
       <AbsoluteFill
         style={{
@@ -22,18 +32,27 @@ export const Background: React.FC<BackgroundProps> = ({
     );
   }
 
-  const videoSrc = staticFile(`media/backgrounds/${src}`);
-
   return (
     <AbsoluteFill>
-      <OffthreadVideo
-        src={videoSrc}
-        style={{
-          width: "100%",
-          height: "100%",
-          objectFit: "cover",
-        }}
-      />
+      {videoPath ? (
+        <OffthreadVideo
+          src={videoPath}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      ) : imgPath ? (
+        <Img
+          src={imgPath}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+          }}
+        />
+      ) : null}
       <AbsoluteFill
         style={{
           backgroundColor: "black",

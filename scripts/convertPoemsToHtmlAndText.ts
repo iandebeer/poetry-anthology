@@ -73,7 +73,7 @@ function mdToText(md: string): string {
 }
 
 function convertPoemDir(dirPath: string, poemId: string): number {
-  const mdFiles = ["af.md", "en.md", "en.generated.md"];
+  const mdFiles = ["af.md", "en.md"];
   let count = 0;
 
   for (const name of mdFiles) {

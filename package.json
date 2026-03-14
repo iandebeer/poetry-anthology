@@ -6,18 +6,25 @@
   "scripts": {
     "dev": "npm run generate-poems && remotion studio src/index.ts",
     "render": "npm run generate-poems && npx tsx scripts/renderPoem.ts",
-   "translate": "npx tsx scripts/translatePoems.ts",
+    "translate": "npx tsx scripts/translatePoems.ts",
     "convert-poems": "npx tsx scripts/convertPoemsToHtmlAndText.ts",
     "add-poem": "npx tsx scripts/addPoem.ts",
     "addPoem": "npm run add-poem",
+    "admin": "npx tsx server/index.ts",
+    "start:admin": "npm run admin",
     "generate-af-dict": "npx tsx scripts/generateAfrikaansDictionary.ts",
-   "render:all": "npm run generate-poems && npx tsx scripts/renderAll.ts",
+    "render:all": "npm run generate-poems && npx tsx scripts/renderAll.ts",
     "generate-poems": "npx tsx scripts/generatePoemsData.ts"
   },
   "dependencies": {
     "@remotion/bundler": "^4.0.0",
     "@remotion/cli": "^4.0.434",
     "@remotion/renderer": "^4.0.0",
+    "@types/express": "^5.0.6",
+    "@types/express-session": "^1.18.2",
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
     "openai": "^6.27.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -29,7 +36,5 @@
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
   },
-
-
   "private": true
 }

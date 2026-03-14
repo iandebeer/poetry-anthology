@@ -38,15 +38,20 @@ async function main() {
   }
   for (const poem of poems) {
     const afPath = path.join(poemsDir, poem, "af.md");
+    const enPath = path.join(poemsDir, poem, "en.md");
     if (!fs.existsSync(afPath)) continue;
+    if (fs.existsSync(enPath)) {
+      console.log("Skipped (en.md exists):", poem);
+      continue;
+    }
 
     const afText = fs.readFileSync(afPath, "utf8");
     console.log("Afrikaans text:");
     console.log(afText);
 
     const english = await translate(afText);
-    const enPath = path.join(poemsDir, poem, "en.generated.md");
-    fs.writeFileSync(enPath, english ?? "");
+    const enGenPath = path.join(poemsDir, poem, "en.generated.md");
+    fs.writeFileSync(enGenPath, english ?? "");
     console.log("Translated:", poem);
   }
 }

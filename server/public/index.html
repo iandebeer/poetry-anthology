@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Poetry Anthology Admin</title>
+  <style>
+    :root {
+      --bg: #0f0f14;
+      --surface: #1a1a22;
+      --border: #2a2a36;
+      --text: #e8e8ed;
+      --muted: #8888a0;
+      --accent: #6b8cce;
+      --accent-hover: #7d9ed8;
+      --error: #c75c5c;
+      --success: #5c9c5c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: "SF Pro Text", -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+    .container { max-width: 720px; margin: 0 auto; padding: 2rem; }
+    h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1.5rem; }
+    h2 { font-size: 1.1rem; font-weight: 600; margin: 1.5rem 0 0.75rem; color: var(--muted); }
+    form { display: flex; flex-direction: column; gap: 1rem; }
+    input, textarea, button {
+      font: inherit;
+      padding: 0.6rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: var(--surface);
+      color: var(--text);
+    }
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    textarea { min-height: 120px; resize: vertical; }
+    button {
+      cursor: pointer;
+      background: var(--accent);
+      color: white;
+      border: none;
+      font-weight: 500;
+    }
+    button:hover { background: var(--accent-hover); }
+    button.secondary { background: var(--surface); color: var(--text); }
+    button.danger { background: var(--error); }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.25rem;
+      margin-bottom: 1rem;
+    }
+    .actions { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+    .message { padding: 0.5rem; border-radius: 6px; margin: 0.5rem 0; }
+    .message.error { background: rgba(199,92,92,0.2); color: #e88; }
+    .message.success { background: rgba(92,156,92,0.2); color: #8e8; }
+    .message.info { background: rgba(107,140,206,0.2); color: var(--accent); }
+    .poem-list { list-style: none; padding: 0; margin: 0; }
+    .poem-list li {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+    }
+    .poem-list li:last-child { border-bottom: none; }
+    .logout { float: right; font-size: 0.9rem; }
+    .hidden { display: none !important; }
+    label { display: block; margin-bottom: 0.25rem; color: var(--muted); font-size: 0.9rem; }
+    .row { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .row > * { flex: 1; min-width: 140px; }
+    pre { overflow-x: auto; font-size: 0.8rem; background: #0a0a0f; padding: 0.75rem; border-radius: 6px; }
+    .lang-tabs { display: flex; gap: 0.25rem; margin-bottom: 1rem; }
+    .lang-tabs button {
+      padding: 0.4rem 0.8rem;
+      background: transparent;
+      color: var(--muted);
+      border: 1px solid var(--border);
+    }
+    .lang-tabs button.active { background: var(--accent); color: white; border-color: var(--accent); }
+    .poem-item { margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border); }
+    .poem-item:last-child { border-bottom: none; }
+    .poem-item h3 { font-size: 1rem; margin: 0 0 0.5rem; color: var(--accent); }
+    .poem-item .meta { font-size: 0.85rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .poem-item .content { white-space: pre-wrap; font-size: 0.95rem; line-height: 1.6; }
+    .poem-item .content.af { font-style: italic; }
+    .poem-item .content.en { }
+    .poem-item .lang-label { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
+    .poem-link { cursor: pointer; padding: 0.5rem 0; display: inline-block; border-radius: 4px; color: var(--accent); text-decoration: none; }
+    .poem-link:hover { background: rgba(107,140,206,0.15); }
+    .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 2rem; }
+    .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; max-width: 90vw; max-height: 90vh; width: 560px; display: flex; flex-direction: column; }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 1.25rem; border-bottom: 1px solid var(--border); }
+    .modal-body { flex: 1; overflow: auto; padding: 0; }
+    .modal-body iframe { width: 100%; height: 70vh; border: none; display: block; }
+    .modal-close { background: none; border: none; color: var(--muted); font-size: 1.5rem; cursor: pointer; padding: 0 0.25rem; }
+    .modal-close:hover { color: var(--text); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="login-view" class="card">
+      <h1>Poetry Anthology Admin</h1>
+      <p style="color: var(--muted); margin-bottom: 1rem;">Sign in to manage poems and run operations.</p>
+      <form id="login-form">
+        <div>
+          <label for="user">Username</label>
+          <input type="text" id="user" name="user" value="admin" autocomplete="username" required>
+        </div>
+        <div>
+          <label for="password">Password</label>
+          <input type="password" id="password" name="password" autocomplete="current-password" required>
+        </div>
+        <button type="submit">Sign in</button>
+      </form>
+      <div id="login-error" class="message error hidden"></div>
+      <p id="login-hint" style="font-size: 0.85rem; color: var(--muted); margin-top: 1rem;"></p>
+    </div>
+
+    <div id="admin-view" class="hidden">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+        <h1>Poetry Anthology Admin</h1>
+        <button class="logout secondary" id="logout-btn">Sign out</button>
+      </div>
+
+      <div id="messages"></div>
+
+      <div class="card">
+        <h2>Add poem</h2>
+        <form id="add-poem-form">
+          <div class="row">
+            <div>
+              <label for="poem-id">Poem ID (slug)</label>
+              <input type="text" id="poem-id" name="id" placeholder="my-new-poem" required pattern="[a-z0-9-]+">
+            </div>
+            <div>
+              <label for="author">Author</label>
+              <input type="text" id="author" name="author" placeholder="Ian de Beer">
+            </div>
+          </div>
+          <div>
+            <label for="af-content">Afrikaans content (markdown)</label>
+            <textarea id="af-content" name="afContent" placeholder="# titel&#10;&#10;eerste strofe...&#10;&#10;tweede strofe..." required></textarea>
+          </div>
+          <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" name="translate" id="translate">
+            Translate to English (creates en.md; requires OPENAI_API_KEY)
+          </label>
+          <button type="submit">Add poem</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h2>Poems</h2>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Click a poem to view it as HTML.</p>
+        <div class="lang-tabs">
+          <button type="button" data-lang="all" class="active">All</button>
+          <button type="button" data-lang="af">Afrikaans</button>
+          <button type="button" data-lang="en">English</button>
+        </div>
+        <ul id="poem-list" class="poem-list"></ul>
+      </div>
+
+      <div id="poem-modal" class="modal-overlay hidden">
+        <div class="modal">
+          <div class="modal-header">
+            <span id="modal-title"></span>
+            <button type="button" class="modal-close" id="modal-close">&times;</button>
+          </div>
+          <div class="modal-body">
+            <iframe id="poem-iframe" title="Poem"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Operations</h2>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
+          Translate skips poems that already have en.md. Convert uses only af.md and en.md.
+        </p>
+        <div class="actions">
+          <button id="btn-translate">Translate all</button>
+          <button id="btn-generate">Generate poems data</button>
+          <button id="btn-convert">Convert to HTML/text</button>
+          <button id="btn-af-dict">Generate Afrikaans dictionary</button>
+        </div>
+        <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;">
+          Translate: only poems without en.md → en.generated.md · Convert: af.md & en.md → .html & .txt
+        </p>
+        <pre id="op-output" class="hidden" style="margin-top: 1rem;"></pre>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = "/api";
+    const messagesEl = document.getElementById("messages");
+    const loginView = document.getElementById("login-view");
+    const adminView = document.getElementById("admin-view");
+
+    function msg(text, type = "info") {
+      const el = document.createElement("div");
+      el.className = `message ${type}`;
+      el.textContent = text;
+      messagesEl.appendChild(el);
+      setTimeout(() => el.remove(), 5000);
+    }
+
+    async function fetchApi(path, opts = {}) {
+      const res = await fetch(API + path, {
+        ...opts,
+        headers: { "Content-Type": "application/json", ...opts.headers },
+        credentials: "include",
+      });
+      const data = res.ok ? await res.json().catch(() => ({})) : await res.json().catch(() => ({ error: res.statusText }));
+      if (!res.ok) throw new Error(data.error || res.statusText);
+      return data;
+    }
+
+    async function showAuthHint() {
+      try {
+        const r = await fetch("/api/auth-status");
+        const s = await r.json();
+        const hint = document.getElementById("login-hint");
+        if (s.usingDefaultPassword) hint.textContent = "Default: admin / changeme";
+        else if (s.hasPassword) hint.textContent = `Username: ${s.username}`;
+      } catch (_) {}
+    }
+
+    async function checkAuth() {
+      const { authenticated } = await fetchApi("/me");
+      if (authenticated) {
+        loginView.classList.add("hidden");
+        adminView.classList.remove("hidden");
+        loadPoems();
+      } else {
+        loginView.classList.remove("hidden");
+        adminView.classList.add("hidden");
+        showAuthHint();
+      }
+    }
+
+    document.getElementById("login-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const errEl = document.getElementById("login-error");
+      try {
+        await fetchApi("/login", {
+          method: "POST",
+          body: JSON.stringify({
+            user: document.getElementById("user").value,
+            password: document.getElementById("password").value,
+          }),
+        });
+        errEl.classList.add("hidden");
+        checkAuth();
+      } catch (err) {
+        let msg = err.message;
+        try {
+          const status = await fetch("/api/auth-status").then((r) => r.json());
+          if (status.usingDefaultPassword) {
+            msg += " (Server using default: admin / changeme)";
+          } else if (status.hasPassword) {
+            msg += ` (Use username: ${status.username})`;
+          }
+        } catch (_) {}
+        errEl.textContent = msg;
+        errEl.classList.remove("hidden");
+      }
+    };
+
+    document.getElementById("logout-btn").onclick = async () => {
+      await fetchApi("/logout", { method: "POST" });
+      checkAuth();
+    };
+
+    let poemLang = "all";
+
+    function renderPoems(poems) {
+      const list = document.getElementById("poem-list");
+      if (!poems.length) {
+        list.innerHTML = "<li style='color: var(--muted)'>No poems</li>";
+        return;
+      }
+      list.innerHTML = poems.map((p) => {
+        const title = p.config.titleAf || p.config.titleEn || p.id;
+        const author = p.config.author ? ` · ${escapeHtml(p.config.author)}` : "";
+        return `<li style="display: flex; justify-content: space-between; align-items: center;"><a class="poem-link" href="#" data-id="${escapeHtml(p.id)}" data-title="${escapeHtml(title)}">${escapeHtml(title)}</a><span style="color: var(--muted); font-size: 0.85rem">${escapeHtml(p.id)}${author}</span></li>`;
+      }).join("");
+      list.querySelectorAll(".poem-link").forEach((a) => {
+        a.onclick = (e) => {
+          e.preventDefault();
+          showPoemHtml(a.dataset.id, a.dataset.title);
+        };
+      });
+    }
+
+    async function showPoemHtml(id, title) {
+      const modal = document.getElementById("poem-modal");
+      const iframe = document.getElementById("poem-iframe");
+      const modalTitle = document.getElementById("modal-title");
+      modalTitle.textContent = title;
+      modal.classList.remove("hidden");
+      try {
+        const res = await fetch(`${API}/poems/${encodeURIComponent(id)}/html?lang=${poemLang}`, { credentials: "include" });
+        const html = await res.text();
+        if (res.ok) {
+          iframe.srcdoc = html;
+        } else {
+          iframe.srcdoc = `<body style="font-family:sans-serif;padding:1rem;color:#c75c5c">${escapeHtml(html)}</body>`;
+        }
+      } catch (err) {
+        iframe.srcdoc = `<body style="font-family:sans-serif;padding:1rem;color:#c75c5c">Failed to load: ${escapeHtml(err.message)}</body>`;
+      }
+    }
+
+    document.getElementById("modal-close").onclick = () => {
+      document.getElementById("poem-modal").classList.add("hidden");
+      document.getElementById("poem-iframe").src = "about:blank";
+    };
+    document.getElementById("poem-modal").onclick = (e) => {
+      if (e.target.id === "poem-modal") {
+        document.getElementById("modal-close").click();
+      }
+    };
+
+    function escapeHtml(s) {
+      if (!s) return "";
+      const div = document.createElement("div");
+      div.textContent = s;
+      return div.innerHTML;
+    }
+
+    async function loadPoems() {
+      try {
+        const poems = await fetchApi(`/poems?lang=${poemLang}`);
+        renderPoems(poems);
+      } catch (err) {
+        msg(err.message, "error");
+      }
+    }
+
+    document.querySelectorAll(".lang-tabs button").forEach((btn) => {
+      btn.onclick = () => {
+        document.querySelectorAll(".lang-tabs button").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        poemLang = btn.dataset.lang || "all";
+        loadPoems();
+      };
+    });
+
+    document.getElementById("add-poem-form").onsubmit = async (e) => {
+      e.preventDefault();
+      const form = e.target;
+      const id = (form.querySelector('[name="id"]')?.value || "").trim().toLowerCase().replace(/\s+/g, "-");
+      const afContent = form.querySelector('[name="afContent"]')?.value || "";
+      const author = form.querySelector('[name="author"]')?.value || "";
+      try {
+        await fetchApi("/poems", {
+          method: "POST",
+          body: JSON.stringify({
+            id,
+            afContent,
+            author: author || undefined,
+            translate: form.querySelector('[name="translate"]')?.checked,
+          }),
+        });
+        msg("Poem added.", "success");
+        form.reset();
+        loadPoems();
+      } catch (err) {
+        msg(err.message, "error");
+      }
+    };
+
+    async function runOp(name, path) {
+      const out = document.getElementById("op-output");
+      out.classList.remove("hidden");
+      out.textContent = "Running...";
+      try {
+        const r = await fetchApi(path, { method: "POST" });
+        let text = [r.stdout, r.stderr].filter(Boolean).join("\n");
+        if (r.skipped) text = (text ? text + "\n" : "") + (r.message || "Skipped.");
+        out.textContent = text || "Done.";
+        msg(r.skipped ? `${name}: ${r.message || "skipped"}` : `${name} completed.`, r.skipped ? "info" : "success");
+      } catch (err) {
+        out.textContent = err.message;
+        msg(err.message, "error");
+      }
+    }
+
+    document.getElementById("btn-translate").onclick = () => runOp("Translate", "/translate");
+    document.getElementById("btn-generate").onclick = () => runOp("Generate poems", "/generate-poems");
+    document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");
+    document.getElementById("btn-af-dict").onclick = () => runOp("Afrikaans dict", "/generate-af-dict");
+
+    checkAuth();
+  </script>
+</body>
+</html>

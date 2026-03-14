@@ -1,4 +1,4 @@
-# soos ’n wolkie voor die son
+# wolkie voor die son
 
 ek blyk bloot ’n wolk van vergetelheid te wees
 vlietend gevorm en wasig belyn;

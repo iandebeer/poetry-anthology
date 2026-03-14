@@ -1,5 +1,5 @@
 
-# a just cloud in front of the sun
+# a cloud in front of the sun
 
 i am but a cloud, soon forgotten,  
 fleetingly shaped and hazily outlined;  

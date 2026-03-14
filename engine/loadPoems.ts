@@ -1,6 +1,7 @@
 /**
  * Loads poems from the poems/ folder.
  * Scans each subfolder for af.md, en.md, and config.json.
+ * Resolves per-poem media from public/media/poems/<id>/ when not in config.
  */
 
 import { readFileSync, readdirSync, existsSync } from "fs";
@@ -8,6 +9,43 @@ import { join } from "path";
 import type { PoemConfig, PoemData } from "./types.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
+const MEDIA_POEMS_DIR = join(process.cwd(), "public", "media", "poems");
+
+const VIDEO_EXTS = [".mp4", ".mov", ".webm"];
+const IMAGE_EXTS = [".jpg", ".jpeg", ".png", ".webp"];
+const AUDIO_EXTS = [".mp3", ".wav", ".m4a"];
+
+function findFile(basePath: string, names: string[], exts: string[]): string | null {
+  for (const name of names) {
+    for (const ext of exts) {
+      const file = `${name}${ext}`;
+      if (existsSync(join(basePath, file))) return file;
+    }
+  }
+  return null;
+}
+
+function resolvePoemMedia(id: string, config: PoemConfig): PoemConfig {
+  const poemMediaDir = join(MEDIA_POEMS_DIR, id);
+  if (!existsSync(poemMediaDir)) return config;
+
+  const out = { ...config };
+  const prefix = `poems/${id}`;
+
+  if (!out.background) {
+    const video = findFile(poemMediaDir, ["video", "background"], VIDEO_EXTS);
+    if (video) out.background = `${prefix}/${video}`;
+  }
+  if (!out.image) {
+    const image = findFile(poemMediaDir, ["image", "background"], IMAGE_EXTS);
+    if (image) out.image = `${prefix}/${image}`;
+  }
+  if (!out.music) {
+    const audio = findFile(poemMediaDir, ["audio", "music", "sound"], AUDIO_EXTS);
+    if (audio) out.music = `${prefix}/${audio}`;
+  }
+  return out;
+}
 
 function parseMarkdownLines(content: string): string[] {
   return content
@@ -18,11 +56,12 @@ function parseMarkdownLines(content: string): string[] {
 
 function loadConfig(poemDir: string, id: string): PoemConfig {
   const configPath = join(poemDir, "config.json");
-  if (!existsSync(configPath)) {
-    return { id };
+  let config: PoemConfig = { id };
+  if (existsSync(configPath)) {
+    const raw = JSON.parse(readFileSync(configPath, "utf-8"));
+    config = { id, ...raw };
   }
-  const raw = JSON.parse(readFileSync(configPath, "utf-8"));
-  return { id, ...raw };
+  return resolvePoemMedia(id, config);
 }
 
 export function loadPoems(): PoemData[] {

@@ -12,7 +12,6 @@ export interface PoemFilmProps {
 const DEFAULT_LINE_DURATION = 6;
 const DEFAULT_LINE_PAUSE = 1;
 const DEFAULT_INTRO = 2;
-const DEFAULT_OUTRO = 4;
 
 export const PoemFilm: React.FC<PoemFilmProps> = ({ poem, language }) => {
   const { fps } = useVideoConfig();
@@ -22,7 +21,6 @@ export const PoemFilm: React.FC<PoemFilmProps> = ({ poem, language }) => {
   const lineDuration = (config.lineDuration ?? DEFAULT_LINE_DURATION) * fps;
   const linePause = (config.linePause ?? DEFAULT_LINE_PAUSE) * fps;
   const introDuration = (config.introDuration ?? DEFAULT_INTRO) * fps;
-  const outroDuration = (config.outroDuration ?? DEFAULT_OUTRO) * fps;
 
   const segmentFrames = Math.round(lineDuration + linePause);
   const fadeInFrames = Math.round(fps * 1.5);
@@ -30,13 +28,14 @@ export const PoemFilm: React.FC<PoemFilmProps> = ({ poem, language }) => {
   const holdFrames = segmentFrames - fadeInFrames - fadeOutFrames;
 
   const backgroundPath = config.background ?? null;
+  const imagePath = config.image ?? null;
   const musicPath = config.music
-    ? staticFile(`media/music/${config.music}`)
+    ? staticFile(config.music.startsWith("poems/") ? `media/${config.music}` : `media/music/${config.music}`)
     : null;
 
   return (
     <AbsoluteFill>
-      <Background src={backgroundPath} overlayOpacity={0.5} />
+      <Background src={backgroundPath} imageSrc={imagePath} overlayOpacity={0.5} />
 
       {musicPath && (
         <Audio src={musicPath} volume={0.3} />

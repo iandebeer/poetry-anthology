@@ -20,6 +20,7 @@ import { mkdirSync, writeFileSync, existsSync } from "fs";
 import { join } from "path";
 
 const POEMS_DIR = join(process.cwd(), "poems");
+const MEDIA_POEMS_DIR = join(process.cwd(), "public", "media", "poems");
 
 export interface AddPoemOptions {
   /** Poem ID (folder name, use kebab-case) */
@@ -50,6 +51,7 @@ export async function addPoem(options: AddPoemOptions): Promise<string> {
   }
 
   mkdirSync(poemDir, { recursive: true });
+  mkdirSync(join(MEDIA_POEMS_DIR, id), { recursive: true });
 
   const afPath = join(poemDir, "af.md");
   writeFileSync(afPath, afContent.trimEnd() + "\n", "utf-8");
@@ -164,6 +166,7 @@ Then paste your Afrikaans poem when prompted, or pipe it:
       translate: hasTranslate,
     });
     console.log(`Created poem: ${path}`);
+    console.log(`Add media to public/media/poems/${id}/: video.mp4, image.jpg, audio.mp3`);
     if (!hasTranslate) {
       console.log("Run `npm run translate` to generate English, then copy en.generated.md → en.md");
     }
@@ -173,4 +176,6 @@ Then paste your Afrikaans poem when prompted, or pipe it:
   }
 }
 
-main();
+if (process.argv[1]?.includes("addPoem")) {
+  main();
+}

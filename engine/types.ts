@@ -11,9 +11,11 @@ export interface PoemConfig {
   titleEn?: string;
   /** Author name */
   author?: string;
-  /** Background video path (relative to media/backgrounds/) */
+  /** Background video: "filename.mp4" (legacy, in media/backgrounds/) or "poems/<id>/video.mp4" */
   background?: string;
-  /** Music path (relative to media/music/) */
+  /** Background image: "poems/<id>/image.jpg" (fallback when no video) */
+  image?: string;
+  /** Music: "filename.mp3" (legacy, in media/music/) or "poems/<id>/audio.mp3" */
   music?: string;
   /** Duration per line in seconds */
   lineDuration?: number;
