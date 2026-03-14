@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Poetry Anthology Admin</title>
+  <title>Ian's Petry Curator</title>
   <style>
     :root {
       --bg: #0f0f14;
@@ -67,7 +67,7 @@
     .poem-list { list-style: none; padding: 0; margin: 0; }
     .poem-list li {
       display: flex; justify-content: space-between; align-items: center;
-      padding: 0.6rem 0; border-bottom: 1px solid var(--border);
+      padding: 0.25rem 0; border-bottom: 1px solid var(--border);
     }
     .poem-list li:last-child { border-bottom: none; }
     .logout { float: right; font-size: 0.9rem; }
@@ -92,7 +92,7 @@
     .poem-item .content.af { font-style: italic; }
     .poem-item .content.en { }
     .poem-item .lang-label { font-size: 0.75rem; text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem; }
-    .poem-link { cursor: pointer; padding: 0.5rem 0; display: inline-block; border-radius: 4px; color: var(--accent); text-decoration: none; }
+    .poem-link { cursor: pointer; padding: 0.15rem 0; display: inline-block; border-radius: 4px; color: var(--accent); text-decoration: none; }
     .poem-link:hover { background: rgba(107,140,206,0.15); }
     .modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 100; padding: 2rem; }
     .modal { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; max-width: 90vw; max-height: 90vh; width: 560px; display: flex; flex-direction: column; }
@@ -106,7 +106,7 @@
 <body>
   <div class="container">
     <div id="login-view" class="card">
-      <h1>Poetry Anthology Admin</h1>
+      <h1>Ian's Petry Curator</h1>
       <p style="color: var(--muted); margin-bottom: 1rem;">Sign in to manage poems and run operations.</p>
       <form id="login-form">
         <div>
@@ -125,40 +125,15 @@
 
     <div id="admin-view" class="hidden">
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
-        <h1>Poetry Anthology Admin</h1>
+        <h1>Ian's Petry Curator</h1>
         <button class="logout secondary" id="logout-btn">Sign out</button>
       </div>
 
       <div id="messages"></div>
 
       <div class="card">
-        <h2>Add poem</h2>
-        <form id="add-poem-form">
-          <div class="row">
-            <div>
-              <label for="poem-id">Poem ID (slug)</label>
-              <input type="text" id="poem-id" name="id" placeholder="my-new-poem" required pattern="[a-z0-9-]+">
-            </div>
-            <div>
-              <label for="author">Author</label>
-              <input type="text" id="author" name="author" placeholder="Ian de Beer">
-            </div>
-          </div>
-          <div>
-            <label for="af-content">Afrikaans content (markdown)</label>
-            <textarea id="af-content" name="afContent" placeholder="# titel&#10;&#10;eerste strofe...&#10;&#10;tweede strofe..." required></textarea>
-          </div>
-          <label style="display: flex; align-items: center; gap: 0.5rem;">
-            <input type="checkbox" name="translate" id="translate">
-            Translate to English (creates en.md; requires OPENAI_API_KEY)
-          </label>
-          <button type="submit">Add poem</button>
-        </form>
-      </div>
-
-      <div class="card">
         <h2>Poems</h2>
-        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Click a poem to view it as HTML.</p>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Click a poem to open its HTML in a new tab.</p>
         <div class="lang-tabs">
           <button type="button" data-lang="all" class="active">All</button>
           <button type="button" data-lang="af">Afrikaans</button>
@@ -194,6 +169,29 @@
           Translate: only poems without en.md → en.generated.md · Convert: af.md & en.md → .html & .txt
         </p>
         <pre id="op-output" class="hidden" style="margin-top: 1rem;"></pre>
+
+        <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--muted); font-size: 1rem;">Add poem</h3>
+        <form id="add-poem-form">
+          <div class="row">
+            <div>
+              <label for="poem-id">Poem ID (slug)</label>
+              <input type="text" id="poem-id" name="id" placeholder="my-new-poem" required pattern="[a-z0-9-]+">
+            </div>
+            <div>
+              <label for="author">Author</label>
+              <input type="text" id="author" name="author" placeholder="Ian de Beer">
+            </div>
+          </div>
+          <div>
+            <label for="af-content">Afrikaans content (markdown)</label>
+            <textarea id="af-content" name="afContent" placeholder="# titel&#10;&#10;eerste strofe...&#10;&#10;tweede strofe..." required></textarea>
+          </div>
+          <label style="display: flex; align-items: center; gap: 0.5rem;">
+            <input type="checkbox" name="translate" id="translate">
+            Translate to English (creates en.md; requires OPENAI_API_KEY)
+          </label>
+          <button type="submit">Add poem</button>
+        </form>
       </div>
     </div>
   </div>
@@ -300,34 +298,10 @@
       });
     }
 
-    async function showPoemHtml(id, title) {
-      const modal = document.getElementById("poem-modal");
-      const iframe = document.getElementById("poem-iframe");
-      const modalTitle = document.getElementById("modal-title");
-      modalTitle.textContent = title;
-      modal.classList.remove("hidden");
-      try {
-        const res = await fetch(`${API}/poems/${encodeURIComponent(id)}/html?lang=${poemLang}`, { credentials: "include" });
-        const html = await res.text();
-        if (res.ok) {
-          iframe.srcdoc = html;
-        } else {
-          iframe.srcdoc = `<body style="font-family:sans-serif;padding:1rem;color:#c75c5c">${escapeHtml(html)}</body>`;
-        }
-      } catch (err) {
-        iframe.srcdoc = `<body style="font-family:sans-serif;padding:1rem;color:#c75c5c">Failed to load: ${escapeHtml(err.message)}</body>`;
-      }
+    function showPoemHtml(id, title) {
+      const url = `${window.location.origin}${API}/poems/${encodeURIComponent(id)}/html?lang=${poemLang}`;
+      window.open(url, "_blank", "noopener");
     }
-
-    document.getElementById("modal-close").onclick = () => {
-      document.getElementById("poem-modal").classList.add("hidden");
-      document.getElementById("poem-iframe").src = "about:blank";
-    };
-    document.getElementById("poem-modal").onclick = (e) => {
-      if (e.target.id === "poem-modal") {
-        document.getElementById("modal-close").click();
-      }
-    };
 
     function escapeHtml(s) {
       if (!s) return "";

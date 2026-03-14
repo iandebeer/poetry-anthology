@@ -6,7 +6,7 @@
  */
 
 import { config } from "dotenv";
-import { join, dirname, resolve } from "path";
+import { join, dirname } from "path";
 import { fileURLToPath } from "url";
 
 // Load .env: try project root (cwd) and server directory
@@ -145,9 +145,23 @@ function mdToHtml(md: string): string {
   return parts.join("\n");
 }
 
-// Project root: server/ is one level down
-const PROJECT_ROOT = resolve(__dirname, "..");
-const POEMS_DIR = join(PROJECT_ROOT, "poems");
+// Use cwd (project root when run via npm) - same as loadPoems
+const POEMS_DIR = join(process.cwd(), "poems");
+
+/** Wrap poem HTML body with optional background image. config.image is e.g. "poems/<id>/image.jpg" */
+function wrapHtmlWithBackground(html: string, imagePath: string | undefined): string {
+  const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+  const bodyContent = bodyMatch?.[1] ?? html;
+  const bgUrl = imagePath ? `/media/${imagePath}` : null;
+  const baseStyles =
+    "body{min-height:100vh;margin:0;font-family:serif;line-height:1.6;color:#e8e8ed;background:#0f0f14}" +
+    ".poem-content{max-width:36em;margin:2rem auto;padding:2rem}" +
+    ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}";
+  const bgStyles = bgUrl
+    ? `body{background:url(${bgUrl}) center/cover fixed}.poem-content{background:rgba(0,0,0,0.65);border-radius:8px}`
+    : "";
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${bgStyles}</style></head><body><div class="poem-content">${bodyContent.trim()}</div></body></html>`;
+}
 
 app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   const poems = loadPoems();
@@ -155,31 +169,39 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   if (!poem) return res.status(404).json({ error: "Not found" });
   const poemDir = join(POEMS_DIR, poem.id);
   const lang = (req.query.lang as string) || "all";
+  const imagePath = poem.config.image ?? undefined;
 
   // Prefer pre-generated .html files from convert-poems
-  const afHtmlPath = resolve(poemDir, "af.html");
-  const enHtmlPath = resolve(poemDir, "en.html");
-  const enGenPath = resolve(poemDir, "en.generated.html");
+  const afHtmlPath = join(poemDir, "af.html");
+  const enHtmlPath = join(poemDir, "en.html");
+  const enGenPath = join(poemDir, "en.generated.html");
 
   if (lang === "af" && existsSync(afHtmlPath)) {
-    return res.type("html").send(readFileSync(afHtmlPath, "utf-8"));
+    const raw = readFileSync(afHtmlPath, "utf-8");
+    res.setHeader("Content-Type", "text/html; charset=utf-8");
+    return res.send(wrapHtmlWithBackground(raw, imagePath));
   }
   if (lang === "af" && !existsSync(afHtmlPath)) {
     console.warn(`[html] af.html not found at ${afHtmlPath} (poem: ${poem.id}, cwd: ${process.cwd()})`);
   }
   if (lang === "en") {
     const enPath = existsSync(enHtmlPath) ? enHtmlPath : existsSync(enGenPath) ? enGenPath : null;
-    if (enPath) return res.type("html").send(readFileSync(enPath, "utf-8"));
+    if (enPath) {
+      const raw = readFileSync(enPath, "utf-8");
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.send(wrapHtmlWithBackground(raw, imagePath));
+    }
   }
   if (lang === "all") {
     const afHtml = existsSync(afHtmlPath) ? readFileSync(afHtmlPath, "utf-8") : null;
     const enPath = existsSync(enHtmlPath) ? enHtmlPath : existsSync(enGenPath) ? enGenPath : null;
     const enHtml = enPath ? readFileSync(enPath, "utf-8") : null;
     if (afHtml && enHtml) {
-      const afBody = afHtml.match(/<body>([\s\S]*)<\/body>/)?.[1] || "";
-      const enBody = enHtml.match(/<body>([\s\S]*)<\/body>/)?.[1] || "";
-      const combined = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Poem</title><style>body{font-family:serif;max-width:36em;margin:2rem auto;line-height:1.6}.lang-block{margin-bottom:2rem}h3{font-size:0.9rem;color:#666}</style></head><body><div class="lang-block"><h3>Afrikaans</h3>${afBody}</div><div class="lang-block"><h3>English</h3>${enBody}</div></body></html>`;
-      return res.type("html").send(combined);
+      const afBody = afHtml.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || "";
+      const enBody = enHtml.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || "";
+      const combined = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Poem</title></head><body><div class="lang-block"><h3>Afrikaans</h3>${afBody}</div><div class="lang-block"><h3>English</h3>${enBody}</div></body></html>`;
+      res.setHeader("Content-Type", "text/html; charset=utf-8");
+      return res.send(wrapHtmlWithBackground(combined, imagePath));
     }
   }
 
@@ -187,8 +209,8 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   let af = "",
     en = "";
   try {
-    af = readFileSync(resolve(poemDir, "af.md"), "utf-8");
-    en = readFileSync(resolve(poemDir, "en.md"), "utf-8");
+    af = readFileSync(join(poemDir, "af.md"), "utf-8");
+    en = readFileSync(join(poemDir, "en.md"), "utf-8");
   } catch {
     /* ignore */
   }
@@ -196,8 +218,9 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   if (lang === "af") body = mdToHtml(af);
   else if (lang === "en") body = mdToHtml(en);
   else body = `<div class="lang-block"><h3>Afrikaans</h3>${mdToHtml(af)}</div><div class="lang-block"><h3>English</h3>${mdToHtml(en)}</div>`;
-  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"><style>body{font-family:serif;max-width:36em;margin:2rem auto;line-height:1.6;}.lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#666}p{margin:0.5rem 0}</style></head><body>${body}</body></html>`;
-  res.type("html").send(html);
+  const html = `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>${body}</body></html>`;
+  res.setHeader("Content-Type", "text/html; charset=utf-8");
+  res.send(wrapHtmlWithBackground(html, imagePath));
 });
 
 app.post("/api/poems", requireAuth, async (req, res) => {
@@ -273,6 +296,9 @@ app.post("/api/translate/:id", requireAuth, async (req, res) => {
     res.status(500).json({ error: err instanceof Error ? err.message : String(err) });
   }
 });
+
+// Serve poem media (for HTML background images)
+app.use("/media", express.static(join(process.cwd(), "public", "media")));
 
 // Serve admin UI
 app.get("/admin", (_req, res) => res.sendFile(join(process.cwd(), "server", "public", "index.html")));

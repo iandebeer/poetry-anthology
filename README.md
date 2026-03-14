@@ -73,7 +73,7 @@ Each poem can have its own unique media in `public/media/poems/<poem-id>/`:
 | File | Purpose |
 |------|---------|
 | `video.mp4` (or `.mov`, `.webm`) | Background video |
-| `image.jpg` (or `.png`, `.webp`) | Background image (used when no video) |
+| `image.jpg` (or `.png`, `.webp`) | Background image (Remotion fallback when no video; also used as background when viewing poem HTML in admin) |
 | `audio.mp3` (or `.wav`, `.m4a`) | Music/sound |
 
 Files are auto-detected. Config overrides (e.g. `background`, `music`) take precedence.
