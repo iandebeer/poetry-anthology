@@ -1,14 +1,14 @@
-# Late Summer’s Fruits
+# Late Summer's Fruits
 
-Gently they unfolded my chest  
-to gaze upon my state, at rest.  
+Gently they peeled my chest apart,  
+to glimpse my state, to see the heart.  
 
-Amidst the atrophied little muscles,  
-wrapped in a thin layer of old fat tussles—  
-the organs, like fruits of the late season,  
-clinging on by grace, a fragile reason;  
-tormented by fruit flies, a woeful sight,  
-this old shell’s a pitiful plight.  
+Amidst the atrophied little muscles’ fold,  
+wrapped in a thin layer of old,  
+the organs lay like late season’s fruit,  
+clinging to life by mercy’s root;  
+harried by fruit flies, their relentless throng,  
+the old relic is a pitiful sight, yet strong.  
 
-What do you say—can it still make jam,  
-or shall we leave it and let the birds fam?
+What say you—will it still serve for jam,  
+or shall we let it go, and the birds take their fam?  

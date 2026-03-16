@@ -285,6 +285,14 @@ app.post("/api/translate", requireAuth, (req, res) => runScript("scripts/transla
 app.post("/api/generate-poems", requireAuth, (req, res) => runScript("scripts/generatePoemsData.ts", res));
 app.post("/api/convert-poems", requireAuth, (req, res) => runScript("scripts/convertPoemsToHtmlAndText.ts", res));
 app.post("/api/generate-af-dict", requireAuth, (req, res) => runScript("scripts/generateAfrikaansDictionary.ts", res));
+app.post("/api/export-kindle", requireAuth, (req, res) => runScript("scripts/exportKindle.ts", res));
+app.get("/api/export-kindle/download", requireAuth, (req, res) => {
+  const epubPath = join(process.cwd(), "dist", "poetry-anthology.epub");
+  if (!existsSync(epubPath)) return res.status(404).json({ error: "EPUB not found. Run Export Kindle first." });
+  res.setHeader("Content-Type", "application/epub+zip");
+  res.setHeader("Content-Disposition", 'attachment; filename="poetry-anthology.epub"');
+  res.sendFile(epubPath);
+});
 
 app.post("/api/translate/:id", requireAuth, async (req, res) => {
   const poemsDir = join(process.cwd(), "poems");

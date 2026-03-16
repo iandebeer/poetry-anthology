@@ -1,19 +1,19 @@
-# I am the Wind  
+# I Am the Wind
 
-As a child, I was so convinced:  
+As a child, I was firmly convinced:  
 the branches that sway,  
-the reeds that bend, the windmill that spins,  
-they all work together to make the wind play.  
+the reeds that sway, the windmill that spins,  
+they all work together to make the wind blow in.  
 
 So naïve to believe: the ego is the One -  
-he, the consciousness that holds all in run;  
+he, the awareness that blankets all;  
 my body with five senses  
-offers experiences, sensations that it dispenses,  
-to the active witness, interpreting sight,  
-my thoughts and emotions - they seek to take flight.  
+offers experiences, sensations to the active witness  
+who interprets my perceptions and awareness,  
+my thoughts and emotions - all my deeds and wishes, directing my course.  
 
 But now I know:  
 I am the wind that sways the branches,  
-the reeds that bend, the windmill that dances -  
-the ego, like the branch, the reed,  
-moves only as the Monad decreed.  
+the reeds that sway, the windmill that turns -  
+the ego like the branch, the reed,  
+moves only as the Monad decrees.

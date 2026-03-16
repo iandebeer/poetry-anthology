@@ -164,6 +164,8 @@
           <button id="btn-generate">Generate poems data</button>
           <button id="btn-convert">Convert to HTML/text</button>
           <button id="btn-af-dict">Generate Afrikaans dictionary</button>
+          <button id="btn-export-kindle">Export Kindle EPUB</button>
+          <a id="btn-download-kindle" href="/api/export-kindle/download" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none" download>Download EPUB</a>
         </div>
         <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;">
           Translate: only poems without en.md → en.generated.md · Convert: af.md & en.md → .html & .txt
@@ -362,6 +364,7 @@
     document.getElementById("btn-generate").onclick = () => runOp("Generate poems", "/generate-poems");
     document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");
     document.getElementById("btn-af-dict").onclick = () => runOp("Afrikaans dict", "/generate-af-dict");
+    document.getElementById("btn-export-kindle").onclick = () => runOp("Export Kindle", "/export-kindle");
 
     checkAuth();
   </script>

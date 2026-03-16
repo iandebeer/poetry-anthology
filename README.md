@@ -19,6 +19,7 @@ Requires Node.js 18+. If `npm install` fails (e.g. esbuild on Node 25), try Node
 | `npm run admin` | Web admin UI (login-protected) at http://localhost:3333/admin |
 | `npm run render` | Render a single poem: `npm run render -- <poemId> [af\|en]` |
 | `npm run render:all` | Render all poems (Afrikaans + English) to `output/videos/` |
+| `npm run export-kindle` | Export all poems to a single EPUB for Amazon KDP: `dist/poetry-anthology.epub`. Options: `--title "Title" --author "Name" --output path.epub --lang both|af|en` |
 
 ## Project Structure
 
@@ -103,7 +104,7 @@ Run `npm run admin` to start the web-based admin at http://localhost:3333/admin.
 
 - **Login** – Session-based auth (set `ADMIN_PASSWORD` and optionally `ADMIN_USER` in env)
 - **Add poem** – Create new poems with optional AI translation
-- **Operations** – Translate all, generate poems data, convert to HTML/text, generate Afrikaans dictionary
+- **Operations** – Translate all, generate poems data, convert to HTML/text, generate Afrikaans dictionary, export Kindle EPUB
 
 Default credentials: `admin` / `changeme` (change via env in production).
 
