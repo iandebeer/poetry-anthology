@@ -165,7 +165,7 @@
           <button id="btn-convert">Convert to HTML/text</button>
           <button id="btn-af-dict">Generate Afrikaans dictionary</button>
           <button id="btn-export-kindle">Export Kindle EPUB</button>
-          <a id="btn-download-kindle" href="/api/export-kindle/download" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none" download>Download EPUB</a>
+          <a id="btn-download-kindle" href="/api/export-kindle/download?lang=both" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none" download>Download EPUB</a>
         </div>
         <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;">
           Translate: only poems without en.md → en.generated.md · Convert: af.md & en.md → .html & .txt
@@ -320,6 +320,8 @@
         btn.classList.add("active");
         poemLang = btn.dataset.lang || "all";
         loadPoems();
+        const dl = document.getElementById("btn-download-kindle");
+        if (dl) dl.href = "/api/export-kindle/download?lang=" + (poemLang === "all" ? "both" : poemLang);
       };
     });
 
@@ -344,12 +346,12 @@
       }
     };
 
-    async function runOp(name, path) {
+    async function runOp(name, path, body) {
       const out = document.getElementById("op-output");
       out.classList.remove("hidden");
       out.textContent = "Running...";
       try {
-        const r = await fetchApi(path, { method: "POST" });
+        const r = await fetchApi(path, { method: "POST", body: body ? JSON.stringify(body) : undefined });
         let text = [r.stdout, r.stderr].filter(Boolean).join("\n");
         if (r.skipped) text = (text ? text + "\n" : "") + (r.message || "Skipped.");
         out.textContent = text || "Done.";
@@ -364,7 +366,7 @@
     document.getElementById("btn-generate").onclick = () => runOp("Generate poems", "/generate-poems");
     document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");
     document.getElementById("btn-af-dict").onclick = () => runOp("Afrikaans dict", "/generate-af-dict");
-    document.getElementById("btn-export-kindle").onclick = () => runOp("Export Kindle", "/export-kindle");
+    document.getElementById("btn-export-kindle").onclick = () => runOp("Export Kindle", "/export-kindle", { lang: poemLang === "all" ? "both" : poemLang });
 
     checkAuth();
   </script>

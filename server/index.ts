@@ -285,12 +285,31 @@ app.post("/api/translate", requireAuth, (req, res) => runScript("scripts/transla
 app.post("/api/generate-poems", requireAuth, (req, res) => runScript("scripts/generatePoemsData.ts", res));
 app.post("/api/convert-poems", requireAuth, (req, res) => runScript("scripts/convertPoemsToHtmlAndText.ts", res));
 app.post("/api/generate-af-dict", requireAuth, (req, res) => runScript("scripts/generateAfrikaansDictionary.ts", res));
-app.post("/api/export-kindle", requireAuth, (req, res) => runScript("scripts/exportKindle.ts", res));
+app.post("/api/export-kindle", requireAuth, async (req, res) => {
+  const lang = (req.body?.lang as string) || "both";
+  const validLang = ["af", "en", "both"].includes(lang) ? lang : "both";
+  try {
+    const { stdout, stderr } = await execAsync(`npx tsx scripts/exportKindle.ts --lang ${validLang}`, {
+      cwd: process.cwd(),
+      maxBuffer: 10 * 1024 * 1024,
+    });
+    res.json({ ok: true, stdout: stdout || "", stderr: stderr || "", lang: validLang });
+  } catch (err: unknown) {
+    const e = err as { stdout?: string; stderr?: string; message?: string };
+    res.status(500).json({
+      error: e?.message || String(err),
+      stdout: e?.stdout || "",
+      stderr: e?.stderr || "",
+    });
+  }
+});
 app.get("/api/export-kindle/download", requireAuth, (req, res) => {
-  const epubPath = join(process.cwd(), "dist", "poetry-anthology.epub");
+  const lang = (req.query.lang as string) || "both";
+  const filename = lang === "en" ? "Anthology.epub" : "Digbundel.epub";
+  const epubPath = join(process.cwd(), "dist", filename);
   if (!existsSync(epubPath)) return res.status(404).json({ error: "EPUB not found. Run Export Kindle first." });
   res.setHeader("Content-Type", "application/epub+zip");
-  res.setHeader("Content-Disposition", 'attachment; filename="poetry-anthology.epub"');
+  res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
   res.sendFile(epubPath);
 });
 

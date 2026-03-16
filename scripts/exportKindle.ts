@@ -1,8 +1,8 @@
 /**
  * Export all poems to a single EPUB file for Amazon Kindle Direct Publishing.
- * Run: npm run export-kindle [-- --title "My Anthology" --author "Ian de Beer"]
+ * Run: npm run export-kindle [-- --lang af|en|both --title "..." --author "Ian de Beer"]
  *
- * Output: dist/poetry-anthology.epub (or custom path)
+ * Output by language: --lang af or both → dist/Digbundel.epub, --lang en → dist/Anthology.epub
  */
 
 import { readFileSync, existsSync, mkdirSync } from "fs";
@@ -10,7 +10,12 @@ import { join } from "path";
 import { loadPoems } from "../engine/loadPoems.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
-const DEFAULT_OUTPUT = join(process.cwd(), "dist", "poetry-anthology.epub");
+const DIST_DIR = join(process.cwd(), "dist");
+
+function getOutputPath(lang: "both" | "af" | "en"): string {
+  if (lang === "en") return join(DIST_DIR, "Anthology.epub");
+  return join(DIST_DIR, "Digbundel.epub");
+}
 
 function escapeHtml(s: string): string {
   return s
@@ -67,11 +72,12 @@ function parseArgs(): { title: string; author: string; output: string; lang: "bo
     const i = args.indexOf(name);
     return i >= 0 ? args[i + 1] : undefined;
   };
+  const lang = (getArg("--lang") as "both" | "af" | "en") ?? "both";
   return {
-    title: getArg("--title") ?? "Poetry Anthology",
+    title: getArg("--title") ?? (lang === "en" ? "Anthology" : "Digbundel"),
     author: getArg("--author") ?? "Ian de Beer",
-    output: getArg("--output") ?? DEFAULT_OUTPUT,
-    lang: (getArg("--lang") as "both" | "af" | "en") ?? "both",
+    output: getArg("--output") ?? getOutputPath(lang),
+    lang,
   };
 }
 
