@@ -21,7 +21,11 @@ function escapeHtml(s: string): string {
 }
 
 function mdToHtmlBody(md: string, skipTitle = false): string {
-  const lines = md.split("\n");
+  let lines = md.split("\n");
+  if (skipTitle) {
+    const firstTitleIdx = lines.findIndex((l) => l.trim().startsWith("# "));
+    if (firstTitleIdx >= 0) lines.splice(firstTitleIdx, 1);
+  }
   const parts: string[] = [];
   let i = 0;
 
@@ -31,8 +35,6 @@ function mdToHtmlBody(md: string, skipTitle = false): string {
     const title = lines[i].replace(/^#\s+/, "").trim();
     parts.push(`<h2>${escapeHtml(title)}</h2>`);
     i++;
-  } else if (lines[i]?.trim().startsWith("# ")) {
-    i++; // skip the # line when we use config title
   }
 
   const stanzas: string[][] = [];
@@ -100,7 +102,6 @@ async function main() {
     let html = "";
 
     if (lang === "both") {
-      html += `<h2>${escapeHtml(chapterTitle)}</h2>`;
       html += `<div class="poem-section" lang="af">${mdToHtmlBody(afMd, true)}</div>`;
       html += `<div class="poem-section" lang="en">${mdToHtmlBody(enMd, true)}</div>`;
     } else if (lang === "af") {
@@ -120,7 +121,7 @@ async function main() {
     title,
     author: bookAuthor,
     content,
-    appendChapterTitles: false,
+    appendChapterTitles: true,
     lang: lang === "af" ? "af" : "en",
     css: `
       body { font-family: Georgia, serif; line-height: 1.6; margin: 1.5em; }
