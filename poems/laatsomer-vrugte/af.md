@@ -4,11 +4,11 @@ versigtig het hul my bors oopgevou
 om my toestand, van nader te kan beskou
   
 daar tussen geatrofeerde spiertjies  
-met 'n  ou dun vet lagie omvou
-die organe - soos laat seisoen se vrugte  
-wat net deur genade nog klou;
+met 'n  ou dun vet lagie omvou -  
+die organe, soos laat seisoen se vrugte  
+wat net deur genade nog klou;  
 sleg deur vrugte-vlieë toegetakel  
 is die ou skilletjie maar 'n erge spektakel
   
-wat sê jy - sal hy nog vir konfyt kan deug
+wat sê jy - sal hy nog vir konfyt kan deug  
 of sal ons hom los en die voëlties verheug?
