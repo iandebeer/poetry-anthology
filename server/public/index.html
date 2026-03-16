@@ -171,6 +171,7 @@
         <pre id="op-output" class="hidden" style="margin-top: 1rem;"></pre>
 
         <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--muted); font-size: 1rem;">Add poem</h3>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem;">Creates the directory structure only. Add af.md and en.md manually.</p>
         <form id="add-poem-form">
           <div class="row">
             <div>
@@ -182,14 +183,6 @@
               <input type="text" id="author" name="author" placeholder="Ian de Beer">
             </div>
           </div>
-          <div>
-            <label for="af-content">Afrikaans content (markdown)</label>
-            <textarea id="af-content" name="afContent" placeholder="# titel&#10;&#10;eerste strofe...&#10;&#10;tweede strofe..." required></textarea>
-          </div>
-          <label style="display: flex; align-items: center; gap: 0.5rem;">
-            <input type="checkbox" name="translate" id="translate">
-            Translate to English (creates en.md; requires OPENAI_API_KEY)
-          </label>
           <button type="submit">Add poem</button>
         </form>
       </div>
@@ -332,19 +325,16 @@
       e.preventDefault();
       const form = e.target;
       const id = (form.querySelector('[name="id"]')?.value || "").trim().toLowerCase().replace(/\s+/g, "-");
-      const afContent = form.querySelector('[name="afContent"]')?.value || "";
       const author = form.querySelector('[name="author"]')?.value || "";
       try {
         await fetchApi("/poems", {
           method: "POST",
           body: JSON.stringify({
             id,
-            afContent,
             author: author || undefined,
-            translate: form.querySelector('[name="translate"]')?.checked,
           }),
         });
-        msg("Poem added.", "success");
+        msg("Poem directory created. Add af.md and en.md to poems/" + id + "/", "success");
         form.reset();
         loadPoems();
       } catch (err) {

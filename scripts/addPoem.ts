@@ -25,15 +25,15 @@ const MEDIA_POEMS_DIR = join(process.cwd(), "public", "media", "poems");
 export interface AddPoemOptions {
   /** Poem ID (folder name, use kebab-case) */
   id: string;
-  /** Afrikaans content (markdown) */
-  afContent: string;
+  /** Afrikaans content (markdown). Omit to create directory structure only. */
+  afContent?: string;
   /** Author name */
   author?: string;
-  /** Afrikaans title (default: extracted from first # line) */
+  /** Afrikaans title (default: extracted from first # line or id) */
   titleAf?: string;
   /** English title */
   titleEn?: string;
-  /** Run AI translation for en.md */
+  /** Run AI translation for en.md (only when afContent provided) */
   translate?: boolean;
 }
 
@@ -53,40 +53,11 @@ export async function addPoem(options: AddPoemOptions): Promise<string> {
   mkdirSync(poemDir, { recursive: true });
   mkdirSync(join(MEDIA_POEMS_DIR, id), { recursive: true });
 
-  const afPath = join(poemDir, "af.md");
-  writeFileSync(afPath, afContent.trimEnd() + "\n", "utf-8");
-
-  let enContent: string;
-  if (doTranslate && process.env.OPENAI_API_KEY) {
-    const { default: OpenAI } = await import("openai");
-    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      messages: [
-        {
-          role: "system",
-          content:
-            "Translate Afrikaans poetry into natural poetic English while preserving tone, rhythm, and imagery.",
-        },
-        { role: "user", content: afContent },
-      ],
-    });
-    let result = response.choices[0].message.content ?? "";
-    result = result.replace(/\brhymically\b/gi, "rhythmically");
-    enContent = result;
-  } else {
-    enContent = doTranslate
-      ? "# Translation failed (set OPENAI_API_KEY)\n\nRun `npm run translate` to generate."
-      : "# Translation pending\n\nRun `npm run translate` to generate en.generated.md, then copy to en.md.";
-  }
-
-  const enPath = join(poemDir, "en.md");
-  writeFileSync(enPath, enContent.trimEnd() + "\n", "utf-8");
-
-  const afTitle = titleAf ?? extractTitle(afContent);
+  const displayTitle = id.replace(/-/g, " ");
+  const afTitle = titleAf ?? (afContent ? extractTitle(afContent) : undefined) ?? displayTitle;
   const config = {
-    titleAf: afTitle ?? id,
-    titleEn: titleEn ?? afTitle ?? id,
+    titleAf: afTitle,
+    titleEn: titleEn ?? afTitle,
     author: author ?? "",
     lineDuration: 5,
     linePause: 1,
@@ -95,6 +66,38 @@ export async function addPoem(options: AddPoemOptions): Promise<string> {
   };
   const configPath = join(poemDir, "config.json");
   writeFileSync(configPath, JSON.stringify(config, null, 2), "utf-8");
+
+  if (afContent) {
+    const afPath = join(poemDir, "af.md");
+    writeFileSync(afPath, afContent.trimEnd() + "\n", "utf-8");
+
+    let enContent: string;
+    if (doTranslate && process.env.OPENAI_API_KEY) {
+      const { default: OpenAI } = await import("openai");
+      const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+      const response = await openai.chat.completions.create({
+        model: "gpt-4o-mini",
+        messages: [
+          {
+            role: "system",
+            content:
+              "Translate Afrikaans poetry into natural poetic English while preserving tone, rhythm, and imagery.",
+          },
+          { role: "user", content: afContent },
+        ],
+      });
+      let result = response.choices[0].message.content ?? "";
+      result = result.replace(/\brhymically\b/gi, "rhythmically");
+      enContent = result;
+    } else {
+      enContent = doTranslate
+        ? "# Translation failed (set OPENAI_API_KEY)\n\nRun `npm run translate` to generate."
+        : "# Translation pending\n\nRun `npm run translate` to generate en.generated.md, then copy to en.md.";
+    }
+
+    const enPath = join(poemDir, "en.md");
+    writeFileSync(enPath, enContent.trimEnd() + "\n", "utf-8");
+  }
 
   return poemDir;
 }
@@ -107,21 +110,22 @@ async function main() {
 
   if (!id) {
     console.log(`
-Add a new poem (Afrikaans) to the anthology.
+Add a new poem to the anthology.
 
 Usage:
   npx tsx scripts/addPoem.ts <id> [options]
 
+Creates directory structure only (poems/<id>/, public/media/poems/<id>/, config.json).
+Add af.md and en.md manually.
+
 Options:
-  --translate    Generate English translation via AI (requires OPENAI_API_KEY)
+  --translate    With piped content: generate en.md via AI (requires OPENAI_API_KEY)
   --author NAME   Author name
   --title-af T    Afrikaans title
   --title-en T    English title
 
-Example:
-  npx tsx scripts/addPoem.ts my-new-poem --translate --author "Ian de Beer"
-
-Then paste your Afrikaans poem when prompted, or pipe it:
+Examples:
+  npx tsx scripts/addPoem.ts my-new-poem
   cat poem.md | npx tsx scripts/addPoem.ts my-poem --translate
 `);
     process.exit(0);
@@ -137,12 +141,7 @@ Then paste your Afrikaans poem when prompted, or pipe it:
 
   let afContent: string;
   if (process.stdin.isTTY) {
-    console.log("Paste your Afrikaans poem (markdown). End with Ctrl+D (Unix) or Ctrl+Z (Windows):\n");
-    afContent = await new Promise<string>((resolve) => {
-      const chunks: Buffer[] = [];
-      process.stdin.on("data", (c) => chunks.push(c));
-      process.stdin.on("end", () => resolve(Buffer.concat(chunks).toString("utf-8")));
-    });
+    afContent = "";
   } else {
     afContent = await new Promise<string>((resolve) => {
       const chunks: Buffer[] = [];
@@ -151,23 +150,19 @@ Then paste your Afrikaans poem when prompted, or pipe it:
     });
   }
 
-  if (!afContent.trim()) {
-    console.error("No poem content provided.");
-    process.exit(1);
-  }
-
   try {
     const path = await addPoem({
       id,
-      afContent: afContent.trim(),
+      afContent: afContent.trim() || undefined,
       author,
       titleAf,
       titleEn,
       translate: hasTranslate,
     });
-    console.log(`Created poem: ${path}`);
+    console.log(`Created: ${path}`);
+    console.log(`Add af.md and en.md to poems/${id}/`);
     console.log(`Add media to public/media/poems/${id}/: video.mp4, image.jpg, audio.mp3`);
-    if (!hasTranslate) {
+    if (afContent && !hasTranslate) {
       console.log("Run `npm run translate` to generate English, then copy en.generated.md → en.md");
     }
   } catch (err) {

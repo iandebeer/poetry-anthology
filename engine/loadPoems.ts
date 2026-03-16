@@ -37,7 +37,7 @@ function resolvePoemMedia(id: string, config: PoemConfig): PoemConfig {
     if (video) out.background = `${prefix}/${video}`;
   }
   if (!out.image) {
-    const image = findFile(poemMediaDir, ["image", "background"], IMAGE_EXTS);
+    const image = findFile(poemMediaDir, ["t-image", "b-image", "l-image", "r-image", "image", "background"], IMAGE_EXTS);
     if (image) out.image = `${prefix}/${image}`;
   }
   if (!out.music) {
