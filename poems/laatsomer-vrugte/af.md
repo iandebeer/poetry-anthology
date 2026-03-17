@@ -10,5 +10,5 @@ wat net deur genade nog klou;
 sleg deur vrugte-vlieë toegetakel  
 is die ou skilletjie maar 'n erge spektakel
   
-wat sê jy - is hy nog reg vir konfyt  
-of sal ons hom op die kompos hoop smyt?
+so, wat sê jy - is hy darem nog reg vir konfyt  
+of sal ons hom op die kompos hoop loop smyt?
