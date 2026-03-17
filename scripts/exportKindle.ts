@@ -176,10 +176,10 @@ async function main() {
       body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
       .poem-chapter { page-break-before: always; }
-      .poem-spread { display: flex; page-break-inside: avoid; }
+      .poem-spread { display: flex; align-items: stretch; page-break-inside: avoid; }
       .poem-spread + .poem-spread { page-break-before: always; }
-      .poem-spread-image { flex: 0 0 45%; min-width: 0; padding-right: 1em; display: flex; align-items: center; }
-      .poem-spread-image img { max-width: 100%; height: auto; }
+      .poem-spread-image { flex: 0 0 45%; min-width: 0; padding-right: 1em; overflow: hidden; }
+      .poem-spread-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
       .poem-spread-text { flex: 1; min-width: 0; }
       .poem-text-page { page-break-inside: avoid; }
       .poem-section { margin-bottom: 2em; }
