@@ -146,12 +146,11 @@ async function main() {
 
     if (hasImage) {
       const fileUrl = pathToFileURL(join(MEDIA_DIR, imagePath!)).href;
-      const imagePage = `<div class="poem-image-page"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div>`;
       const { preamble, body } = extractPoemPreamble(poemBody);
       const chunks = splitPoemIntoChunks(body, 4);
       for (let i = 0; i < chunks.length; i++) {
-        html += imagePage;
-        html += `<div class="poem-text-page">${i === 0 && preamble ? preamble : ""}${chunks[i]}</div>`;
+        const textContent = (i === 0 && preamble ? preamble : "") + chunks[i];
+        html += `<div class="poem-spread"><div class="poem-spread-image"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div><div class="poem-spread-text">${textContent}</div></div>`;
       }
     } else {
       html += '<div class="poem-text-page">';
@@ -177,9 +176,12 @@ async function main() {
       body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
       .poem-chapter { page-break-before: always; }
-      .poem-image-page { page-break-before: left; page-break-after: always; min-height: 50vh; display: flex; align-items: center; justify-content: center; }
-      .poem-image-page img { max-width: 100%; height: auto; }
-      .poem-text-page { page-break-before: right; page-break-inside: avoid; }
+      .poem-spread { display: flex; page-break-inside: avoid; }
+      .poem-spread + .poem-spread { page-break-before: always; }
+      .poem-spread-image { flex: 0 0 45%; min-width: 0; padding-right: 1em; display: flex; align-items: center; }
+      .poem-spread-image img { max-width: 100%; height: auto; }
+      .poem-spread-text { flex: 1; min-width: 0; }
+      .poem-text-page { page-break-inside: avoid; }
       .poem-section { margin-bottom: 2em; }
       .poem-section[lang="en"] { margin-top: 1.5em; }
       p { margin: 0.5em 0; }
