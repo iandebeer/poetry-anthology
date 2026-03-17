@@ -7,7 +7,10 @@
 
 import { readFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
+import { pathToFileURL } from "url";
 import { loadPoems } from "../engine/loadPoems.js";
+
+const MEDIA_DIR = join(process.cwd(), "public", "media");
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const DIST_DIR = join(process.cwd(), "dist");
@@ -107,6 +110,15 @@ async function main() {
     const chapterTitle = poem.config.titleAf || poem.config.titleEn || poem.id;
     let html = "";
 
+    const imagePath = poem.config.image;
+    if (imagePath) {
+      const absPath = join(MEDIA_DIR, imagePath);
+      if (existsSync(absPath)) {
+        const fileUrl = pathToFileURL(absPath).href;
+        html += `<div class="poem-bg"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div>`;
+      }
+    }
+
     if (lang === "both") {
       html += `<div class="poem-section" lang="af">${mdToHtmlBody(afMd, true)}</div>`;
       html += `<div class="poem-section" lang="en">${mdToHtmlBody(enMd, true)}</div>`;
@@ -130,8 +142,10 @@ async function main() {
     appendChapterTitles: true,
     lang: lang === "af" ? "af" : "en",
     css: `
-      body { font-family: Georgia, serif; line-height: 1.6; margin: 1.5em; }
-      h2, h3 { font-size: 1.2em; margin-top: 1.5em; margin-bottom: 0.5em; }
+      body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
+      h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
+      .poem-bg { margin: 1em 0; text-align: center; }
+      .poem-bg-img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
       .poem-section { margin-bottom: 2em; }
       .poem-section[lang="en"] { margin-top: 1.5em; }
       p { margin: 0.5em 0; }
