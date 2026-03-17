@@ -149,7 +149,8 @@ async function main() {
       const { preamble, body } = extractPoemPreamble(poemBody);
       const chunks = splitPoemIntoChunks(body, 4);
       for (let i = 0; i < chunks.length; i++) {
-        html += `<div class="poem-with-image">${i === 0 && preamble ? `<div class="poem-title-row">${preamble}</div>` : ""}${i === 0 ? `<div class="poem-image-left"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div>` : ""}<div class="poem-text-block">${chunks[i]}</div></div>`;
+        const textContent = (i === 0 && preamble ? preamble : "") + chunks[i];
+        html += `<div class="poem-with-image"><div class="poem-spread"><div class="poem-spread-image"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div><div class="poem-spread-text">${textContent}</div></div></div>`;
       }
     } else {
       html += '<div class="poem-text-page">';
@@ -176,10 +177,10 @@ async function main() {
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
       .poem-chapter { page-break-before: always; }
       .poem-with-image + .poem-with-image { page-break-before: always; }
-      .poem-title-row { margin-bottom: 1em; }
-      .poem-image-left { width: 45%; max-width: 12em; margin-bottom: 1em; overflow: hidden; }
-      .poem-image-left img { width: 100%; height: auto; display: block; object-fit: cover; object-position: center; }
-      .poem-text-block { page-break-inside: avoid; }
+      .poem-spread { display: flex; align-items: stretch; page-break-inside: avoid; }
+      .poem-spread-image { flex: 0 0 45%; min-width: 0; padding-right: 1em; overflow: hidden; }
+      .poem-spread-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+      .poem-spread-text { flex: 1; min-width: 0; }
       .poem-text-page { page-break-inside: avoid; }
       .poem-section { margin-bottom: 2em; }
       .poem-section[lang="en"] { margin-top: 1.5em; }
