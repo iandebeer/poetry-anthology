@@ -132,7 +132,10 @@
       <div id="messages"></div>
 
       <div class="card">
-        <h2>Poems</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+          <h2 style="margin: 0;">Poems</h2>
+          <button type="button" id="btn-reload-poems" class="secondary">Reload poems</button>
+        </div>
         <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Click a poem to open its HTML in a new tab.</p>
         <div class="lang-tabs">
           <button type="button" data-lang="all" class="active">All</button>
@@ -362,6 +365,7 @@
       }
     }
 
+    document.getElementById("btn-reload-poems").onclick = () => { loadPoems(); msg("Poems reloaded.", "info"); };
     document.getElementById("btn-translate").onclick = () => runOp("Translate", "/translate");
     document.getElementById("btn-generate").onclick = () => runOp("Generate poems", "/generate-poems");
     document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");
