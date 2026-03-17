@@ -69,6 +69,27 @@ function mdToHtmlBody(md: string, skipTitle = false): string {
   return parts.join("\n\n");
 }
 
+/** Split poem HTML into chunks of ~4 stanzas (paragraphs) per page */
+function splitPoemIntoChunks(poemHtml: string, stanzasPerPage = 4): string[] {
+  const stanzaRegex = /<p[^>]*>[\s\S]*?<\/p>/gi;
+  const stanzas: string[] = [];
+  let m: RegExpExecArray | null;
+  while ((m = stanzaRegex.exec(poemHtml)) !== null) stanzas.push(m[0]);
+  if (stanzas.length === 0) return poemHtml ? [poemHtml] : [];
+  const chunks: string[] = [];
+  for (let i = 0; i < stanzas.length; i += stanzasPerPage) {
+    chunks.push(stanzas.slice(i, i + stanzasPerPage).join("\n\n"));
+  }
+  return chunks;
+}
+
+/** Extract content before first <p> (titles, etc.) to prepend to first chunk */
+function extractPoemPreamble(html: string): { preamble: string; body: string } {
+  const firstP = html.search(/<p[\s>]/i);
+  if (firstP <= 0) return { preamble: "", body: html };
+  return { preamble: html.slice(0, firstP).trim(), body: html.slice(firstP) };
+}
+
 function parseArgs(): { title: string; author: string; output: string; lang: "both" | "af" | "en" } {
   const args = process.argv.slice(2);
   const getArg = (name: string) => {
@@ -113,22 +134,31 @@ async function main() {
     const imagePath = poem.config.image;
     const hasImage = imagePath && existsSync(join(MEDIA_DIR, imagePath));
 
-    html += '<div class="poem-blank-page" aria-hidden="true"></div>';
-    if (hasImage) {
-      const fileUrl = pathToFileURL(join(MEDIA_DIR, imagePath!)).href;
-      html += `<div class="poem-image-page"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div>`;
+    let poemBody = "";
+    if (lang === "both") {
+      poemBody = `<div class="poem-section" lang="af">${mdToHtmlBody(afMd, true)}</div>`;
+      poemBody += `<div class="poem-section" lang="en">${mdToHtmlBody(enMd, true)}</div>`;
+    } else if (lang === "af") {
+      poemBody = mdToHtmlBody(afMd);
+    } else {
+      poemBody = mdToHtmlBody(enMd);
     }
 
-    html += '<div class="poem-text-page">';
-    if (lang === "both") {
-      html += `<div class="poem-section" lang="af">${mdToHtmlBody(afMd, true)}</div>`;
-      html += `<div class="poem-section" lang="en">${mdToHtmlBody(enMd, true)}</div>`;
-    } else if (lang === "af") {
-      html += mdToHtmlBody(afMd);
+    if (hasImage) {
+      const fileUrl = pathToFileURL(join(MEDIA_DIR, imagePath!)).href;
+      const imagePage = `<div class="poem-image-page"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div>`;
+      const { preamble, body } = extractPoemPreamble(poemBody);
+      const chunks = splitPoemIntoChunks(body, 4);
+      for (let i = 0; i < chunks.length; i++) {
+        html += imagePage;
+        html += `<div class="poem-text-page">${i === 0 && preamble ? preamble : ""}${chunks[i]}</div>`;
+      }
     } else {
-      html += mdToHtmlBody(enMd);
+      html += '<div class="poem-text-page">';
+      html += poemBody;
+      html += "</div>";
     }
-    html += "</div></div>";
+    html += "</div>";
 
     content.push({
       title: chapterTitle,
@@ -147,10 +177,9 @@ async function main() {
       body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
       .poem-chapter { page-break-before: always; }
-      .poem-blank-page { page-break-after: always; min-height: 1px; }
-      .poem-image-page { page-break-after: always; min-height: 50vh; display: flex; align-items: center; justify-content: center; }
+      .poem-image-page { page-break-before: left; page-break-after: always; min-height: 50vh; display: flex; align-items: center; justify-content: center; }
       .poem-image-page img { max-width: 100%; height: auto; }
-      .poem-text-page { page-break-inside: avoid; }
+      .poem-text-page { page-break-before: right; page-break-inside: avoid; }
       .poem-section { margin-bottom: 2em; }
       .poem-section[lang="en"] { margin-top: 1.5em; }
       p { margin: 0.5em 0; }
