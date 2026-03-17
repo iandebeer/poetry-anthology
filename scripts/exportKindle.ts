@@ -150,12 +150,10 @@ async function main() {
       const chunks = splitPoemIntoChunks(body, 4);
       for (let i = 0; i < chunks.length; i++) {
         const textContent = (i === 0 && preamble ? preamble : "") + chunks[i];
-        html += `<div class="poem-with-image"><div class="poem-spread"><div class="poem-spread-image"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div><div class="poem-spread-text">${textContent}</div></div></div>`;
+        html += `<div class="poem-with-image"><div class="poem-page-layout"><div class="poem-page-left"><h1 class="poem-heading">${escapeHtml(chapterTitle)}</h1></div><div class="poem-page-right"><div class="poem-image-under-title"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div><div class="poem-spread-text">${textContent}</div></div></div></div>`;
       }
     } else {
-      html += '<div class="poem-text-page">';
-      html += poemBody;
-      html += "</div>";
+      html += `<div class="poem-page-layout"><div class="poem-page-left"><h1 class="poem-heading">${escapeHtml(chapterTitle)}</h1></div><div class="poem-page-right"><div class="poem-text-page">${poemBody}</div></div></div>`;
     }
     html += "</div>";
 
@@ -170,17 +168,20 @@ async function main() {
     title,
     author: bookAuthor,
     content,
-    appendChapterTitles: true,
+    appendChapterTitles: false,
     lang: lang === "af" ? "af" : "en",
     css: `
       body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
       .poem-chapter { page-break-before: always; }
       .poem-with-image + .poem-with-image { page-break-before: always; }
-      .poem-spread { display: flex; align-items: stretch; page-break-inside: avoid; }
-      .poem-spread-image { flex: 0 0 45%; min-width: 0; padding-right: 1em; overflow: hidden; }
-      .poem-spread-image img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
-      .poem-spread-text { flex: 1; min-width: 0; }
+      .poem-page-layout { display: flex; page-break-inside: avoid; }
+      .poem-page-left { flex: 0 0 50%; padding-right: 1em; }
+      .poem-heading { font-size: 1.8em; margin: 0 0 0.5em; }
+      .poem-page-right { flex: 1; min-width: 0; }
+      .poem-image-under-title { margin-bottom: 1em; overflow: hidden; }
+      .poem-image-under-title img { width: 100%; max-height: 40vh; object-fit: cover; object-position: center; display: block; }
+      .poem-spread-text { }
       .poem-text-page { page-break-inside: avoid; }
       .poem-section { margin-bottom: 2em; }
       .poem-section[lang="en"] { margin-top: 1.5em; }
