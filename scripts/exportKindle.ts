@@ -108,7 +108,7 @@ async function main() {
     const enMd = readFileSync(join(poemDir, "en.md"), "utf-8");
 
     const chapterTitle = poem.config.titleAf || poem.config.titleEn || poem.id;
-    let html = "";
+    let html = '<div class="poem-chapter">';
 
     const imagePath = poem.config.image;
     if (imagePath) {
@@ -128,6 +128,8 @@ async function main() {
       html += mdToHtmlBody(enMd);
     }
 
+    html += "</div>";
+
     content.push({
       title: chapterTitle,
       data: html,
@@ -144,6 +146,7 @@ async function main() {
     css: `
       body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
+      .poem-chapter { page-break-before: always; page-break-inside: avoid; }
       .poem-bg { margin: 1em 0; text-align: center; }
       .poem-bg-img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
       .poem-section { margin-bottom: 2em; }
