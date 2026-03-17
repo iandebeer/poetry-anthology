@@ -162,7 +162,7 @@ function getPlacementFromImagePath(imagePath: string): "top" | "bottom" | "left"
 function wrapHtmlWithBackground(html: string, imagePath: string | undefined): string {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   const bodyContent = bodyMatch?.[1] ?? html;
-  const bgUrl = imagePath ? `/media/${imagePath}` : null;
+  const bgUrl = imagePath ? `/media/${encodeURI(imagePath)}` : null;
   const placement = imagePath ? getPlacementFromImagePath(imagePath) : null;
   const baseStyles =
     "body{min-height:100vh;margin:0;font-family:serif;line-height:1.6;color:#e8e8ed;background:#0f0f14;display:flex}" +

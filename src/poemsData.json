@@ -1,5 +1,34 @@
 [
   {
+    "id": "laatsomer-vrugte",
+    "config": {
+      "id": "laatsomer-vrugte",
+      "titleAf": "laatsomer vrugte",
+      "titleEn": "laatsomer vrugte",
+      "author": "",
+      "lineDuration": 5,
+      "linePause": 1,
+      "introDuration": 3,
+      "outroDuration": 5
+    },
+    "af": [
+      "# laat somer se vrugte",
+      "versigtig het hul my bors oopgevou",
+      "om my toestand, van nader te kan beskou",
+      "daar tussen geatrofeerde spiertjies",
+      "met 'n  ou dun vet lagie omvou -",
+      "die organe, soos laat seisoen se vrugte",
+      "wat net deur genade nog klou;",
+      "sleg deur vrugte-vlieë toegetakel",
+      "is die ou skilletjie maar 'n erge spektakel",
+      "so, wat sê jy - is hy darem nog reg vir konfyt",
+      "of sal ons hom op die kompos hoop loop smyt?"
+    ],
+    "en": [
+      "# fruit"
+    ]
+  },
+  {
     "id": "min-dae-stasie",
     "config": {
       "id": "min-dae-stasie",
@@ -170,7 +199,8 @@
       "lineDuration": 5,
       "linePause": 1,
       "introDuration": 3,
-      "outroDuration": 5
+      "outroDuration": 5,
+      "image": "poems/wolkie-voor-die son/r-image.png"
     },
     "af": [
       "# wolkie voor die son",
