@@ -150,10 +150,10 @@ async function main() {
       const chunks = splitPoemIntoChunks(body, 4);
       for (let i = 0; i < chunks.length; i++) {
         const textContent = (i === 0 && preamble ? preamble : "") + chunks[i];
-        html += `<div class="poem-with-image"><div class="poem-page-layout"><div class="poem-page-left"><h1 class="poem-heading">${escapeHtml(chapterTitle)}</h1></div><div class="poem-page-right"><div class="poem-image-under-title"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div><div class="poem-spread-text">${textContent}</div></div></div></div>`;
+        html += `<div class="poem-with-image"><h1 class="poem-heading">${escapeHtml(chapterTitle)}</h1><div class="poem-image-under-title"><img src="${fileUrl}" alt="" class="poem-bg-img" /></div><div class="poem-spread-text">${textContent}</div></div>`;
       }
     } else {
-      html += `<div class="poem-page-layout"><div class="poem-page-left"><h1 class="poem-heading">${escapeHtml(chapterTitle)}</h1></div><div class="poem-page-right"><div class="poem-text-page">${poemBody}</div></div></div>`;
+      html += `<h1 class="poem-heading">${escapeHtml(chapterTitle)}</h1><div class="poem-text-page">${poemBody}</div>`;
     }
     html += "</div>";
 
@@ -175,13 +175,9 @@ async function main() {
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
       .poem-chapter { page-break-before: always; }
       .poem-with-image + .poem-with-image { page-break-before: always; }
-      .poem-page-layout { display: flex; page-break-inside: avoid; }
-      .poem-page-left { flex: 0 0 50%; padding-right: 1em; }
       .poem-heading { font-size: 1.8em; margin: 0 0 0.5em; }
-      .poem-page-right { flex: 1; min-width: 0; }
       .poem-image-under-title { margin-bottom: 1em; overflow: hidden; }
       .poem-image-under-title img { width: 100%; max-height: 40vh; object-fit: cover; object-position: center; display: block; }
-      .poem-spread-text { }
       .poem-text-page { page-break-inside: avoid; }
       .poem-section { margin-bottom: 2em; }
       .poem-section[lang="en"] { margin-top: 1.5em; }
