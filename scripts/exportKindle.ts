@@ -173,7 +173,7 @@ async function main() {
     css: `
       body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
-      .poem-chapter { page-break-before: always; }
+      .poem-chapter { page-break-before: always; page-break-after: always; }
       .poem-with-image + .poem-with-image { page-break-before: always; }
       .poem-heading { font-size: 1.8em; margin: 0 0 0.5em; }
       .poem-image-under-title { margin-bottom: 1em; overflow: hidden; }
