@@ -22,6 +22,8 @@ Requires Node.js 18+. If `npm install` fails (e.g. esbuild on Node 25), try Node
 | `npm run export-kindle` | Export all poems to EPUB for KDP (`dist/Digbundel.epub` or `Anthology.epub`). Options: `--title`, `--author`, `--output`, `--lang` (`af`, `en`, or `both`) |
 | `npm run export-html` | Convert markdown to HTML then copy to `export/<slug>.html` (run `convert-poems` first or use admin **Export HTML bundle**) |
 
+Generated `af.html` / `en.html` / `export/*.html` embed background images as **absolute `file://` URLs** so opening the file in a browser (double-click) still loads images. Re-run **convert-poems** after moving the project folder so those paths stay valid. The admin poem preview uses normal `/media/…` URLs instead.
+
 ## Project Structure
 
 ```

@@ -88,10 +88,9 @@ function convertPoemDir(dirPath: string, poemId: string): number {
     const html = mdToHtml(md);
     const htmlPath = base + ".html";
     const config = getPoemMediaConfig(dirPath, poemId);
-    /** Relative to poems/<id>/file.html → project public/media/… (works as file:// or static host from repo root). */
-    const MEDIA_PREFIX = "../../public/media/";
+    /** file:// URLs so opening af.html/en.html in a browser (double-click) still loads background images. */
     const outHtml = config.image
-      ? wrapHtmlWithPoemBackground(html, config.image, MEDIA_PREFIX)
+      ? wrapHtmlWithPoemBackground(html, config.image, "/media/", true)
       : html;
     writeFileSync(htmlPath, outHtml, "utf-8");
     count++;

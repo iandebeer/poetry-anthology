@@ -3,6 +3,19 @@
  * Uses a fixed full-viewport layer for the image so backgrounds show reliably with flex layout.
  */
 
+import { join } from "path";
+import { pathToFileURL } from "url";
+
+/** Absolute file:// URL to public/media/poems/... so opening .html via file:// still loads the image. */
+export function absoluteFileUrlForPoemImage(logicalPath: string): string {
+  if (!logicalPath.startsWith("poems/")) {
+    throw new Error(`Expected image path poems/<id>/file, got: ${logicalPath}`);
+  }
+  const segments = logicalPath.slice("poems/".length).split("/").filter(Boolean);
+  const abs = join(process.cwd(), "public", "media", "poems", ...segments);
+  return pathToFileURL(abs).href;
+}
+
 /** Placement from filename: t-image.jpg=top, b=bottom, l=left, r=right */
 export function getPlacementFromImagePath(imagePath: string): "top" | "bottom" | "left" | "right" | null {
   const fileName = imagePath.split("/").pop() ?? "";
@@ -21,16 +34,22 @@ function cssUrlQuoted(urlPath: string): string {
 
 /**
  * @param imagePath - e.g. poems/<id>/r-image.png (logical path under public/media)
- * @param mediaUrlPrefix - default "/media/" for admin server; use "" or "./" only if you rewrite paths yourself
+ * @param mediaUrlPrefix - HTTP base for admin, e.g. "/media/" (ignored when useAbsoluteFileMedia is true)
+ * @param useAbsoluteFileMedia - if true, CSS uses file://… to the image so double-clicking the .html works locally
  */
 export function wrapHtmlWithPoemBackground(
   html: string,
   imagePath: string | undefined,
   mediaUrlPrefix = "/media/",
+  useAbsoluteFileMedia = false,
 ): string {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   const bodyContent = bodyMatch?.[1] ?? html;
-  const bgUrl = imagePath ? `${mediaUrlPrefix.replace(/\/?$/, "/")}${encodeURI(imagePath)}` : null;
+  const bgUrl = imagePath
+    ? useAbsoluteFileMedia
+      ? absoluteFileUrlForPoemImage(imagePath)
+      : `${mediaUrlPrefix.replace(/\/?$/, "/")}${encodeURI(imagePath)}`
+    : null;
   const placement = imagePath ? getPlacementFromImagePath(imagePath) : null;
 
   const baseStyles =
@@ -57,11 +76,6 @@ export function wrapHtmlWithPoemBackground(
   const bgMarkup = bgUrl ? '<div class="poem-bg-layer" aria-hidden="true"></div>' : "";
 
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${placementStyles}${bgLayerStyles}${contentOverlay}</style></head><body>${bgMarkup}<div class="poem-content">${bodyContent.trim()}</div></body></html>`;
-}
-
-/** Poem HTML copied to export/ needs one less .. segment. */
-export function rewritePoemHtmlForExportFolder(html: string): string {
-  return html.replace(/\.\.\/\.\.\/public\/media\//g, "../public/media/");
 }
 
 /** Inner markup for combining af+en (strips bg layer / uses .poem-content only). */

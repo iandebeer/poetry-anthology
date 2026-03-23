@@ -6,11 +6,12 @@
  *   export/<poem-id>.html      — from af.html (primary)
  *   export/<poem-id>-en.html   — from en.html when both af and en exist
  *   export/<poem-id>.html      — from en.html when no af.html
+ *
+ * Convert output uses absolute file:// image URLs, so copies work without path rewrites.
  */
 
-import { readFileSync, writeFileSync, existsSync, mkdirSync, readdirSync } from "fs";
+import { copyFileSync, existsSync, mkdirSync, readdirSync } from "fs";
 import { join } from "path";
-import { rewritePoemHtmlForExportFolder } from "../engine/poemHtmlDocument.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const EXPORT_DIR = join(process.cwd(), "export");
@@ -38,23 +39,15 @@ function main() {
 
     const enSource = existsSync(enHtml) ? enHtml : existsSync(enGenHtml) ? enGenHtml : null;
 
-    function copyHtmlAdjustMedia(src: string, dest: string) {
-      let html = readFileSync(src, "utf-8");
-      if (html.includes("poem-bg-layer")) {
-        html = rewritePoemHtmlForExportFolder(html);
-      }
-      writeFileSync(dest, html, "utf-8");
-    }
-
     if (existsSync(afHtml)) {
-      copyHtmlAdjustMedia(afHtml, join(EXPORT_DIR, `${id}.html`));
+      copyFileSync(afHtml, join(EXPORT_DIR, `${id}.html`));
       copied++;
       if (enSource) {
-        copyHtmlAdjustMedia(enSource, join(EXPORT_DIR, `${id}-en.html`));
+        copyFileSync(enSource, join(EXPORT_DIR, `${id}-en.html`));
         copied++;
       }
     } else if (enSource) {
-      copyHtmlAdjustMedia(enSource, join(EXPORT_DIR, `${id}.html`));
+      copyFileSync(enSource, join(EXPORT_DIR, `${id}.html`));
       copied++;
     } else {
       console.warn(`[export-html] No af.html or en.html for ${id} — run npm run convert-poems`);
