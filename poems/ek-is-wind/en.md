@@ -1,0 +1,19 @@
+# I Am the Wind  
+
+As a child, I was firmly convinced:  
+the branches that sway,  
+the reeds that bend, the windmill that turns,  
+they all come together to make the wind churn.  
+
+As naïve as to believe: the ego is the One —  
+he the awareness that coordinates how my life is run;  
+my body with five senses,  
+my experience, sensations for the active witness,  
+who interprets my perceptions and feelings in play,  
+my thoughts and emotions—my holding me in sway.  
+
+But now I know:  
+I Am the wind that sways the branches as it churns,  
+the reeds that bend, the windmill that turns  
+the ego like the branch, the windmill, the reed,  
+only moves as by the Monad decreed.  
