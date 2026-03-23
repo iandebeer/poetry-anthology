@@ -5,6 +5,8 @@
 
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
+import { getPoemMediaConfig } from "../engine/loadPoems.js";
+import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 
@@ -85,7 +87,13 @@ function convertPoemDir(dirPath: string, poemId: string): number {
 
     const html = mdToHtml(md);
     const htmlPath = base + ".html";
-    writeFileSync(htmlPath, html, "utf-8");
+    const config = getPoemMediaConfig(dirPath, poemId);
+    /** Relative to poems/<id>/file.html → project public/media/… (works as file:// or static host from repo root). */
+    const MEDIA_PREFIX = "../../public/media/";
+    const outHtml = config.image
+      ? wrapHtmlWithPoemBackground(html, config.image, MEDIA_PREFIX)
+      : html;
+    writeFileSync(htmlPath, outHtml, "utf-8");
     count++;
 
     const text = mdToText(md);

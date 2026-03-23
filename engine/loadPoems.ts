@@ -54,6 +54,11 @@ function parseMarkdownLines(content: string): string[] {
     .filter((line) => line.length > 0);
 }
 
+/** Config + auto-detected media paths (does not require en.md). */
+export function getPoemMediaConfig(poemDir: string, id: string): PoemConfig {
+  return loadConfig(poemDir, id);
+}
+
 function loadConfig(poemDir: string, id: string): PoemConfig {
   const configPath = join(poemDir, "config.json");
   let config: PoemConfig = { id };

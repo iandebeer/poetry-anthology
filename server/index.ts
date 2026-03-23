@@ -22,6 +22,11 @@ import { writeFileSync, existsSync, readFileSync } from "fs";
 import { addPoem } from "../scripts/addPoem.js";
 import { loadPoems } from "../engine/loadPoems.js";
 import { safePoemDir } from "../engine/safePoemPath.js";
+import {
+  wrapHtmlWithPoemBackground,
+  rewritePoemHtmlToServerMediaUrls,
+  extractPoemBodyInnerForCombine,
+} from "../engine/poemHtmlDocument.js";
 
 const execAsync = promisify(exec);
 
@@ -163,47 +168,12 @@ function mdToHtml(md: string): string {
 // Use cwd (project root when run via npm) - same as loadPoems
 const POEMS_DIR = join(process.cwd(), "poems");
 
-/** Placement derived from image filename: t-image.jpg=top, b=bottom, l=left, r=right */
-function getPlacementFromImagePath(imagePath: string): "top" | "bottom" | "left" | "right" | null {
-  const name = imagePath.split("/").pop() ?? "";
-  if (name.startsWith("t-")) return "top";
-  if (name.startsWith("b-")) return "bottom";
-  if (name.startsWith("l-")) return "left";
-  if (name.startsWith("r-")) return "right";
-  return null;
-}
-
-/** Quote a URL for CSS url("…") — avoid JSON.stringify (can emit \\u escapes that CSS mis-parses). */
-function cssUrlQuoted(path: string): string {
-  const safe = path.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
-  return `url("${safe}")`;
-}
-
-/** Wrap poem HTML body with optional background image. config.image is e.g. "poems/<id>/image.jpg" or "poems/<id>/t-image.jpg" */
-function wrapHtmlWithBackground(html: string, imagePath: string | undefined): string {
-  const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-  const bodyContent = bodyMatch?.[1] ?? html;
-  const bgUrl = imagePath ? `/media/${encodeURI(imagePath)}` : null;
-  const placement = imagePath ? getPlacementFromImagePath(imagePath) : null;
-  const baseStyles =
-    "body{min-height:100vh;margin:0;font-family:serif;line-height:1.6;color:#e8e8ed;background-color:#0f0f14;display:flex}" +
-    ".poem-content{max-width:36em;padding:2rem}" +
-    ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}";
-  const placementStyles =
-    placement === "top"
-      ? "body{flex-direction:column;align-items:center;justify-content:flex-start;padding-top:2rem}.poem-content{margin:0 auto}"
-      : placement === "bottom"
-        ? "body{flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:2rem}.poem-content{margin:0 auto}"
-        : placement === "left"
-          ? "body{align-items:center;justify-content:flex-start;padding-left:2rem}.poem-content{margin:0}"
-          : placement === "right"
-            ? "body{align-items:center;justify-content:flex-end;padding-right:2rem}.poem-content{margin:0 2rem 0 0;text-align:right}"
-            : "body{align-items:center;justify-content:center}.poem-content{margin:2rem auto}";
-  /* Longhand only: a second `background:` shorthand was overriding rule 1 and could be dropped if invalid, leaving no image. */
-  const bgStyles = bgUrl
-    ? `body{background-image:${cssUrlQuoted(bgUrl)};background-position:center center;background-size:cover;background-attachment:fixed;background-repeat:no-repeat}.poem-content{background:rgba(0,0,0,0.65);border-radius:8px}`
-    : "";
-  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${placementStyles}${bgStyles}</style></head><body><div class="poem-content">${bodyContent.trim()}</div></body></html>`;
+/** Pre-wrapped convert output → /media URLs; otherwise wrap with optional background. */
+function htmlForAdminResponse(raw: string, imagePath: string | undefined): string {
+  if (raw.includes("poem-bg-layer")) {
+    return rewritePoemHtmlToServerMediaUrls(raw);
+  }
+  return wrapHtmlWithPoemBackground(raw, imagePath, "/media/");
 }
 
 app.get("/api/poems/:id/html", requireAuth, (req, res) => {
@@ -223,7 +193,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   if (lang === "af" && existsSync(afHtmlPath)) {
     const raw = readFileSync(afHtmlPath, "utf-8");
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    return res.send(wrapHtmlWithBackground(raw, imagePath));
+    return res.send(htmlForAdminResponse(raw, imagePath));
   }
   if (lang === "af" && !existsSync(afHtmlPath)) {
     console.warn(`[html] af.html not found at ${afHtmlPath} (poem: ${poem.id}, cwd: ${process.cwd()})`);
@@ -233,7 +203,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
     if (enPath) {
       const raw = readFileSync(enPath, "utf-8");
       res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.send(wrapHtmlWithBackground(raw, imagePath));
+      return res.send(htmlForAdminResponse(raw, imagePath));
     }
   }
   if (lang === "all") {
@@ -241,11 +211,11 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
     const enPath = existsSync(enHtmlPath) ? enHtmlPath : existsSync(enGenPath) ? enGenPath : null;
     const enHtml = enPath ? readFileSync(enPath, "utf-8") : null;
     if (afHtml && enHtml) {
-      const afBody = afHtml.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || "";
-      const enBody = enHtml.match(/<body[^>]*>([\s\S]*)<\/body>/i)?.[1] || "";
+      const afBody = extractPoemBodyInnerForCombine(afHtml);
+      const enBody = extractPoemBodyInnerForCombine(enHtml);
       const combined = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Poem</title></head><body><div class="lang-block"><h3>Afrikaans</h3>${afBody}</div><div class="lang-block"><h3>English</h3>${enBody}</div></body></html>`;
       res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.send(wrapHtmlWithBackground(combined, imagePath));
+      return res.send(htmlForAdminResponse(combined, imagePath));
     }
   }
 
@@ -264,7 +234,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   else body = `<div class="lang-block"><h3>Afrikaans</h3>${mdToHtml(af)}</div><div class="lang-block"><h3>English</h3>${mdToHtml(en)}</div>`;
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>${body}</body></html>`;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.send(wrapHtmlWithBackground(html, imagePath));
+  res.send(htmlForAdminResponse(html, imagePath));
 });
 
 app.post("/api/poems", requireAuth, async (req, res) => {
