@@ -6,4 +6,5 @@ immer uiterlik aan het verander,
 maar in esensie net waterdamp  deur die wind gedra
 wat oënskynlik tot niks sal diffundeer
 of met ander tot iets veel groters kombineer
-om uiteindelik tog maar net  selfloos tot die aarde terug te keer
+om uiteindelik tog maar net, selfloos,  
+Nexttot die aarde terug te keer
