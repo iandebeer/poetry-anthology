@@ -169,9 +169,10 @@
           <button id="btn-af-dict">Generate Afrikaans dictionary</button>
           <button id="btn-export-kindle">Export Kindle EPUB</button>
           <a id="btn-download-kindle" href="/api/export-kindle/download?lang=both" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none" download>Download EPUB</a>
+          <button id="btn-export-html" class="secondary">Export HTML bundle</button>
         </div>
         <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;">
-          Translate: only poems without en.md → en.generated.md · Convert: af.md & en.md → .html & .txt
+          Translate: only poems without en.md → en.generated.md · Convert: af.md & en.md → .html & .txt · Export HTML: convert then copy to <code style="font-size:0.85em">export/</code> as <code style="font-size:0.85em">&lt;slug&gt;.html</code> (and <code style="font-size:0.85em">&lt;slug&gt;-en.html</code> when both langs exist)
         </p>
         <pre id="op-output" class="hidden" style="margin-top: 1rem;"></pre>
 
@@ -351,17 +352,35 @@
 
     async function runOp(name, path, body) {
       const out = document.getElementById("op-output");
+      const actionButtons = document.querySelectorAll(".actions button");
       out.classList.remove("hidden");
       out.textContent = "Running...";
+      actionButtons.forEach((b) => (b.disabled = true));
       try {
-        const r = await fetchApi(path, { method: "POST", body: body ? JSON.stringify(body) : undefined });
-        let text = [r.stdout, r.stderr].filter(Boolean).join("\n");
-        if (r.skipped) text = (text ? text + "\n" : "") + (r.message || "Skipped.");
+        const res = await fetch(API + path, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          credentials: "include",
+          body: body ? JSON.stringify(body) : undefined,
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) {
+          let text = data.error || res.statusText || "Request failed";
+          if (data.stdout) text += "\n\n--- stdout ---\n" + data.stdout;
+          if (data.stderr) text += "\n\n--- stderr ---\n" + data.stderr;
+          out.textContent = text;
+          msg(`${name} failed.`, "error");
+          return;
+        }
+        let text = [data.stdout, data.stderr].filter(Boolean).join("\n");
+        if (data.skipped) text = (text ? text + "\n" : "") + (data.message || "Skipped.");
         out.textContent = text || "Done.";
-        msg(r.skipped ? `${name}: ${r.message || "skipped"}` : `${name} completed.`, r.skipped ? "info" : "success");
+        msg(data.skipped ? `${name}: ${data.message || "skipped"}` : `${name} completed.`, data.skipped ? "info" : "success");
       } catch (err) {
-        out.textContent = err.message;
-        msg(err.message, "error");
+        out.textContent = err instanceof Error ? err.message : String(err);
+        msg(out.textContent, "error");
+      } finally {
+        actionButtons.forEach((b) => (b.disabled = false));
       }
     }
 
@@ -371,6 +390,7 @@
     document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");
     document.getElementById("btn-af-dict").onclick = () => runOp("Afrikaans dict", "/generate-af-dict");
     document.getElementById("btn-export-kindle").onclick = () => runOp("Export Kindle", "/export-kindle", { lang: poemLang === "all" ? "both" : poemLang });
+    document.getElementById("btn-export-html").onclick = () => runOp("Export HTML bundle", "/export-html");
 
     checkAuth();
   </script>

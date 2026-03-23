@@ -21,8 +21,15 @@ import { promisify } from "util";
 import { writeFileSync, existsSync, readFileSync } from "fs";
 import { addPoem } from "../scripts/addPoem.js";
 import { loadPoems } from "../engine/loadPoems.js";
+import { safePoemDir } from "../engine/safePoemPath.js";
 
 const execAsync = promisify(exec);
+
+const SCRIPT_EXEC = { cwd: process.cwd(), maxBuffer: 10 * 1024 * 1024 } as const;
+
+async function execTsx(script: string, extraArgs = "") {
+  return execAsync(`npx tsx ${script}${extraArgs}`, SCRIPT_EXEC);
+}
 const PORT = process.env.ADMIN_PORT || 3333;
 const ADMIN_USER = process.env.ADMIN_USER || "admin";
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "changeme";
@@ -48,6 +55,13 @@ app.use(
 function requireAuth(req: express.Request, res: express.Response, next: express.NextFunction) {
   if (req.session?.authenticated) return next();
   res.status(401).json({ error: "Unauthorized" });
+}
+
+/** Express 5 may type :id as string | string[] */
+function paramId(p: string | string[] | undefined): string {
+  if (typeof p === "string") return p;
+  if (Array.isArray(p)) return p[0] ?? "";
+  return "";
 }
 
 // Login
@@ -100,7 +114,7 @@ app.get("/api/poems", requireAuth, (req, res) => {
 
 app.get("/api/poems/:id", requireAuth, (req, res) => {
   const poems = loadPoems();
-  const poem = poems.find((p) => p.id === req.params.id);
+  const poem = poems.find((p) => p.id === paramId(req.params.id));
   if (!poem) return res.status(404).json({ error: "Not found" });
   const poemsDir = join(process.cwd(), "poems");
   const poemDir = join(poemsDir, poem.id);
@@ -179,16 +193,17 @@ function wrapHtmlWithBackground(html: string, imagePath: string | undefined): st
             ? "body{align-items:center;justify-content:flex-end;padding-right:2rem}.poem-content{margin:0 2rem 0 0;text-align:right}"
             : "body{align-items:center;justify-content:center}.poem-content{margin:2rem auto}";
   const bgStyles = bgUrl
-    ? `body{background:url(${bgUrl}) center/cover fixed}.poem-content{background:rgba(0,0,0,0.65);border-radius:8px}`
+    ? `body{background:url(${JSON.stringify(bgUrl)}) center/cover fixed}.poem-content{background:rgba(0,0,0,0.65);border-radius:8px}`
     : "";
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${placementStyles}${bgStyles}</style></head><body><div class="poem-content">${bodyContent.trim()}</div></body></html>`;
 }
 
 app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   const poems = loadPoems();
-  const poem = poems.find((p) => p.id === req.params.id);
+  const poem = poems.find((p) => p.id === paramId(req.params.id));
   if (!poem) return res.status(404).json({ error: "Not found" });
-  const poemDir = join(POEMS_DIR, poem.id);
+  const poemDir = safePoemDir(POEMS_DIR, poem.id);
+  if (!poemDir) return res.status(400).json({ error: "Invalid poem path" });
   const lang = (req.query.lang as string) || "all";
   const imagePath = poem.config.image ?? undefined;
 
@@ -266,10 +281,7 @@ app.post("/api/poems", requireAuth, async (req, res) => {
 
 async function runScript(script: string, res: express.Response) {
   try {
-    const { stdout, stderr } = await execAsync(`npx tsx ${script}`, {
-      cwd: process.cwd(),
-      maxBuffer: 10 * 1024 * 1024,
-    });
+    const { stdout, stderr } = await execTsx(script);
     res.json({ ok: true, stdout: stdout || "", stderr: stderr || "" });
   } catch (err: unknown) {
     const e = err as { stdout?: string; stderr?: string; message?: string };
@@ -289,10 +301,7 @@ app.post("/api/export-kindle", requireAuth, async (req, res) => {
   const lang = (req.body?.lang as string) || "both";
   const validLang = ["af", "en", "both"].includes(lang) ? lang : "both";
   try {
-    const { stdout, stderr } = await execAsync(`npx tsx scripts/exportKindle.ts --lang ${validLang}`, {
-      cwd: process.cwd(),
-      maxBuffer: 10 * 1024 * 1024,
-    });
+    const { stdout, stderr } = await execTsx("scripts/exportKindle.ts", `--lang ${validLang}`);
     res.json({ ok: true, stdout: stdout || "", stderr: stderr || "", lang: validLang });
   } catch (err: unknown) {
     const e = err as { stdout?: string; stderr?: string; message?: string };
@@ -313,9 +322,28 @@ app.get("/api/export-kindle/download", requireAuth, (req, res) => {
   res.sendFile(epubPath);
 });
 
+/** Convert markdown → af.html/en.html, then copy to export/<slug>.html (same as npm run convert-poems && npm run export-html). */
+app.post("/api/export-html", requireAuth, async (_req, res) => {
+  try {
+    const convert = await execTsx("scripts/convertPoemsToHtmlAndText.ts");
+    const exp = await execTsx("scripts/exportHtml.ts");
+    const stdout = [convert.stdout, exp.stdout].filter(Boolean).join("\n");
+    const stderr = [convert.stderr, exp.stderr].filter(Boolean).join("\n");
+    res.json({ ok: true, stdout: stdout || "", stderr: stderr || "" });
+  } catch (err: unknown) {
+    const e = err as { stdout?: string; stderr?: string; message?: string };
+    res.status(500).json({
+      error: e?.message || String(err),
+      stdout: e?.stdout || "",
+      stderr: e?.stderr || "",
+    });
+  }
+});
+
 app.post("/api/translate/:id", requireAuth, async (req, res) => {
   const poemsDir = join(process.cwd(), "poems");
-  const poemDir = join(poemsDir, req.params.id);
+  const poemDir = safePoemDir(poemsDir, paramId(req.params.id));
+  if (!poemDir) return res.status(400).json({ error: "Invalid poem id" });
   const afPath = join(poemDir, "af.md");
   const enPath = join(poemDir, "en.md");
   if (!existsSync(afPath)) return res.status(404).json({ error: "Poem not found" });

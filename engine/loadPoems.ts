@@ -58,8 +58,14 @@ function loadConfig(poemDir: string, id: string): PoemConfig {
   const configPath = join(poemDir, "config.json");
   let config: PoemConfig = { id };
   if (existsSync(configPath)) {
-    const raw = JSON.parse(readFileSync(configPath, "utf-8"));
-    config = { id, ...raw };
+    try {
+      const raw = JSON.parse(readFileSync(configPath, "utf-8")) as Record<string, unknown>;
+      if (raw && typeof raw === "object" && !Array.isArray(raw)) {
+        config = { ...raw, id } as PoemConfig;
+      }
+    } catch (e) {
+      console.warn(`[loadPoems] Skipping invalid config.json for ${id}:`, e instanceof Error ? e.message : e);
+    }
   }
   return resolvePoemMedia(id, config);
 }

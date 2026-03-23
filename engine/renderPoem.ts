@@ -7,7 +7,7 @@ import { bundle } from "@remotion/bundler";
 import { renderMedia, selectComposition } from "@remotion/renderer";
 import { join } from "path";
 import { loadPoems } from "./loadPoems.js";
-import type { PoemData, PoemLanguage } from "./types.js";
+import type { PoemLanguage } from "./types.js";
 
 const OUT_VIDEOS = join(process.cwd(), "output", "videos");
 

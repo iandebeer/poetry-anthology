@@ -19,7 +19,8 @@ Requires Node.js 18+. If `npm install` fails (e.g. esbuild on Node 25), try Node
 | `npm run admin` | Web admin UI (login-protected) at http://localhost:3333/admin |
 | `npm run render` | Render a single poem: `npm run render -- <poemId> [af\|en]` |
 | `npm run render:all` | Render all poems (Afrikaans + English) to `output/videos/` |
-| `npm run export-kindle` | Export all poems to a single EPUB for Amazon KDP: `dist/poetry-anthology.epub`. Options: `--title "Title" --author "Name" --output path.epub --lang both|af|en` |
+| `npm run export-kindle` | Export all poems to EPUB for KDP (`dist/Digbundel.epub` or `Anthology.epub`). Options: `--title`, `--author`, `--output`, `--lang` (`af`, `en`, or `both`) |
+| `npm run export-html` | Convert markdown to HTML then copy to `export/<slug>.html` (run `convert-poems` first or use admin **Export HTML bundle**) |
 
 ## Project Structure
 
@@ -104,9 +105,16 @@ Run `npm run admin` to start the web-based admin at http://localhost:3333/admin.
 
 - **Login** – Session-based auth (set `ADMIN_PASSWORD` and optionally `ADMIN_USER` in env)
 - **Add poem** – Create new poems with optional AI translation
-- **Operations** – Translate all, generate poems data, convert to HTML/text, generate Afrikaans dictionary, export Kindle EPUB
+- **Operations** – Translate all, generate poems data, convert to HTML/text, generate Afrikaans dictionary, export Kindle EPUB, export HTML bundle
 
 Default credentials: `admin` / `changeme` (change via env in production).
+
+### Production / security
+
+- Set **`ADMIN_PASSWORD`** (and optionally **`ADMIN_USER`**) — never expose the default password on a public host.
+- Set **`SESSION_SECRET`** to a long random string so session cookies cannot be forged.
+- Poem API routes validate paths so IDs like `../..` cannot escape the `poems/` directory.
+- Use **`NODE_ENV=production`** and HTTPS so the session cookie is marked `secure`.
 
 ## Resolution
 

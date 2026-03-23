@@ -1,5 +1,5 @@
 import React from "react";
-import { AbsoluteFill, interpolate, useCurrentFrame, useVideoConfig } from "remotion";
+import { AbsoluteFill, interpolate, useCurrentFrame } from "remotion";
 
 interface PoemTextProps {
   lines: string[];
@@ -24,7 +24,6 @@ export const PoemText: React.FC<PoemTextProps> = ({
   segmentFrames,
 }) => {
   const frame = useCurrentFrame();
-  const { fps } = useVideoConfig();
 
   const line = lines[lineIndex];
   if (!line) return null;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type ComponentType } from "react";
 import { Composition } from "remotion";
 import { PoemFilm } from "./PoemFilm";
 import poemsData from "./poemsData.json";
@@ -27,7 +27,7 @@ export const RemotionRoot: React.FC = () => {
           <Composition
             key={`${poem.id}-${lang}`}
             id={`${poem.id}-${lang}`}
-            component={PoemFilm}
+            component={PoemFilm as unknown as ComponentType<Record<string, unknown>>}
             durationInFrames={calculateDuration(poem, lang)}
             width={WIDTH}
             height={HEIGHT}
