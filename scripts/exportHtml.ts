@@ -10,7 +10,7 @@
  *   export/<poem-id>/english.html   — from en.html when both langs exist
  *   export/<poem-id>/media/         — background image(s), relative url media/<file> in CSS
  *
- * Open export/index.html for a list of all poems, or export/<id>/afrikaans.html directly.
+ * Open export/1-index.html for a list of all poems, or export/<id>/afrikaans.html directly.
  */
 
 import { copyFileSync, existsSync, mkdirSync, cpSync, readdirSync, rmSync, writeFileSync } from "fs";
@@ -20,6 +20,8 @@ import { syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const EXPORT_DIR = join(process.cwd(), "export");
+/** Sorts first in alphabetical folder listings (before poem subdirs). */
+const EXPORT_INDEX_HTML = "1-index.html";
 
 function escapeHtml(s: string): string {
   return s
@@ -83,7 +85,7 @@ function writeExportIndex(rows: ExportedPoemRow[]) {
 </head>
 <body>
   <h1>Poems</h1>
-  <p class="lead">${sorted.length} poem folder(s). Copy this <code>export</code> directory to use offline. If links fail in a browser preview, open this file from disk or run <code style="white-space:nowrap">cd export &amp;&amp; python3 -m http.server</code> and use the URL shown.</p>
+  <p class="lead">${sorted.length} poem folder(s). Copy this <code>export</code> directory to use offline. If links fail in a browser preview, open <code>1-index.html</code> from disk or run <code style="white-space:nowrap">cd export &amp;&amp; python3 -m http.server</code> then open <code>/1-index.html</code> on that server.</p>
   <ul>
 ${items}
   </ul>
@@ -103,7 +105,10 @@ ${items}
 </body>
 </html>
 `;
-  writeFileSync(join(EXPORT_DIR, "index.html"), html, "utf-8");
+  const indexPath = join(EXPORT_DIR, EXPORT_INDEX_HTML);
+  writeFileSync(indexPath, html, "utf-8");
+  const legacyIndex = join(EXPORT_DIR, "index.html");
+  if (existsSync(legacyIndex)) rmSync(legacyIndex, { force: true });
 }
 
 function main() {
@@ -176,12 +181,15 @@ function main() {
 
   if (exportedRows.length > 0) {
     writeExportIndex(exportedRows);
-  } else if (existsSync(join(EXPORT_DIR, "index.html"))) {
-    rmSync(join(EXPORT_DIR, "index.html"), { force: true });
+  } else {
+    const idx = join(EXPORT_DIR, EXPORT_INDEX_HTML);
+    const legacy = join(EXPORT_DIR, "index.html");
+    if (existsSync(idx)) rmSync(idx, { force: true });
+    if (existsSync(legacy)) rmSync(legacy, { force: true });
   }
 
   console.log(
-    `Exported ${exported} portable folder(s): ${EXPORT_DIR}/index.html + ${EXPORT_DIR}/<id>/afrikaans.html (+ english.html) + media/`,
+    `Exported ${exported} portable folder(s): ${EXPORT_DIR}/${EXPORT_INDEX_HTML} + ${EXPORT_DIR}/<id>/afrikaans.html (+ english.html) + media/`,
   );
   if (skipped) console.log(`Skipped ${skipped} poem folder(s) with no HTML.`);
 }
