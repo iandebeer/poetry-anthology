@@ -173,6 +173,12 @@ function getPlacementFromImagePath(imagePath: string): "top" | "bottom" | "left"
   return null;
 }
 
+/** Quote a URL for CSS url("…") — avoid JSON.stringify (can emit \\u escapes that CSS mis-parses). */
+function cssUrlQuoted(path: string): string {
+  const safe = path.replace(/\\/g, "\\\\").replace(/"/g, '\\"');
+  return `url("${safe}")`;
+}
+
 /** Wrap poem HTML body with optional background image. config.image is e.g. "poems/<id>/image.jpg" or "poems/<id>/t-image.jpg" */
 function wrapHtmlWithBackground(html: string, imagePath: string | undefined): string {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
@@ -180,7 +186,7 @@ function wrapHtmlWithBackground(html: string, imagePath: string | undefined): st
   const bgUrl = imagePath ? `/media/${encodeURI(imagePath)}` : null;
   const placement = imagePath ? getPlacementFromImagePath(imagePath) : null;
   const baseStyles =
-    "body{min-height:100vh;margin:0;font-family:serif;line-height:1.6;color:#e8e8ed;background:#0f0f14;display:flex}" +
+    "body{min-height:100vh;margin:0;font-family:serif;line-height:1.6;color:#e8e8ed;background-color:#0f0f14;display:flex}" +
     ".poem-content{max-width:36em;padding:2rem}" +
     ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}";
   const placementStyles =
@@ -193,8 +199,9 @@ function wrapHtmlWithBackground(html: string, imagePath: string | undefined): st
           : placement === "right"
             ? "body{align-items:center;justify-content:flex-end;padding-right:2rem}.poem-content{margin:0 2rem 0 0;text-align:right}"
             : "body{align-items:center;justify-content:center}.poem-content{margin:2rem auto}";
+  /* Longhand only: a second `background:` shorthand was overriding rule 1 and could be dropped if invalid, leaving no image. */
   const bgStyles = bgUrl
-    ? `body{background:url(${JSON.stringify(bgUrl)}) center/cover fixed}.poem-content{background:rgba(0,0,0,0.65);border-radius:8px}`
+    ? `body{background-image:${cssUrlQuoted(bgUrl)};background-position:center center;background-size:cover;background-attachment:fixed;background-repeat:no-repeat}.poem-content{background:rgba(0,0,0,0.65);border-radius:8px}`
     : "";
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${placementStyles}${bgStyles}</style></head><body><div class="poem-content">${bodyContent.trim()}</div></body></html>`;
 }
