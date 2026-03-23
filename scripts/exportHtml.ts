@@ -6,11 +6,11 @@
  * includes files even if convert was skipped earlier.
  *
  * Layout (copy the whole export/<id>/ folder):
- *   export/<poem-id>/index.html   — from af.html (primary)
- *   export/<poem-id>/media/       — background image(s), relative url media/<file> in CSS
- *   export/<poem-id>/en.html      — when English exists (optional)
+ *   export/<poem-id>/afrikaans.html — from af.html (primary)
+ *   export/<poem-id>/english.html   — from en.html when both langs exist
+ *   export/<poem-id>/media/         — background image(s), relative url media/<file> in CSS
  *
- * Open export/<id>/index.html; backgrounds use paths relative to that file.
+ * Open export/<id>/afrikaans.html (or english.html); backgrounds use paths relative to that file.
  */
 
 import { copyFileSync, existsSync, mkdirSync, cpSync, readdirSync, rmSync } from "fs";
@@ -60,15 +60,15 @@ function main() {
     mkdirSync(outDir, { recursive: true });
 
     if (existsSync(afHtml)) {
-      copyFileSync(afHtml, join(outDir, "index.html"));
+      copyFileSync(afHtml, join(outDir, "afrikaans.html"));
       exported++;
     } else if (enSource) {
-      copyFileSync(enSource, join(outDir, "index.html"));
+      copyFileSync(enSource, join(outDir, "english.html"));
       exported++;
     }
 
     if (enSource && existsSync(afHtml)) {
-      copyFileSync(enSource, join(outDir, "en.html"));
+      copyFileSync(enSource, join(outDir, "english.html"));
     }
 
     if (existsSync(poemMedia)) {
@@ -81,7 +81,7 @@ function main() {
   }
 
   console.log(
-    `Exported ${exported} portable folder(s): ${EXPORT_DIR}/<id>/index.html + media/ (copy each <id> folder to another computer)`,
+    `Exported ${exported} portable folder(s): ${EXPORT_DIR}/<id>/afrikaans.html (+ english.html) + media/`,
   );
   if (skipped) console.log(`Skipped ${skipped} poem folder(s) with no HTML.`);
 }

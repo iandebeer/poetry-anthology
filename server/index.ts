@@ -299,7 +299,7 @@ app.get("/api/export-kindle/download", requireAuth, (req, res) => {
   res.sendFile(epubPath);
 });
 
-/** Convert markdown → HTML with relative media/, sync images into poems/<id>/media/, then export/<id>/index.html + export/<id>/media/ (portable folder per poem). */
+/** Convert markdown → HTML with relative media/, sync images into poems/<id>/media/, then export/<id>/afrikaans.html (+ english.html) + media/. */
 app.post("/api/export-html", requireAuth, async (_req, res) => {
   try {
     const convert = await execTsx("scripts/convertPoemsToHtmlAndText.ts");
