@@ -22,11 +22,7 @@ import { writeFileSync, existsSync, readFileSync } from "fs";
 import { addPoem } from "../scripts/addPoem.js";
 import { loadPoems } from "../engine/loadPoems.js";
 import { safePoemDir } from "../engine/safePoemPath.js";
-import {
-  wrapHtmlWithPoemBackground,
-  rewritePoemHtmlToServerMediaUrls,
-  extractPoemBodyInnerForCombine,
-} from "../engine/poemHtmlDocument.js";
+import { wrapHtmlWithPoemBackground, extractPoemBodyInnerForCombine } from "../engine/poemHtmlDocument.js";
 
 const execAsync = promisify(exec);
 
@@ -168,12 +164,15 @@ function mdToHtml(md: string): string {
 // Use cwd (project root when run via npm) - same as loadPoems
 const POEMS_DIR = join(process.cwd(), "poems");
 
-/** Pre-wrapped convert output → /media URLs; otherwise wrap with optional background. */
+/**
+ * Always rebuild shell from current poem.config.image (auto-detected paths included).
+ * Pre-wrapped af.html used to short-circuit with URL rewrite only, which missed updates
+ * and could leave broken or missing backgrounds.
+ */
 function htmlForAdminResponse(raw: string, imagePath: string | undefined): string {
-  if (raw.includes("poem-bg-layer")) {
-    return rewritePoemHtmlToServerMediaUrls(raw);
-  }
-  return wrapHtmlWithPoemBackground(raw, imagePath, "/media/");
+  const inner = extractPoemBodyInnerForCombine(raw);
+  const shell = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"></head><body>${inner}</body></html>`;
+  return wrapHtmlWithPoemBackground(shell, imagePath, "/media/");
 }
 
 app.get("/api/poems/:id/html", requireAuth, (req, res) => {

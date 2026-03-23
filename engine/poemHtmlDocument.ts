@@ -5,11 +5,12 @@
 
 /** Placement from filename: t-image.jpg=top, b=bottom, l=left, r=right */
 export function getPlacementFromImagePath(imagePath: string): "top" | "bottom" | "left" | "right" | null {
-  const name = imagePath.split("/").pop() ?? "";
-  if (name.startsWith("t-")) return "top";
-  if (name.startsWith("b-")) return "bottom";
-  if (name.startsWith("l-")) return "left";
-  if (name.startsWith("r-")) return "right";
+  const fileName = imagePath.split("/").pop() ?? "";
+  const base = fileName.replace(/\.[^.]+$/i, "");
+  if (base.startsWith("t-")) return "top";
+  if (base.startsWith("b-")) return "bottom";
+  if (base.startsWith("l-")) return "left";
+  if (base.startsWith("r-")) return "right";
   return null;
 }
 
@@ -56,11 +57,6 @@ export function wrapHtmlWithPoemBackground(
   const bgMarkup = bgUrl ? '<div class="poem-bg-layer" aria-hidden="true"></div>' : "";
 
   return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${placementStyles}${bgLayerStyles}${contentOverlay}</style></head><body>${bgMarkup}<div class="poem-content">${bodyContent.trim()}</div></body></html>`;
-}
-
-/** Poem HTML saved under poems/<id>/ uses ../../public/media/ — rewrite for admin server /media mount. */
-export function rewritePoemHtmlToServerMediaUrls(html: string): string {
-  return html.replace(/\.\.\/\.\.\/public\/media\//g, "/media/");
 }
 
 /** Poem HTML copied to export/ needs one less .. segment. */

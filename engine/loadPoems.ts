@@ -25,6 +25,13 @@ function findFile(basePath: string, names: string[], exts: string[]): string | n
   return null;
 }
 
+/** True if logical path poems/<id>/file exists under public/media/poems. */
+function logicalMediaFileExists(logicalPath: string): boolean {
+  if (!logicalPath.startsWith("poems/")) return false;
+  const rel = logicalPath.slice("poems/".length);
+  return existsSync(join(MEDIA_POEMS_DIR, ...rel.split("/").filter(Boolean)));
+}
+
 function resolvePoemMedia(id: string, config: PoemConfig): PoemConfig {
   const poemMediaDir = join(MEDIA_POEMS_DIR, id);
   if (!existsSync(poemMediaDir)) return config;
@@ -35,6 +42,9 @@ function resolvePoemMedia(id: string, config: PoemConfig): PoemConfig {
   if (!out.background) {
     const video = findFile(poemMediaDir, ["video", "background"], VIDEO_EXTS);
     if (video) out.background = `${prefix}/${video}`;
+  }
+  if (out.image && !logicalMediaFileExists(out.image)) {
+    delete out.image;
   }
   if (!out.image) {
     const image = findFile(poemMediaDir, ["t-image", "b-image", "l-image", "r-image", "image", "background"], IMAGE_EXTS);
