@@ -6,6 +6,7 @@
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 import { getPoemMediaConfig } from "../engine/loadPoems.js";
+import { syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
 import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
@@ -78,6 +79,9 @@ function convertPoemDir(dirPath: string, poemId: string): number {
   const mdFiles = ["af.md", "en.md"];
   let count = 0;
 
+  const config = getPoemMediaConfig(dirPath, poemId);
+  const bundledMediaUrl = syncPoemMediaToPoemDir(dirPath, config.image);
+
   for (const name of mdFiles) {
     const mdPath = join(dirPath, name);
     if (!existsSync(mdPath)) continue;
@@ -87,10 +91,9 @@ function convertPoemDir(dirPath: string, poemId: string): number {
 
     const html = mdToHtml(md);
     const htmlPath = base + ".html";
-    const config = getPoemMediaConfig(dirPath, poemId);
-    /** file:// URLs so opening af.html/en.html in a browser (double-click) still loads background images. */
-    const outHtml = config.image
-      ? wrapHtmlWithPoemBackground(html, config.image, "/media/", true)
+
+    const outHtml = bundledMediaUrl
+      ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl)
       : html;
     writeFileSync(htmlPath, outHtml, "utf-8");
     count++;

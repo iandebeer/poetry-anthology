@@ -3,19 +3,6 @@
  * Uses a fixed full-viewport layer for the image so backgrounds show reliably with flex layout.
  */
 
-import { join } from "path";
-import { pathToFileURL } from "url";
-
-/** Absolute file:// URL to public/media/poems/... so opening .html via file:// still loads the image. */
-export function absoluteFileUrlForPoemImage(logicalPath: string): string {
-  if (!logicalPath.startsWith("poems/")) {
-    throw new Error(`Expected image path poems/<id>/file, got: ${logicalPath}`);
-  }
-  const segments = logicalPath.slice("poems/".length).split("/").filter(Boolean);
-  const abs = join(process.cwd(), "public", "media", "poems", ...segments);
-  return pathToFileURL(abs).href;
-}
-
 /** Placement from filename: t-image.jpg=top, b=bottom, l=left, r=right */
 export function getPlacementFromImagePath(imagePath: string): "top" | "bottom" | "left" | "right" | null {
   const fileName = imagePath.split("/").pop() ?? "";
@@ -33,21 +20,21 @@ function cssUrlQuoted(urlPath: string): string {
 }
 
 /**
- * @param imagePath - e.g. poems/<id>/r-image.png (logical path under public/media)
- * @param mediaUrlPrefix - HTTP base for admin, e.g. "/media/" (ignored when useAbsoluteFileMedia is true)
- * @param useAbsoluteFileMedia - if true, CSS uses file://… to the image so double-clicking the .html works locally
+ * @param imagePath - logical path under public/media, e.g. poems/<id>/r-image.png (used for placement + admin URL)
+ * @param mediaUrlPrefix - HTTP base for admin, e.g. "/media/"
+ * @param relativeToHtmlUrl - if set (e.g. media/l-image.png), CSS background uses this path relative to the .html file
  */
 export function wrapHtmlWithPoemBackground(
   html: string,
   imagePath: string | undefined,
   mediaUrlPrefix = "/media/",
-  useAbsoluteFileMedia = false,
+  relativeToHtmlUrl: string | null = null,
 ): string {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   const bodyContent = bodyMatch?.[1] ?? html;
   const bgUrl = imagePath
-    ? useAbsoluteFileMedia
-      ? absoluteFileUrlForPoemImage(imagePath)
+    ? relativeToHtmlUrl
+      ? relativeToHtmlUrl
       : `${mediaUrlPrefix.replace(/\/?$/, "/")}${encodeURI(imagePath)}`
     : null;
   const placement = imagePath ? getPlacementFromImagePath(imagePath) : null;

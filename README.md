@@ -20,9 +20,9 @@ Requires Node.js 18+. If `npm install` fails (e.g. esbuild on Node 25), try Node
 | `npm run render` | Render a single poem: `npm run render -- <poemId> [af\|en]` |
 | `npm run render:all` | Render all poems (Afrikaans + English) to `output/videos/` |
 | `npm run export-kindle` | Export all poems to EPUB for KDP (`dist/Digbundel.epub` or `Anthology.epub`). Options: `--title`, `--author`, `--output`, `--lang` (`af`, `en`, or `both`) |
-| `npm run export-html` | Convert markdown to HTML then copy to `export/<slug>.html` (run `convert-poems` first or use admin **Export HTML bundle**) |
+| `npm run export-html` | After **convert-poems**, copies each poem to `export/<id>/index.html` plus `export/<id>/media/` (same layout as under `poems/<id>/`) |
 
-Generated `af.html` / `en.html` / `export/*.html` embed background images as **absolute `file://` URLs** so opening the file in a browser (double-click) still loads images. Re-run **convert-poems** after moving the project folder so those paths stay valid. The admin poem preview uses normal `/media/…` URLs instead.
+**HTML backgrounds:** `npm run convert-poems` copies the chosen image from `public/media/poems/<id>/` into **`poems/<id>/media/`** and references it as **`media/<file>`** (relative to `af.html` / `en.html`). Open those files directly in a browser or use **export/** folders the same way. The admin UI still serves images from **`/media/…`** (not the bundled copy).
 
 ## Project Structure
 
@@ -32,6 +32,7 @@ poems/           # One folder per poem
     af.md        # Afrikaans text (one line per line)
     en.md        # English text
     config.json  # Metadata: title, author, timing, media paths
+    media/       # Populated by convert-poems: copy of background image for relative HTML paths
 
 media/           # Source media (also use public/media/ for Remotion)
   music/

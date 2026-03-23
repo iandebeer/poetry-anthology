@@ -9,8 +9,7 @@ import { readFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
 import { pathToFileURL } from "url";
 import { loadPoems } from "../engine/loadPoems.js";
-
-const MEDIA_DIR = join(process.cwd(), "public", "media");
+import { syncPoemMediaToPoemDir, bundledPoemImagePath } from "../engine/syncPoemBundledMedia.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const DIST_DIR = join(process.cwd(), "dist");
@@ -132,7 +131,9 @@ async function main() {
     let html = '<div class="poem-chapter">';
 
     const imagePath = poem.config.image;
-    const hasImage = imagePath && existsSync(join(MEDIA_DIR, imagePath));
+    syncPoemMediaToPoemDir(poemDir, imagePath);
+    const bundledAbs = bundledPoemImagePath(poemDir, imagePath);
+    const hasImage = Boolean(bundledAbs && existsSync(bundledAbs));
 
     let poemBody = "";
     if (lang === "both") {
@@ -145,7 +146,7 @@ async function main() {
     }
 
     if (hasImage) {
-      const fileUrl = pathToFileURL(join(MEDIA_DIR, imagePath!)).href;
+      const fileUrl = pathToFileURL(bundledAbs!).href;
       const { preamble, body } = extractPoemPreamble(poemBody);
       const chunks = splitPoemIntoChunks(body, 4);
       for (let i = 0; i < chunks.length; i++) {
