@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base href="./">
+  <title>Poetry export</title>
+  <style>
+    :root { --bg: #0f0f14; --text: #e8e8ed; --muted: #8888a0; --link: #6b8cce; }
+    body { font-family: Georgia, "Times New Roman", serif; background: var(--bg); color: var(--text); margin: 0; padding: 2rem; line-height: 1.5; }
+    h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 0.5rem; }
+    p.lead { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
+    ul { list-style: none; padding: 0; margin: 0; max-width: 40rem; }
+    li { padding: 1rem 0; border-bottom: 1px solid #2a2a36; }
+    li:last-child { border-bottom: none; }
+    .title { font-weight: 600; }
+    .muted { color: var(--muted); font-weight: normal; font-size: 0.9em; }
+    .links { display: block; margin-top: 0.35rem; }
+    .links a { color: var(--link); text-decoration: none; }
+    .links a:hover { text-decoration: underline; }
+    .id { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+  </style>
+</head>
+<body>
+  <h1>Poems</h1>
+  <p class="lead">7 poem folder(s). Copy this <code>export</code> directory to use offline. If links fail in a browser preview, open this file from disk or run <code style="white-space:nowrap">cd export &amp;&amp; python3 -m http.server</code> and use the URL shown.</p>
+  <ul>
+      <li><span class="title">ek is die wind</span><br><span class="links"><a href="./ek-is-wind/afrikaans.html">Afrikaans</a> · <a href="./ek-is-wind/english.html">English</a></span><span class="id">ek-is-wind</span></li>
+      <li><span class="title">laatsomer vrugte</span><br><span class="links"><a href="./laatsomer-vrugte/afrikaans.html">Afrikaans</a> · <a href="./laatsomer-vrugte/english.html">English</a></span><span class="id">laatsomer-vrugte</span></li>
+      <li><span class="title">Min dae stasie</span> <span class="muted">(Min dae station)</span><br><span class="links"><a href="./min-dae-stasie/afrikaans.html">Afrikaans</a> · <a href="./min-dae-stasie/english.html">English</a></span><span class="id">min-dae-stasie</span></li>
+      <li><span class="title">Minus dae stasie</span> <span class="muted">(Min dae station)</span><br><span class="links"><a href="./minus-days-station/afrikaans.html">Afrikaans</a> · <a href="./minus-days-station/english.html">English</a></span><span class="id">minus-days-station</span></li>
+      <li><span class="title">Soos 'n wolkie voor die son</span> <span class="muted">(Just a cloud in front of the sun)</span><br><span class="links"><a href="./wolkie-voor-die-son/afrikaans.html">Afrikaans</a> · <a href="./wolkie-voor-die-son/english.html">English</a></span><span class="id">wolkie-voor-die-son</span></li>
+      <li><span class="title">thula baba</span><br><span class="links"><a href="./thula-baba/afrikaans.html">Afrikaans</a></span><span class="id">thula-baba</span></li>
+      <li><span class="title">Waar rus is</span> <span class="muted">(Where rest is)</span><br><span class="links"><a href="./waar-rus-is/afrikaans.html">Afrikaans</a> · <a href="./waar-rus-is/english.html">English</a></span><span class="id">waar-rus-is</span></li>
+  </ul>
+  <script>
+  (function () {
+    try {
+      var root = new URL("./", location.href);
+      document.querySelectorAll(".links a[href]").forEach(function (a) {
+        var h = a.getAttribute("href");
+        if (!h || /^[a-z][a-z0-9+.-]*:/i.test(h)) return;
+        var rel = h.startsWith("./") ? h.slice(2) : h;
+        a.href = new URL(rel, root).href;
+      });
+    } catch (e) { /* keep static href */ }
+  })();
+  </script>
+</body>
+</html>

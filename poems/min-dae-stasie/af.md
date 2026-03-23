@@ -23,5 +23,9 @@ tik-tik, tik-tik; tik-tik, tik-tik…
 
 dit reis was lank en ek voel moeg en leeg getap  
 ek dink ek is reg om nou af te stap,  
+maar nou moet ek eers wag  — wie is dan in beheer?  
+iewers in die nag is my trok op ’n sy-lyn rangeer  
+
+alternatiewe einde (vir Hermie)  
 nie langer sal ek die oomblik met vrees beheen  
 ek vind nou my rus in die Een  

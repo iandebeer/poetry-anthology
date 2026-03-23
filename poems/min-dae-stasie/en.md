@@ -24,5 +24,9 @@ tick-tick, tick-tick; tick-tick, tick-tick...
 
 this ride was lengthy, and I feel drained and spent,  
 I think I’m ready to alight and relent,  
+but first I must wait — I am no longer riding,  
+during my sleep my train was shunted to a siding.  
+  
+alternate ending (for Hermie)  
 for no longer will fear cloud my sight  
 as I again with the One unite.  

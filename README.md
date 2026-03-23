@@ -20,7 +20,7 @@ Requires Node.js 18+. If `npm install` fails (e.g. esbuild on Node 25), try Node
 | `npm run render` | Render a single poem: `npm run render -- <poemId> [af\|en]` |
 | `npm run render:all` | Render all poems (Afrikaans + English) to `output/videos/` |
 | `npm run export-kindle` | Export all poems to EPUB for KDP (`dist/Digbundel.epub` or `Anthology.epub`). Options: `--title`, `--author`, `--output`, `--lang` (`af`, `en`, or `both`) |
-| `npm run export-html` | After **convert-poems**, copies each poem to `export/<id>/afrikaans.html`, optional `english.html`, and `export/<id>/media/` |
+| `npm run export-html` | After **convert-poems**, writes **`export/index.html`** (index of all poems), plus each `export/<id>/afrikaans.html`, optional `english.html`, and `export/<id>/media/` — open **`export/index.html`** in a normal browser from disk, or run **`cd export && python3 -m http.server`** if your editor’s HTML preview blocks local links |
 
 **HTML backgrounds:** `npm run convert-poems` copies the chosen image from `public/media/poems/<id>/` into **`poems/<id>/media/`** and references it as **`media/<file>`** (relative to `af.html` / `en.html`). Open those files directly in a browser or use `export/<id>/afrikaans.html` (and `english.html` when present) the same way. The admin UI still serves images from **`/media/…`** (not the bundled copy).
 
