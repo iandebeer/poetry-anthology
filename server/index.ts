@@ -28,7 +28,8 @@ const execAsync = promisify(exec);
 const SCRIPT_EXEC = { cwd: process.cwd(), maxBuffer: 10 * 1024 * 1024 } as const;
 
 async function execTsx(script: string, extraArgs = "") {
-  return execAsync(`npx tsx ${script}${extraArgs}`, SCRIPT_EXEC);
+  const suffix = extraArgs.trim() ? ` ${extraArgs.trim()}` : "";
+  return execAsync(`npx tsx ${script}${suffix}`, SCRIPT_EXEC);
 }
 const PORT = process.env.ADMIN_PORT || 3333;
 const ADMIN_USER = process.env.ADMIN_USER || "admin";
