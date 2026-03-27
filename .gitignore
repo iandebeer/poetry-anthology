@@ -5,3 +5,5 @@ output/audio/*.mp3
 *.log
 .env
 .env.local
+# Editor local history (can embed .env snapshots — triggers GitHub secret scanning)
+.lh/
