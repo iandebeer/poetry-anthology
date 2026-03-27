@@ -11,6 +11,20 @@ npm run dev
 
 Requires Node.js 18+. If `npm install` fails (e.g. esbuild on Node 25), try Node 18 or 20.
 
+## Environment
+
+Create a **`.env`** file in the **project root** (it is gitignored; never commit secrets):
+
+| Variable | Required | Purpose |
+|----------|----------|---------|
+| `ADMIN_PASSWORD` | For production admin | Login password for `/admin` |
+| `ADMIN_USER` | Optional | Login username (default `admin`) |
+| `SESSION_SECRET` | Recommended | Random string so session cookies cannot be forged |
+| `ADMIN_PORT` | Optional | Admin server port (default `3333`) |
+| `OPENAI_API_KEY` | Optional | `npm run translate`, `add-poem --translate`, and admin translate features |
+
+The admin server loads `.env` via [dotenv](https://github.com/motdotla/dotenv). CLI scripts that call OpenAI read `OPENAI_API_KEY` from the environment.
+
 ## Scripts
 
 | Script | Description |
@@ -19,6 +33,11 @@ Requires Node.js 18+. If `npm install` fails (e.g. esbuild on Node 25), try Node
 | `npm run admin` | Web admin UI (login-protected) at http://localhost:3333/admin |
 | `npm run render` | Render a single poem: `npm run render -- <poemId> [af\|en]` |
 | `npm run render:all` | Render all poems (Afrikaans + English) to `output/videos/` |
+| `npm run translate` | Generate/update English from Afrikaans (needs `OPENAI_API_KEY`) |
+| `npm run convert-poems` | Convert `af.md` / `en.md` to `.html` & `.txt`, sync backgrounds into `poems/<id>/media/` |
+| `npm run add-poem` | Add a poem folder: `npm run add-poem <slug>` (optional `--translate`) |
+| `npm run generate-poems` | Regenerate `src/poemsData.json` from `poems/` |
+| `npm run generate-af-dict` | Generate Afrikaans dictionary asset used by the project |
 | `npm run export-kindle` | Export all poems to EPUB for KDP (`dist/Digbundel.epub` or `Anthology.epub`). Options: `--title`, `--author`, `--output`, `--lang` (`af`, `en`, or `both`) |
 | `npm run export-html` | After **convert-poems**, writes **`export/1-index.html`** (index of all poems; name sorts first in folder listings), plus each `export/<id>/afrikaans.html`, optional `english.html`, and `export/<id>/media/` — open that file in a normal browser from disk, or run **`cd export && python3 -m http.server`** and open **`http://127.0.0.1:8000/1-index.html`** if your editor’s HTML preview blocks local links |
 
