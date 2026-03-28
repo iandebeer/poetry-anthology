@@ -1,0 +1,20 @@
+# Alibi
+
+So, waar is elders dan?
+
+Elders is êrens waar ek nie is nie,
+nóg in gedagte,
+nóg in gedaante
+anderkant anderkant...
+verby anderkant —
+ongekarteer, koördinaatloos
+ongevormd en ongenaamd
+sonder sin, sonder rede en tog
+is die kernpunt van perfekte kennis
+insig — volledig en bekend
+beskreewe en gebaken
+hier, hier...
+net in die oomblik,
+net hier —
+elders is ôrals waar ek is,
+sonder gedagte en gedaante

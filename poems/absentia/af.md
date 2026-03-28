@@ -1,0 +1,23 @@
+# In Absentia (Stellenbosch se Moegoes)
+
+aan julle wat ver is,
+noudat ek nie meer daar is,
+moet 'seblief tog nie vra
+om my in die hiernamaals te pla,
+
+want as julle my soek, dan sal jy my kry —
+in Jonkershoek, by die brandhut verby
+waar Swartboskloof se stroom ons dors sal kwyn,
+op die bergpad waar die middagson op ons blaaie sal skyn,
+in die Eden se kloof waar mos en varings die wande begroei
+in die koel skadu van die waterval se sproei,
+aan Botmanskop se voet, as die sakkende son oor tafelberg hang,
+langs Idasvallei se damme, as die piet-my-vrou ons roep met sy sang -
+
+hier het ek jul in my hart saam gedra
+as als soms te veel was
+of soms net as vreugde dit vra
+
+maar jul sal moet uiithaal om by te bly
+want ek draf nou losvoet,
+want ek is nou vry

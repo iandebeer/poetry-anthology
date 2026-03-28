@@ -16,7 +16,9 @@
     "render:all": "npm run generate-poems && npx tsx scripts/renderAll.ts",
     "generate-poems": "npx tsx scripts/generatePoemsData.ts",
     "export-kindle": "npx tsx scripts/exportKindle.ts",
-    "export-html": "npx tsx scripts/exportHtml.ts"
+    "export-html": "npx tsx scripts/exportHtml.ts",
+    "crop-temp-images": "python3 scripts/cropTempImages.py",
+    "import-temp-poems": "npx tsx scripts/importTempPoems.ts"
   },
   "dependencies": {
     "@remotion/bundler": "^4.0.0",

@@ -1,0 +1,28 @@
+# Quo Vadis
+
+Sê die wat plas vir die stroompie:  
+"Ek's so bevooreg,  
+in die holtetjie waar ek my beland,  
+dit is pasgemaak vir my  
+ek vul hom van hoek tot kant".
+
+maar die stroompie sê niks –  
+hy vloei stil om die draai…
+
+Sê die wat plas vir die stroompie:  
+"Jy hou jou vernit so waardig  
+daar waar jy kabbel en bruis,  
+ek's ten minste veilig –  
+met wie mag jou paadjie dalk kruis?"
+
+maar die rivier sê niks –  
+hy spoed luid oor die val…
+
+Sê die wat plas vir die stroompie:  
+"Ek mag wel verstaan  
+onder die son se bakkende baan,  
+maar ek lê nou al so lank,  
+ek’t nêrens beter om te gaan"
+
+maar die see rus net –  
+in haar ewige bestaan.

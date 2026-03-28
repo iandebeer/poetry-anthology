@@ -1,0 +1,19 @@
+# Sonnet aan die oënskynlike Tydlose (Otter wndelpad)
+
+Waar kreupelhout hang oor 'n blare tapyt
+en knoets-wortels die paadjie anker bo die see,
+maak ryke komorante reg vir ontbyt -
+wyl ons as 'bygangers tydloosheid betreë.
+
+En in 'n vallei waar stroompies met soet water sleur
+tot 'n diepvloeiende donker rivier,
+wat teen die oseaan se gety durf beur
+en saam met wind en sand, die ewige rotse glad skuur.
+
+Dis hier waar my voetval moeisaam sy weg vind
+en die asem my longe voel brand,
+waar ek my gedagtes tot stilte kan bind
+en dankbaar reik na 'n helpende hand.
+
+Nou weer tuis, lê ek skoon en versorgd in my bed;
+steeds klou ek aan elke tree met stille verset.
