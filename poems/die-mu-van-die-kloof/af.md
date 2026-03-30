@@ -1,0 +1,32 @@
+# die MU van die Kloof
+
+Swartboskloof is kaal gebrand — 
+van die valskerpte, bo die Helderberg-kom
+tot onder waar roet en dooie gediertetjies in die Eersterivier kolk
+asof hul traag afskeid neem van wat was — wat hulle was;
+wyl die rook van smeulende boomwortels poog om ’n sluier te trek
+oor dit wat nou in swart  naaktheid onthul lê 
+met slegs die rotse wat steeds bakens bied 
+in die fraktaal gekarteerde leegheid,
+denkbeeldig omlyn deur verdere klowe 
+Kurk-trekker en Assegaaibosch
+
+Swartboskoof is geklee in blomme-prag —
+Watsonia en Aarons-lelies 
+weerbarstig uit die steeds geskroeide bodem
+kleur die kloof met die belofte van die bloeityd wat kom, 
+stilweg bevestig deur ’n groen uitloopseltjie
+uit ooglopend veskroeide Waboom
+Varings omlyn die silwer stroompies wat oor mosbegroeide klippe bruis
+Jou hart spring met vreugde oor dit wat intuitief nuwe lewe blyk te wees
+Tog die kloof weet nie van meer as die ewige oomblik
+waarin hy die leegheid en volheid is
+
+Swartboskloof, met sagte groen rondings wat oor die wonde en wande vou 
+met alles  wat kloof is
+onverdeeld en kontinu met alle klowe
+in die Goddelike bewustheid van
+nooit geledig, nooit vervuld
+altyd volmaak 
+en roep:  
+EK IS die Alpha en die Omega!

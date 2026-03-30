@@ -25,7 +25,7 @@ const MEDIA_POEMS_DIR = join(process.cwd(), "public", "media", "poems");
 export interface AddPoemOptions {
   /** Poem ID (folder name, use kebab-case) */
   id: string;
-  /** Afrikaans content (markdown). Omit to create directory structure only. */
+  /** Afrikaans content (markdown). Omit to create af.md with title stub only. */
   afContent?: string;
   /** Author name */
   author?: string;
@@ -67,10 +67,14 @@ export async function addPoem(options: AddPoemOptions): Promise<string> {
   const configPath = join(poemDir, "config.json");
   writeFileSync(configPath, JSON.stringify(config, null, 2), "utf-8");
 
+  const afPath = join(poemDir, "af.md");
   if (afContent) {
-    const afPath = join(poemDir, "af.md");
     writeFileSync(afPath, afContent.trimEnd() + "\n", "utf-8");
+  } else {
+    writeFileSync(afPath, `# ${afTitle}\n\n`, "utf-8");
+  }
 
+  if (afContent) {
     let enContent: string;
     if (doTranslate && process.env.OPENAI_API_KEY) {
       const { default: OpenAI } = await import("openai");
@@ -115,8 +119,7 @@ Add a new poem to the anthology.
 Usage:
   npx tsx scripts/addPoem.ts <id> [options]
 
-Creates directory structure only (poems/<id>/, public/media/poems/<id>/, config.json).
-Add af.md and en.md manually.
+Creates poems/<id>/ with config.json, af.md (title stub or piped content), and public/media/poems/<id>/.
 
 Options:
   --translate    With piped content: generate en.md via AI (requires OPENAI_API_KEY)
@@ -160,9 +163,12 @@ Examples:
       translate: hasTranslate,
     });
     console.log(`Created: ${path}`);
-    console.log(`Add af.md and en.md to poems/${id}/`);
+    console.log(`Edit poems/${id}/af.md`);
+    if (!afContent.trim()) {
+      console.log(`Optional: add en.md or run \`npm run translate\` after adding Afrikaans text.`);
+    }
     console.log(`Add media to public/media/poems/${id}/: video.mp4, image.jpg, audio.mp3`);
-    if (afContent && !hasTranslate) {
+    if (afContent.trim() && !hasTranslate) {
       console.log("Run `npm run translate` to generate English, then copy en.generated.md → en.md");
     }
   } catch (err) {

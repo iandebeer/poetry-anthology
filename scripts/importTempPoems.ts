@@ -1,10 +1,10 @@
 /**
  * For each temp/*.png: extract Afrikaans poem text via vision (OpenAI) and write
- *   poems/<file-stem>/af.md
- *   poems/<file-stem>/config.json
+ *   poems/<stem>/af.md
+ *   poems/<stem>/config.json
  *
- * Folder name = PNG basename without extension (e.g. hier.png → poems/hier/).
- * No en.md — loadPoems uses Afrikaans lines for the English track until you add en.md.
+ * Folder name = PNG basename without extension (e.g. stilte-van-nikswees.png → poems/stilte-van-nikswees/).
+ * Does not write en.md — loadPoems mirrors Afrikaans for the English track until you add en.md.
  *
  * Requires: OPENAI_API_KEY
  * Run: npx tsx scripts/importTempPoems.ts
@@ -24,7 +24,6 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-/** Directory name under poems/ — same as input filename without .png */
 function poemIdFromPng(basename: string): string {
   return basename.replace(/\.png$/i, "");
 }
@@ -45,10 +44,10 @@ async function extractAfrikaansFromImage(imagePath: string): Promise<ExtractedAf
       {
         role: "system",
         content:
-          "You transcribe Afrikaans poetry from images (caption bars, overlays, or typed text). " +
+          "You transcribe Afrikaans poetry from images (caption bars, overlays, or typed text on the image). " +
           "Return only valid JSON: titleAf (string, no leading #), bodyAf (full poem text only). " +
           "Use \\n\\n between stanzas in bodyAf and \\n for line breaks within a stanza. " +
-          "Do not put a markdown heading inside bodyAf.",
+          "Do not put a markdown heading inside bodyAf. Preserve Afrikaans spelling and punctuation faithfully.",
       },
       {
         role: "user",
@@ -78,7 +77,7 @@ async function extractAfrikaansFromImage(imagePath: string): Promise<ExtractedAf
   return { titleAf, bodyAf };
 }
 
-function writePoemAfOnly(poemId: string, extracted: ExtractedAf): void {
+function writePoemAf(poemId: string, extracted: ExtractedAf): void {
   const dir = path.join(POEMS, poemId);
   fs.mkdirSync(dir, { recursive: true });
 
@@ -99,7 +98,7 @@ function writePoemAfOnly(poemId: string, extracted: ExtractedAf): void {
 
 async function main(): Promise<void> {
   if (!process.env.OPENAI_API_KEY) {
-    console.error("Set OPENAI_API_KEY in .env (vision extraction requires it).");
+    console.error("Set OPENAI_API_KEY in .env.");
     process.exit(1);
   }
 
@@ -125,7 +124,7 @@ async function main(): Promise<void> {
 
     try {
       const extracted = await extractAfrikaansFromImage(src);
-      writePoemAfOnly(poemId, extracted);
+      writePoemAf(poemId, extracted);
       console.log(`  “${extracted.titleAf}”`);
     } catch (e) {
       console.error(`  failed:`, e);

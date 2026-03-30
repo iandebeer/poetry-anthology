@@ -1,0 +1,17 @@
+# Geborge
+  
+Rachmaninov - ’n Rapsodie op ’n Tema van Paganini —  
+die inleiding tot “Die du Plooy’s van Soetmelksvlei”
+Herinneringe vloed my gemoed
+van ’n tyd so lank reeds verby en tog so maklik herroepbaar;
+
+Ons gesin voor die radio,
+Na die gedwonge stilte van die “Nuus om Sewe”
+En die eerbiedige stilte vir “Laat ons Boeke Vat”
+Luister ons saam na die wel en wee van oom Kobie, tant Hybie en ou Bartel
+Elkeen in die stilte van sy verbeeldings wêreld  
+Dan bed toe waar ek lê en luister hoe Pa sy “Tromp van Diggeling”-oefeninge doen — in stilte  
+tot die kwart-voor-tien alarm ons laat weet;
+“Die ongewenstes is van die strate — alles is nou veilig”
+
+… snaaks want ek het nooit onveilig gevoel in daardie huis  

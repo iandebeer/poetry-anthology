@@ -20,7 +20,11 @@ import { exec } from "child_process";
 import { promisify } from "util";
 import { writeFileSync, existsSync, readFileSync } from "fs";
 import { addPoem } from "../scripts/addPoem.js";
-import { loadPoems } from "../engine/loadPoems.js";
+import {
+  loadPoems,
+  resolveAfrikaansMarkdownPath,
+  resolveEnglishMarkdownPath,
+} from "../engine/loadPoems.js";
 import { safePoemDir } from "../engine/safePoemPath.js";
 import { wrapHtmlWithPoemBackground, extractPoemBodyInnerForCombine } from "../engine/poemHtmlDocument.js";
 
@@ -123,8 +127,10 @@ app.get("/api/poems/:id", requireAuth, (req, res) => {
   let af = "";
   let en = "";
   try {
-    af = readFileSync(join(poemDir, "af.md"), "utf-8");
-    en = readFileSync(join(poemDir, "en.md"), "utf-8");
+    const afP = resolveAfrikaansMarkdownPath(poemDir);
+    const enP = resolveEnglishMarkdownPath(poemDir);
+    if (afP) af = readFileSync(afP, "utf-8");
+    if (enP) en = readFileSync(enP, "utf-8");
   } catch {
     /* ignore */
   }
@@ -222,8 +228,10 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   let af = "",
     en = "";
   try {
-    af = readFileSync(join(poemDir, "af.md"), "utf-8");
-    en = readFileSync(join(poemDir, "en.md"), "utf-8");
+    const afP = resolveAfrikaansMarkdownPath(poemDir);
+    const enP = resolveEnglishMarkdownPath(poemDir);
+    if (afP) af = readFileSync(afP, "utf-8");
+    if (enP) en = readFileSync(enP, "utf-8");
   } catch {
     /* ignore */
   }
@@ -271,6 +279,8 @@ async function runScript(script: string, res: express.Response) {
 }
 
 app.post("/api/translate", requireAuth, (req, res) => runScript("scripts/translatePoems.ts", res));
+/** Each temp/*.png → vision → poems/<stem>/af.md + config.json; then generate-poems (requires OPENAI_API_KEY). */
+app.post("/api/import-temp-poems", requireAuth, (req, res) => runScript("scripts/importTempPoems.ts", res));
 app.post("/api/generate-poems", requireAuth, (req, res) => runScript("scripts/generatePoemsData.ts", res));
 app.post("/api/convert-poems", requireAuth, (req, res) => runScript("scripts/convertPoemsToHtmlAndText.ts", res));
 app.post("/api/generate-af-dict", requireAuth, (req, res) => runScript("scripts/generateAfrikaansDictionary.ts", res));
@@ -321,9 +331,9 @@ app.post("/api/translate/:id", requireAuth, async (req, res) => {
   const poemsDir = join(process.cwd(), "poems");
   const poemDir = safePoemDir(poemsDir, paramId(req.params.id));
   if (!poemDir) return res.status(400).json({ error: "Invalid poem id" });
-  const afPath = join(poemDir, "af.md");
+  const afPath = resolveAfrikaansMarkdownPath(poemDir);
   const enPath = join(poemDir, "en.md");
-  if (!existsSync(afPath)) return res.status(404).json({ error: "Poem not found" });
+  if (!afPath) return res.status(404).json({ error: "Poem not found" });
   if (existsSync(enPath)) return res.json({ ok: true, skipped: true, message: "en.md already exists" });
   try {
     const { default: OpenAI } = await import("openai");

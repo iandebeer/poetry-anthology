@@ -1,7 +1,7 @@
 /**
  * Loads poems from the poems/ folder.
- * Scans each subfolder for af.md and optional en.md / en.generated.md.
- * If no English file exists, English lines mirror Afrikaans until you add en.md.
+ * Afrikaans: af.md, or af-translate.md (e.g. English-sourced poems translated to Afrikaans).
+ * English: en.md or en.generated.md; if missing, English lines mirror Afrikaans.
  * Resolves per-poem media from public/media/poems/<id>/ when not in config.
  */
 
@@ -65,8 +65,17 @@ function parseMarkdownLines(content: string): string[] {
     .filter((line) => line.length > 0);
 }
 
+/** Prefer af.md; else af-translate.md (machine translation from English source). */
+export function resolveAfrikaansMarkdownPath(poemDir: string): string | null {
+  const primary = join(poemDir, "af.md");
+  if (existsSync(primary)) return primary;
+  const translated = join(poemDir, "af-translate.md");
+  if (existsSync(translated)) return translated;
+  return null;
+}
+
 /** Prefer en.md; fall back to en.generated.md from translate script. */
-function resolveEnglishMarkdownPath(poemDir: string): string | null {
+export function resolveEnglishMarkdownPath(poemDir: string): string | null {
   const manual = join(poemDir, "en.md");
   if (existsSync(manual)) return manual;
   const generated = join(poemDir, "en.generated.md");
@@ -107,8 +116,8 @@ export function loadPoems(): PoemData[] {
     if (!entry.isDirectory()) continue;
 
     const poemDir = join(POEMS_DIR, entry.name);
-    const afPath = join(poemDir, "af.md");
-    if (!existsSync(afPath)) continue;
+    const afPath = resolveAfrikaansMarkdownPath(poemDir);
+    if (!afPath) continue;
 
     const config = loadConfig(poemDir, entry.name);
     const af = parseMarkdownLines(readFileSync(afPath, "utf-8"));

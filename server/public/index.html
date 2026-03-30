@@ -157,10 +157,11 @@
       <div class="card">
         <h2>Operations</h2>
         <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
-          Translate skips poems that already have en.md. Convert uses only af.md and en.md.
+          Translate skips poems that already have en.md. Convert uses af.md / af-translate.md and en.md. Import temp reads <code style="font-size:0.85em">temp/*.png</code> with OpenAI vision.
         </p>
         <div class="actions">
           <button type="button" id="btn-reload-poems">Reload poems</button>
+          <button type="button" id="btn-import-temp">Import from temp (PNG → af.md)</button>
           <button type="button" id="btn-translate">Translate all</button>
           <button type="button" id="btn-generate">Generate poems data</button>
           <button type="button" id="btn-convert">Convert to HTML/text</button>
@@ -170,12 +171,12 @@
           <a id="btn-download-kindle" href="/api/export-kindle/download?lang=both" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none" download>Download EPUB</a>
         </div>
         <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;">
-          Translate: only poems without en.md → en.generated.md · Convert: af.md & en.md → .html & .txt + <code style="font-size:0.85em">poems/&lt;id&gt;/media/</code> · Export HTML: <code style="font-size:0.85em">export/1-index.html</code> (list) + <code style="font-size:0.85em">export/&lt;id&gt;/afrikaans.html</code> + <code style="font-size:0.85em">english.html</code> + <code style="font-size:0.85em">media/</code>
+          Import temp: <code style="font-size:0.85em">temp/*.png</code> → <code style="font-size:0.85em">poems/&lt;stem&gt;/af.md</code> + <code style="font-size:0.85em">config.json</code> + regenerate <code style="font-size:0.85em">src/poemsData.json</code> (needs <code style="font-size:0.85em">OPENAI_API_KEY</code>, can take a while). · Translate: only poems without en.md → en.generated.md · Convert: markdown → .html & .txt + <code style="font-size:0.85em">poems/&lt;id&gt;/media/</code> · Export HTML: <code style="font-size:0.85em">export/1-index.html</code> (list) + per-poem HTML + <code style="font-size:0.85em">media/</code>
         </p>
         <pre id="op-output" class="hidden" style="margin-top: 1rem;"></pre>
 
         <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--muted); font-size: 1rem;">Add poem</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem;">Creates the directory structure only. Add af.md and en.md manually.</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem;">Creates poems/&lt;id&gt;/ with config.json and af.md (title stub). Add English via translate or en.md when ready.</p>
         <form id="add-poem-form">
           <div class="row">
             <div>
@@ -340,7 +341,7 @@
             author: author || undefined,
           }),
         });
-        msg("Poem directory created. Add af.md and en.md to poems/" + id + "/", "success");
+        msg("Poem created with af.md — edit poems/" + id + "/af.md and add en.md or translate when ready.", "success");
         form.reset();
         loadPoems();
       } catch (err) {
@@ -374,6 +375,7 @@
         if (data.skipped) text = (text ? text + "\n" : "") + (data.message || "Skipped.");
         out.textContent = text || "Done.";
         msg(data.skipped ? `${name}: ${data.message || "skipped"}` : `${name} completed.`, data.skipped ? "info" : "success");
+        if (name === "Import temp poems") loadPoems();
       } catch (err) {
         out.textContent = err instanceof Error ? err.message : String(err);
         msg(out.textContent, "error");
@@ -402,6 +404,7 @@
     }
 
     document.getElementById("btn-reload-poems").onclick = () => reloadPoemsOp();
+    document.getElementById("btn-import-temp").onclick = () => runOp("Import temp poems", "/import-temp-poems");
     document.getElementById("btn-translate").onclick = () => runOp("Translate", "/translate");
     document.getElementById("btn-generate").onclick = () => runOp("Generate poems", "/generate-poems");
     document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");

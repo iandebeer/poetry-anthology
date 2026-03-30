@@ -5,7 +5,11 @@
 
 import { readFileSync, writeFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
-import { getPoemMediaConfig } from "../engine/loadPoems.js";
+import {
+  getPoemMediaConfig,
+  resolveAfrikaansMarkdownPath,
+  resolveEnglishMarkdownPath,
+} from "../engine/loadPoems.js";
 import { syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
 import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
 
@@ -75,34 +79,39 @@ function mdToText(md: string): string {
     .trim();
 }
 
-function convertPoemDir(dirPath: string, poemId: string): number {
-  const mdFiles = ["af.md", "en.md"];
-  let count = 0;
+function convertOneSource(
+  mdPath: string,
+  outBasename: string,
+  dirPath: string,
+  config: ReturnType<typeof getPoemMediaConfig>,
+  bundledMediaUrl: string | null,
+): number {
+  const md = readFileSync(mdPath, "utf-8");
+  const base = join(dirPath, outBasename);
 
+  const html = mdToHtml(md);
+  const htmlPath = base + ".html";
+  const outHtml = bundledMediaUrl
+    ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl)
+    : html;
+  writeFileSync(htmlPath, outHtml, "utf-8");
+
+  const text = mdToText(md);
+  const txtPath = base + ".txt";
+  writeFileSync(txtPath, text, "utf-8");
+  return 2;
+}
+
+function convertPoemDir(dirPath: string, poemId: string): number {
+  let count = 0;
   const config = getPoemMediaConfig(dirPath, poemId);
   const bundledMediaUrl = syncPoemMediaToPoemDir(dirPath, config.image);
 
-  for (const name of mdFiles) {
-    const mdPath = join(dirPath, name);
-    if (!existsSync(mdPath)) continue;
+  const afSrc = resolveAfrikaansMarkdownPath(dirPath);
+  if (afSrc) count += convertOneSource(afSrc, "af", dirPath, config, bundledMediaUrl);
 
-    const md = readFileSync(mdPath, "utf-8");
-    const base = mdPath.replace(/\.md$/, "");
-
-    const html = mdToHtml(md);
-    const htmlPath = base + ".html";
-
-    const outHtml = bundledMediaUrl
-      ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl)
-      : html;
-    writeFileSync(htmlPath, outHtml, "utf-8");
-    count++;
-
-    const text = mdToText(md);
-    const txtPath = base + ".txt";
-    writeFileSync(txtPath, text, "utf-8");
-    count++;
-  }
+  const enSrc = resolveEnglishMarkdownPath(dirPath);
+  if (enSrc) count += convertOneSource(enSrc, "en", dirPath, config, bundledMediaUrl);
 
   return count;
 }

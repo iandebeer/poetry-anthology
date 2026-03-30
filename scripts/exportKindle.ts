@@ -8,7 +8,11 @@
 import { readFileSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
 import { pathToFileURL } from "url";
-import { loadPoems } from "../engine/loadPoems.js";
+import {
+  loadPoems,
+  resolveAfrikaansMarkdownPath,
+  resolveEnglishMarkdownPath,
+} from "../engine/loadPoems.js";
 import { syncPoemMediaToPoemDir, bundledPoemImagePath } from "../engine/syncPoemBundledMedia.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
@@ -114,7 +118,7 @@ async function main() {
 
   const poems = loadPoems();
   if (poems.length === 0) {
-    console.error("No poems found. Each poem needs af.md and en.md.");
+    console.error("No poems found. Each poem needs Afrikaans (af.md or af-translate.md).");
     process.exit(1);
   }
 
@@ -124,8 +128,11 @@ async function main() {
 
   for (const poem of poems) {
     const poemDir = join(POEMS_DIR, poem.id);
-    const afMd = readFileSync(join(poemDir, "af.md"), "utf-8");
-    const enMd = readFileSync(join(poemDir, "en.md"), "utf-8");
+    const afPath = resolveAfrikaansMarkdownPath(poemDir);
+    const enPath = resolveEnglishMarkdownPath(poemDir);
+    if (!afPath) continue;
+    const afMd = readFileSync(afPath, "utf-8");
+    const enMd = enPath ? readFileSync(enPath, "utf-8") : afMd;
 
     const chapterTitle = poem.config.titleAf || poem.config.titleEn || poem.id;
     let html = '<div class="poem-chapter">';

@@ -19,8 +19,9 @@ if (existsSync(POEMS_DIR)) {
   for (const e of readdirSync(POEMS_DIR, { withFileTypes: true })) {
     if (!e.isDirectory() || loaded.has(e.name)) continue;
     const dir = join(POEMS_DIR, e.name);
-    if (existsSync(join(dir, "en.md")) || existsSync(join(dir, "en.generated.md"))) {
-      console.warn(`[generate-poems] Skipping "${e.name}": missing af.md`);
+    const hasAf = existsSync(join(dir, "af.md")) || existsSync(join(dir, "af-translate.md"));
+    if (!hasAf && (existsSync(join(dir, "en.md")) || existsSync(join(dir, "en.generated.md")))) {
+      console.warn(`[generate-poems] Skipping "${e.name}": missing af.md / af-translate.md`);
     }
   }
 }

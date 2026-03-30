@@ -5,6 +5,7 @@
 
 import { readFileSync, writeFileSync, readdirSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
+import { resolveAfrikaansMarkdownPath } from "../engine/loadPoems.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const OUT_DIR = join(process.cwd(), ".cspell");
@@ -40,8 +41,8 @@ function main() {
 
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
-    const afPath = join(POEMS_DIR, entry.name, "af.md");
-    if (!existsSync(afPath)) continue;
+    const afPath = resolveAfrikaansMarkdownPath(join(POEMS_DIR, entry.name));
+    if (!afPath) continue;
     const content = readFileSync(afPath, "utf-8");
     for (const w of extractWords(content)) {
       allWords.add(w);
@@ -49,7 +50,7 @@ function main() {
   }
 
   const sorted = [...allWords].sort((a, b) => a.localeCompare(b));
-  const header = `# Afrikaans dictionary (generated from poems/af.md)
+  const header = `# Afrikaans dictionary (generated from poems/af.md and af-translate.md)
 # Run: npm run generate-af-dict
 # Words: ${sorted.length}
 
