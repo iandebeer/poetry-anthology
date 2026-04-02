@@ -1,19 +1,20 @@
 # Hush, Baby  
 
-This morning, I so longed again for childhood’s grace,  
-To be wrapped in a blanket, safe in a loving embrace,  
-Carried close against a tender frame, humming light and low,  
-Where everything was right and good, all was known, and so—  
-At least the little that I knew, which barely was enough,  
-Still feels like nothing, and perhaps always will, it’s tough.  
+This morning I yearned, oh to be a child once more,  
+To be wrapped tight in a soft blanket’s shore,  
+Cradled against her gentle form, humming sweet and light,  
+Where everything felt right, secure, and bright—  
+At least the everything I thought I knew,  
+Which then was nothing much, and still feels that way too.  
 
-So I wandered on,  
-Drifting aimlessly, caught in thought’s own spell,  
-Or was it regret? Either way, I fell—  
-As I stumbled across the dune, the sea and mountains near,  
-I realized, I’m wrapped now in nature’s blanket here:  
+So off I wandered,  
+Aimlessly wandering, lost in a dream’s embrace,  
+Or was it regret? Yet, in any case—  
+As I stumbled over dunes, gazing at sea and mountain’s crest,  
+I realized I was wrapped in nature’s tender nest:  
 
 Hush, hush, baby,  
-Hush now, sleepy one,  
-Daddy will come tomorrow,  
-And bring you sweet porridge, the finest fare under the sun.  
+Hush, hush, my dear,  
+Daddy will come tomorrow to draw you near,  
+And bring you sweet porridge for a meal so fine,  
+So hush, my darling, all will be divine.

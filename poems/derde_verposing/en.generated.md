@@ -1,0 +1,26 @@
+# Third Viewpoint (Writer’s Mind, Prince Albert)
+
+A scrub bush, a tumbleweed, has painted this land,
+in soft hues of grey-olive laced,
+on shades of sand and rust-brown stand,
+beneath the endless blue sky that stretches over the Black Mountain’s face —
+
+the people — they came later, you see,
+to the white houses where booja fruit shade the ground,
+where sweet figs and red pomegranates tempt,
+to perhaps bind them here just a little longer, unbound;
+
+but as the world kicks up its dust devils high,
+under the sun’s unchained arc,
+their eyes wild and far sought answers untold,
+wondering where they might embark;
+
+until finally, in the cool evening air,
+enfolded closely in friendship’s embrace,
+the uncertainty in their gazes softened,
+and secrets were whispered in that quiet place,
+
+to hear how the scrub bush once more paints the land,
+in twilight glow under a starry cloak,
+for tomorrow, and tomorrow’s tomorrow,
+and what else might stir in the wake they invoke...

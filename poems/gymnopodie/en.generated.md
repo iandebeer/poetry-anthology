@@ -1,0 +1,15 @@
+# Gymnopody of the Grass
+
+The bunny tails sway in the breeze,  
+a prelude of air and sun and earth,  
+uncoreographed—driven by whispers of wind,  
+each seed pod dances in its own rhythm, each passion unique.  
+Never still or cracked,  
+they bow reverently to the ground where they’re anchored  
+to reach once more in port de bras toward the sun—  
+tireless and unpaused,  
+like the Sufi Dervish  
+in unity with Allah,  
+dance, dance, dance…  
+for here— for now,  
+Fanã.

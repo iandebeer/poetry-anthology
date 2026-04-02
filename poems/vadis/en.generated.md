@@ -1,0 +1,28 @@
+# Quo Vadis
+
+Says the one who splashes by the stream:  
+"I am so favored,  
+in this little nook where I have landed,  
+it fits me perfectly,  
+I fill it to the brim, so splendid."
+
+but the stream remains silent –  
+it flows softly around the bend…
+
+Says the one who splashes by the stream:  
+"You hold your current so nobly  
+there where you ripple and rush,  
+at least I am safe –  
+who might your path one day crush?"
+
+but the river says nothing –  
+it roars loud over the fall…
+
+Says the one who splashes by the stream:  
+"I may understand  
+beneath the sun's blazing hand,  
+but I’ve lingered here so long,  
+I have nowhere better to belong."
+
+but the sea simply rests –  
+in her eternal embrace.

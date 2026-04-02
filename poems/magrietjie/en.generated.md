@@ -1,0 +1,26 @@
+# A Song for a Daisy
+
+This morning,  
+while a school bell in the distance rang for a short break,  
+I lay down on a grassy patch  
+among clover, roundabouts, and teeter-totters,  
+on daisies like early spring cotton,  
+white and unspoiled, spreading wide across the field,  
+with here and there a dot of yellow sorrel blooms  
+drawing your gaze in the sunlight —  
+  
+here where small feet and wheeled buggies tread on flowers,  
+and elderly folks walk their old dogs on the paths,  
+I could inhale the scent of damp earth and wet poplar leaves,  
+drawing it deep into my lungs,  
+and in the umbrella of mushrooms  
+poking through pine needles,  
+my soul rejoiced.  
+  
+As if in a dream, I felt my limbs melt  
+beneath the morning sun and the blue of the sky,  
+allowing this old earth to cradle me softly,  
+and knowing it was right —  
+like the daisies,  
+I was here yesterday,  
+but now I am gone.

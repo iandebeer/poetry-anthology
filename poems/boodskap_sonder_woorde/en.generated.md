@@ -1,0 +1,23 @@
+# A Message Without Words (Port Alfred)
+
+Up there by the high water line,  
+Where sand meets the scrubby dune,  
+And fat figs bloom in generous clusters, thriving in bright sunshine,  
+A gnarled driftwood bows like the “Dagga-smoker” of Van Wouw,  
+Before a rounded, polished stone,  
+With a stripe that winds around its midline,  
+Beside a shell, partially hidden beneath the sand,  
+With spring tide and the murmur of the sea, stranded there in its spiral.  
+
+And thus, I am unwillingly led to frame mathematical dimensions,  
+To project meaning and purpose upon my surroundings,  
+With a thousand thoughts swirling up,  
+About the shell, the sea, and the purple fig bloom,  
+And all the other objects I perceive around me,  
+When suddenly, I recall the Buddha's “lesson without words.”  
+
+There beside the driftwood, shell, and stone, curled in fetal position,  
+I filled my lungs deeply with the scent of sea and sand,  
+As the roar of the waves around me quieted, temporarily releasing my thoughts —  
+I, just a flotsam, a small piece of wood kneeling,  
+In the endlessness of the cosmos.
