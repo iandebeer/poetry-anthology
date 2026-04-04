@@ -178,7 +178,12 @@ const POEMS_DIR = join(process.cwd(), "poems");
 function htmlForAdminResponse(raw: string, imagePath: string | undefined): string {
   const inner = extractPoemBodyInnerForCombine(raw);
   const shell = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"></head><body>${inner}</body></html>`;
-  return wrapHtmlWithPoemBackground(shell, imagePath, "/media/");
+  const imageAbs =
+    imagePath?.startsWith("poems/")
+      ? join(process.cwd(), "public", "media", ...imagePath.split("/").filter(Boolean))
+      : null;
+  const imageAbsOk = imageAbs && existsSync(imageAbs) ? imageAbs : null;
+  return wrapHtmlWithPoemBackground(shell, imagePath, "/media/", null, imageAbsOk);
 }
 
 app.get("/api/poems/:id/html", requireAuth, (req, res) => {

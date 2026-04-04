@@ -1,12 +1,18 @@
 /**
  * Full HTML shell for poem pages (admin preview, convert-poems output).
  * Uses a fixed full-viewport layer for the image so backgrounds show reliably with flex layout.
+ * o-image.* uses a split layout: image column left, text right, with a light tint from the image colour.
  */
 
-/** Placement from filename: t-image.jpg=top, b=bottom, l=left, r=right */
-export function getPlacementFromImagePath(imagePath: string): "top" | "bottom" | "left" | "right" | null {
+import { dominantRgbFromImageFile, lightTintFromRgb, rgbToCss, type Rgb } from "./dominantColor.js";
+
+/** Placement from filename: t-image.jpg=top, b=bottom, l=left, r=right, o-=split (image left, text right) */
+export type PoemImagePlacement = "top" | "bottom" | "left" | "right" | "split-left" | null;
+
+export function getPlacementFromImagePath(imagePath: string): PoemImagePlacement {
   const fileName = imagePath.split("/").pop() ?? "";
   const base = fileName.replace(/\.[^.]+$/i, "");
+  if (base.startsWith("o-")) return "split-left";
   if (base.startsWith("t-")) return "top";
   if (base.startsWith("b-")) return "bottom";
   if (base.startsWith("l-")) return "left";
@@ -19,26 +25,57 @@ function cssUrlQuoted(urlPath: string): string {
   return `url("${safe}")`;
 }
 
+function escapeHtmlAttr(s: string): string {
+  return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
+}
+
+function splitLayoutTintRgb(imageAbsPath: string | null | undefined): Rgb {
+  const sampled = imageAbsPath ? dominantRgbFromImageFile(imageAbsPath) : null;
+  const base = sampled ?? { r: 118, g: 118, b: 128 };
+  return lightTintFromRgb(base, 0.86);
+}
+
 /**
  * @param imagePath - logical path under public/media, e.g. poems/<id>/r-image.png (used for placement + admin URL)
  * @param mediaUrlPrefix - HTTP base for admin, e.g. "/media/"
  * @param relativeToHtmlUrl - if set (e.g. media/l-image.png), CSS background uses this path relative to the .html file
+ * @param imageAbsPath - optional filesystem path to the image (for o-image dominant colour sampling)
  */
 export function wrapHtmlWithPoemBackground(
   html: string,
   imagePath: string | undefined,
   mediaUrlPrefix = "/media/",
   relativeToHtmlUrl: string | null = null,
+  imageAbsPath: string | null = null,
 ): string {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   const bodyContent = bodyMatch?.[1] ?? html;
-  const bgUrl = imagePath
+  const imgSrc = imagePath
     ? relativeToHtmlUrl
       ? relativeToHtmlUrl
       : `${mediaUrlPrefix.replace(/\/?$/, "/")}${encodeURI(imagePath)}`
     : null;
   const placement = imagePath ? getPlacementFromImagePath(imagePath) : null;
 
+  if (placement === "split-left" && imgSrc) {
+    const tint = splitLayoutTintRgb(imageAbsPath);
+    const tintCss = rgbToCss(tint);
+    const splitStyles =
+      "html,body{min-height:100%;margin:0}" +
+      "body{font-family:serif;line-height:1.6;color:#1a1a20;background-color:#e8e8ec;display:flex;position:relative}" +
+      ".poem-split-wrap{display:flex;flex-direction:row;flex:1;width:100%;min-height:100vh;align-items:stretch}" +
+      ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;flex-shrink:0;object-fit:cover;object-position:center}" +
+      ".poem-content{position:relative;z-index:1;flex:1;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}" +
+      ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
+      "@media (max-width:640px){.poem-split-wrap{flex-direction:column}.poem-split-img{width:100%;max-width:none;height:38vh;min-height:160px}}";
+    const contentBg = `.poem-content{background-color:${tintCss};border-radius:0}`;
+
+    const splitMarkup = `<div class="poem-split-wrap"><img class="poem-split-img" src="${escapeHtmlAttr(imgSrc)}" alt="" /><div class="poem-content">${bodyContent.trim()}</div></div>`;
+
+    return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${splitStyles}${contentBg}</style></head><body>${splitMarkup}</body></html>`;
+  }
+
+  const bgUrl = imgSrc;
   const baseStyles =
     "html,body{min-height:100%;margin:0}" +
     "body{font-family:serif;line-height:1.6;color:#e8e8ed;background-color:#0f0f14;display:flex;position:relative}" +
@@ -67,7 +104,9 @@ export function wrapHtmlWithPoemBackground(
 
 /** Inner markup for combining af+en (strips bg layer / uses .poem-content only). */
 export function extractPoemBodyInnerForCombine(html: string): string {
-  const content = html.match(/<div class="poem-content"[^>]*>([\s\S]*?)<\/div>\s*<\/body>/i);
+  const content = html.match(
+    /<div class="poem-content"[^>]*>([\s\S]*?)<\/div>\s*(?:<\/div>\s*)?<\/body>/i,
+  );
   if (content) return content[1].trim();
   const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   let inner = body?.[1] ?? html;

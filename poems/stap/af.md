@@ -1,0 +1,17 @@
+# Om te kan stap  
+
+girts, garts, kris , kras —
+stowwerige  stewels
+en sokkies met klitsgras,
+
+met reëlmaat van voetval
+en ritmiese asem-teug,
+die tamheid van liggaam  
+wat jou tog diepweg verheug;
+
+want van  waar ek ookal myself kon bevind
+is ek nou hier, asof vooraf bestemd.
+
+daar voor wys bakens waar die pad nog mag lei,
+maar hier, nou,  sweef my siel  soos ’n arend,  
+op winde — van gebaande weë vry  

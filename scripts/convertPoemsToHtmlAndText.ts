@@ -10,7 +10,7 @@ import {
   resolveAfrikaansMarkdownPath,
   resolveEnglishMarkdownPath,
 } from "../engine/loadPoems.js";
-import { syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
+import { bundledPoemImagePath, syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
 import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
@@ -85,6 +85,7 @@ function convertOneSource(
   dirPath: string,
   config: ReturnType<typeof getPoemMediaConfig>,
   bundledMediaUrl: string | null,
+  imageAbsPath: string | null,
 ): number {
   const md = readFileSync(mdPath, "utf-8");
   const base = join(dirPath, outBasename);
@@ -92,7 +93,7 @@ function convertOneSource(
   const html = mdToHtml(md);
   const htmlPath = base + ".html";
   const outHtml = bundledMediaUrl
-    ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl)
+    ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl, imageAbsPath)
     : html;
   writeFileSync(htmlPath, outHtml, "utf-8");
 
@@ -106,12 +107,13 @@ function convertPoemDir(dirPath: string, poemId: string): number {
   let count = 0;
   const config = getPoemMediaConfig(dirPath, poemId);
   const bundledMediaUrl = syncPoemMediaToPoemDir(dirPath, config.image);
+  const imageAbsPath = bundledPoemImagePath(dirPath, config.image);
 
   const afSrc = resolveAfrikaansMarkdownPath(dirPath);
-  if (afSrc) count += convertOneSource(afSrc, "af", dirPath, config, bundledMediaUrl);
+  if (afSrc) count += convertOneSource(afSrc, "af", dirPath, config, bundledMediaUrl, imageAbsPath);
 
   const enSrc = resolveEnglishMarkdownPath(dirPath);
-  if (enSrc) count += convertOneSource(enSrc, "en", dirPath, config, bundledMediaUrl);
+  if (enSrc) count += convertOneSource(enSrc, "en", dirPath, config, bundledMediaUrl, imageAbsPath);
 
   return count;
 }

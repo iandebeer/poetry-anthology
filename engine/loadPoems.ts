@@ -5,7 +5,7 @@
  * Resolves per-poem media from public/media/poems/<id>/ when not in config.
  */
 
-import { readFileSync, readdirSync, existsSync } from "fs";
+import { readFileSync, readdirSync, existsSync, mkdirSync } from "fs";
 import { join } from "path";
 import type { PoemConfig, PoemData } from "./types.js";
 
@@ -35,7 +35,7 @@ function logicalMediaFileExists(logicalPath: string): boolean {
 
 function resolvePoemMedia(id: string, config: PoemConfig): PoemConfig {
   const poemMediaDir = join(MEDIA_POEMS_DIR, id);
-  if (!existsSync(poemMediaDir)) return config;
+  mkdirSync(poemMediaDir, { recursive: true });
 
   const out = { ...config };
   const prefix = `poems/${id}`;
@@ -48,7 +48,7 @@ function resolvePoemMedia(id: string, config: PoemConfig): PoemConfig {
     delete out.image;
   }
   if (!out.image) {
-    const image = findFile(poemMediaDir, ["t-image", "b-image", "l-image", "r-image", "image", "background"], IMAGE_EXTS);
+    const image = findFile(poemMediaDir, ["o-image", "t-image", "b-image", "l-image", "r-image", "image", "background"], IMAGE_EXTS);
     if (image) out.image = `${prefix}/${image}`;
   }
   if (!out.music) {
