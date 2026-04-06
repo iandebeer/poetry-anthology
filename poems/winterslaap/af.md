@@ -4,7 +4,7 @@ Geel reenpakke in ‘n roesbruin wingerd -
 die reuk van ‘n nathout rokie lok met sy belofte van warmte
 na waar wit huise skuil teen die noord-wes se greep
 Brakke en snot-neus kindertjies loer by deure uit
-wag tend op ‘n respyt in die grouw newels wat oor die heuwels vee -
+wagtend op ‘n respyt in die grouw newels wat oor die heuwels vee -
 En stil onder die aarde rus die wingerd diep na nog ‘n oes.
 
 En as die hemel blou uitbreek

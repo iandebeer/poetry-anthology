@@ -1,0 +1,23 @@
+Thula Baba — background video (Remotion / anthology)
+
+Place your finished file here as:
+  video.mp4   (or video.mov / video.webm — see engine/loadPoems auto-detection)
+
+The player uses ONE background clip per poem. If you have several shots, edit them into one
+timeline in your editor (e.g. walk first, then hold or cut to the wide view at the top).
+
+Suggested content (False Bay / Cape Peninsula mood):
+
+1) Path / approach
+   - Person walking on a footpath over a dune, fynbos in frame (texture, movement, wind).
+
+2) Reveal (top of dune or cut to summit beat)
+   - False Bay opens ahead; sea expanse dominant.
+   - Cape Town and Table Mountain on the horizon — readable but distant (atmospheric haze is fine).
+
+Technical hints for a cinematic read:
+   - Stable or slow gimbal; avoid harsh midday if you want softer light on the bay.
+   - 1920×1080 or higher, h.264 or similar; keep duration in line with poem length + margins in Remotion.
+
+After adding the file, run: npm run generate-poems
+Then preview in Remotion Studio or: npm run render -- thula-baba af

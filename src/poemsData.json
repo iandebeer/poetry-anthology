@@ -645,6 +645,45 @@
     ]
   },
   {
+    "id": "hoedband",
+    "config": {
+      "titleAf": "headband",
+      "titleEn": "headband",
+      "author": "",
+      "lineDuration": 5,
+      "linePause": 1,
+      "introDuration": 3,
+      "outroDuration": 5,
+      "id": "hoedband"
+    },
+    "af": [
+      "# Wie sal 'n veer vir my hoedband bring?",
+      "Bring my veer van die visarend",
+      "'n spikkel teen die blou, wat Gods seën oor Afrika roep.",
+      "Bring my  'n veer  van die  bosuil,",
+      "wat sawens  my in rus omvou :\"Hoe -hoep\".",
+      "En as dan ons mekaar iewers langs die pad ontmoet,",
+      "en ek my hoed hoflik lig om jou te groet",
+      "dan is ons deel van die hier en nou, in die oomblik,",
+      "wetend God beskik.",
+      "En 'n asem ons saam en vry",
+      "Om - shanti- Shanti- Shanti"
+    ],
+    "en": [
+      "# Wie sal 'n veer vir my hoedband bring?",
+      "Bring my veer van die visarend",
+      "'n spikkel teen die blou, wat Gods seën oor Afrika roep.",
+      "Bring my  'n veer  van die  bosuil,",
+      "wat sawens  my in rus omvou :\"Hoe -hoep\".",
+      "En as dan ons mekaar iewers langs die pad ontmoet,",
+      "en ek my hoed hoflik lig om jou te groet",
+      "dan is ons deel van die hier en nou, in die oomblik,",
+      "wetend God beskik.",
+      "En 'n asem ons saam en vry",
+      "Om - shanti- Shanti- Shanti"
+    ]
+  },
+  {
     "id": "Klipwerk1",
     "config": {
       "titleAf": "Klipwerk",
@@ -654,7 +693,8 @@
       "linePause": 1,
       "introDuration": 3,
       "outroDuration": 5,
-      "id": "Klipwerk1"
+      "id": "Klipwerk1",
+      "image": "poems/Klipwerk1/o-image.png"
     },
     "af": [
       "# Klipwerk",
@@ -719,7 +759,8 @@
       "linePause": 1,
       "introDuration": 3,
       "outroDuration": 5,
-      "id": "magrietjie"
+      "id": "magrietjie",
+      "image": "poems/magrietjie/o-image.png"
     },
     "af": [
       "# liedjie vir ’n magrietjie",
@@ -770,6 +811,55 @@
       "like the daisies,",
       "I was here yesterday,",
       "but now I am gone."
+    ]
+  },
+  {
+    "id": "meimering",
+    "config": {
+      "titleAf": "Meimering",
+      "titleEn": "Meimering",
+      "author": "",
+      "lineDuration": 5,
+      "linePause": 1,
+      "introDuration": 3,
+      "outroDuration": 5,
+      "id": "meimering"
+    },
+    "af": [
+      "# Meimering",
+      "oppad terug",
+      "het ek by die boonste kamp",
+      "'n wyl' vertoef,",
+      "leunend teen die hek,",
+      "met ken in die hand gestut;",
+      "vir hoelang, onthou ek nie,",
+      "nòg waar my gedagtes was,",
+      "maar toe ek daar wegstep",
+      "moes ek net terugkyk",
+      "en het myself steeds daar sien staan —",
+      "in die oomblik verloor,",
+      "tog 'n baken,",
+      "waar ek myself weer kan vind",
+      "Ian de Beer - Stellenbosch",
+      "12 Maart 2023"
+    ],
+    "en": [
+      "# Meimering",
+      "oppad terug",
+      "het ek by die boonste kamp",
+      "'n wyl' vertoef,",
+      "leunend teen die hek,",
+      "met ken in die hand gestut;",
+      "vir hoelang, onthou ek nie,",
+      "nòg waar my gedagtes was,",
+      "maar toe ek daar wegstep",
+      "moes ek net terugkyk",
+      "en het myself steeds daar sien staan —",
+      "in die oomblik verloor,",
+      "tog 'n baken,",
+      "waar ek myself weer kan vind",
+      "Ian de Beer - Stellenbosch",
+      "12 Maart 2023"
     ]
   },
   {
@@ -968,7 +1058,8 @@
       "linePause": 1,
       "introDuration": 3,
       "outroDuration": 5,
-      "id": "ons_asem_saam"
+      "id": "ons_asem_saam",
+      "image": "poems/ons_asem_saam/o-image.png"
     },
     "af": [
       "# ons asem saam",
@@ -1175,8 +1266,7 @@
       "antwoord op my soeke vind -",
       "maar die in stilte...",
       "die stilte, wat als omvat:",
-      "Hari Om Tat Sat",
-      "Ian de Beer, Boschendal, 12 Februarie 2023"
+      "Hari Om Tat Sat"
     ],
     "en": [
       "# Stil wees",
@@ -1189,8 +1279,7 @@
       "antwoord op my soeke vind -",
       "maar die in stilte...",
       "die stilte, wat als omvat:",
-      "Hari Om Tat Sat",
-      "Ian de Beer, Boschendal, 12 Februarie 2023"
+      "Hari Om Tat Sat"
     ]
   },
   {
@@ -1236,6 +1325,47 @@
       "the nothingness of now.",
       "Yet I can know:",
       "I am safe, enveloped in His arms."
+    ]
+  },
+  {
+    "id": "storm",
+    "config": {
+      "titleAf": "storm",
+      "titleEn": "storm",
+      "author": "",
+      "lineDuration": 5,
+      "linePause": 1,
+      "introDuration": 3,
+      "outroDuration": 5,
+      "id": "storm"
+    },
+    "af": [
+      "# Storm bui",
+      "Deurdrenk tot die vel",
+      "met net die reën as my jas,",
+      "wyl druppels",
+      "soos ou vroue met knoprieries rondom my plas,",
+      "en die reuk van water, grond en gras, -",
+      "nou van stof en stuif, skoon gewas,",
+      "met ’n donderblits as tafereel ontvou",
+      "soos ’n figuursaag wat  n legkaart pas",
+      "en ek die blokkie wat immer ontbrekend was,",
+      "my plek vind,",
+      "veilig omring en geborge vas"
+    ],
+    "en": [
+      "# Storm bui",
+      "Deurdrenk tot die vel",
+      "met net die reën as my jas,",
+      "wyl druppels",
+      "soos ou vroue met knoprieries rondom my plas,",
+      "en die reuk van water, grond en gras, -",
+      "nou van stof en stuif, skoon gewas,",
+      "met ’n donderblits as tafereel ontvou",
+      "soos ’n figuursaag wat  n legkaart pas",
+      "en ek die blokkie wat immer ontbrekend was,",
+      "my plek vind,",
+      "veilig omring en geborge vas"
     ]
   },
   {
@@ -1349,7 +1479,8 @@
       "linePause": 1,
       "introDuration": 3,
       "outroDuration": 5,
-      "id": "Tweede_Verposing_1"
+      "id": "Tweede_Verposing_1",
+      "image": "poems/Tweede_Verposing_1/o-image.png"
     },
     "af": [
       "# Tweede versposing (Keurboomstrand)",
@@ -1404,7 +1535,7 @@
       "maar die stroompie sê niks –",
       "hy vloei stil om die draai…",
       "Sê die wat plas vir die stroompie:",
-      "\"Jy hou jou vernit so waardig",
+      "\"Jy hou jou verniet so waardig",
       "daar waar jy kabbel en bruis,",
       "ek's ten minste veilig –",
       "met wie mag jou paadjie dalk kruis?\"",
@@ -1571,7 +1702,8 @@
       "linePause": 1,
       "introDuration": 3,
       "outroDuration": 5,
-      "id": "wilde-olyf"
+      "id": "wilde-olyf",
+      "image": "poems/wilde-olyf/o-image.png"
     },
     "af": [
       "*Sonnet aan ’n Wilde Olyf*",

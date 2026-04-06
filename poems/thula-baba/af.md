@@ -17,3 +17,7 @@ Thula, thula baba,
 thula thula sana,  
 Pappa kom môre om jou te haal,  
 en bring dan vir jou van soet-pap ’n maal  
+
+Thula, thula; thula thula baba,
+thula baba, thula thula sana,
+Om Tare Tuttare Ture Soha

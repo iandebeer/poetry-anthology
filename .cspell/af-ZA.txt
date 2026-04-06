@@ -189785,6 +189785,7 @@ meidoring
 meikewer
 meikoningin
 Meimaand
+meimering
 meimore
 meinedig
 meinedige
@@ -200528,6 +200529,7 @@ neurenbergse
 neuridien
 neurie
 neurien
+neuriënd
 neuriesanger
 neurine
 neurities
@@ -308915,6 +308917,7 @@ struikel
 struikelaar
 struikelblok
 struikelblokke
+struikelend
 struikelende
 struikeling
 struikerig
@@ -317968,6 +317971,7 @@ thortveitiet
 Thubalethu
 Thubelihle
 Thubelisha
+thula
 Thulamahashe
 Thulani
 Thulini
