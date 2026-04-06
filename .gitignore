@@ -5,3 +5,4 @@ output/audio/*.mp3
 *.log
 .env
 .env.local
+.*.epub
