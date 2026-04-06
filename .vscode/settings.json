@@ -1,0 +1,11 @@
+{
+    "cSpell.language": "en-GB,en-US",
+    "cSpell.dictionaryDefinitions": [
+        {
+            "name": "af-ZA",
+            "path": "./.cspell/af-ZA.txt",
+            "addWords": true 
+        }
+    ],
+    "cSpell.dictionaries": ["af-ZA"]
+}
