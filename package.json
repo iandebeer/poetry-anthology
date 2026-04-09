@@ -18,6 +18,7 @@
     "export-kindle": "npx tsx scripts/exportKindle.ts",
     "export-html": "npx tsx scripts/exportHtml.ts",
     "pages:build": "npm run convert-poems && npm run export-html",
+    "optimize-pngs": "npx tsx scripts/optimizePoemPngs.ts",
     "crop-temp-images": "python3 scripts/cropTempImages.py",
     "import-temp-poems": "npx tsx scripts/importTempPoems.ts"
   },
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@types/node": "^20.0.0",
     "@types/react": "^18.2.0",
+    "sharp": "^0.34.5",
     "tsx": "^4.0.0",
     "typescript": "^5.0.0"
   },
