@@ -141,13 +141,15 @@ Default credentials: `admin` / `changeme` (change via env in production).
 
 ## GitHub Pages (static poems + media)
 
-The workflow **`.github/workflows/deploy-pages.yml`** runs on pushes to **`main`** or **`master`**: it runs **`npm run pages:build`**, uploads the **`export/`** folder (list + `export/<id>/afrikaans.html`, `english.html`, `media/`), and deploys it as the site.
+The workflow **`.github/workflows/deploy-pages.yml`** runs on pushes to **`main`**, **`master`**, or **`poetry-anthology`**: it runs **`npm run pages:build`**, uploads **only** the **`export/`** folder, and deploys that folder as the **entire** site (not the repo root).
 
-1. In the GitHub repo: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
-2. Push to your default branch (or run the workflow manually under **Actions**).
-3. The site URL is **`https://<user>.github.io/<repo>/`** — **`index.html`** redirects to **`1-index.html`**.
+1. In the GitHub repo: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”). If Source is a **branch** with **/ (root)**, GitHub Pages serves the whole repository and Jekyll often shows **README.md** at **`/`** instead of the poetry HTML.
+2. After a push, open **Actions** and confirm **Deploy GitHub Pages** completed (green). A failed or missing workflow leaves an old deploy or no site.
+3. With **GitHub Actions**, the live site root is the **`export/`** build output, so **`https://<user>.github.io/<repo>/`** loads the anthology (**`export/index.html`** redirects to **`1-index.html`**).
 
 Poem links use relative URLs, so they work at that project URL without a base path.
+
+**If you must deploy from a branch** (folder `/ (root)`): a root **`index.html`** redirects to **`export/`**, and **`.nojekyll`** disables Jekyll so README is not used as the homepage. Prefer **GitHub Actions** so the published site matches the portable bundle exactly.
 
 ## Resolution
 
