@@ -12,4 +12,6 @@ in my ongebonde vlug –
 
 en wie sou ooit kon wis
 dat ek in dié stille oomblik
-onsterflik is
+onsterflik is  
+
+So Hum
