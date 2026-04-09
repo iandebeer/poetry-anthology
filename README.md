@@ -145,11 +145,11 @@ The workflow **`.github/workflows/deploy-pages.yml`** runs on pushes to **`main`
 
 1. In the GitHub repo: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”). If Source is a **branch** with **/ (root)**, GitHub Pages serves the whole repository and Jekyll often shows **README.md** at **`/`** instead of the poetry HTML.
 2. After a push, open **Actions** and confirm **Deploy GitHub Pages** completed (green). A failed or missing workflow leaves an old deploy or no site.
-3. With **GitHub Actions**, the live site root is the **`export/`** build output, so **`https://<user>.github.io/<repo>/`** loads the anthology (**`export/index.html`** redirects to **`1-index.html`**).
+3. With **GitHub Actions**, the live site root is the **`export/`** build output. **`index.html`** and **`1-index.html`** are the same poem list; **`/`** shows Gedigte directly (no README).
 
 Poem links use relative URLs, so they work at that project URL without a base path.
 
-**If you must deploy from a branch** (folder `/ (root)`): a root **`index.html`** redirects to **`export/`**, and **`.nojekyll`** disables Jekyll so README is not used as the homepage. Prefer **GitHub Actions** so the published site matches the portable bundle exactly.
+**If you deploy from a branch** (folder `/ (root)`): root **`index.html`** redirects to **`export/`** (same list there), and **`.nojekyll`** disables Jekyll so README is not the homepage. Prefer **GitHub Actions** so **`/`** is the anthology only.
 
 ## Resolution
 

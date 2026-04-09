@@ -10,7 +10,7 @@
  *   export/<poem-id>/english.html   — from en.html when both langs exist
  *   export/<poem-id>/media/         — background image(s), relative url media/<file> in CSS
  *
- * Open export/1-index.html for a list of all poems, or export/<id>/afrikaans.html directly.
+ * Open export/index.html or export/1-index.html for the poem list (identical), or export/<id>/afrikaans.html directly.
  */
 
 import { copyFileSync, existsSync, mkdirSync, cpSync, readdirSync, rmSync, writeFileSync } from "fs";
@@ -114,24 +114,9 @@ ${items}
 `;
   const indexPath = join(EXPORT_DIR, EXPORT_INDEX_HTML);
   writeFileSync(indexPath, html, "utf-8");
-  // GitHub Pages and http://…/export/ need a root document; keep 1-index.html for folder-sort order
+  // Same poem list at index.html so GitHub Pages (artifact root = export/) serves Gedigte at / not a redirect stub
   const rootIndexPath = join(EXPORT_DIR, "index.html");
-  const rootIndexHtml = `<!DOCTYPE html>
-<html lang="${pageLang}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=1-index.html">
-  <title>${escapeHtml(pageHeading)}</title>
-  <link rel="canonical" href="1-index.html">
-  <script>location.replace("1-index.html");</script>
-</head>
-<body>
-  <p><a href="1-index.html">${escapeHtml(pageHeading)}</a></p>
-</body>
-</html>
-`;
-  writeFileSync(rootIndexPath, rootIndexHtml, "utf-8");
+  writeFileSync(rootIndexPath, html, "utf-8");
 }
 
 function main() {
