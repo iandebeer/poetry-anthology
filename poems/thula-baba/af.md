@@ -1,8 +1,8 @@
 # thula baba  
 
 vanoggend wou ek so graag weer soos ’n kleine kind  
-dat iemand my styf in ’n abba-kombersie sal bind  
-en dra teen haar sagte lyf, neuriënd en onbelas  
+dat iemand my styf in ’n abba-kombersie sal bind,  
+en dra teen haar sagte lyf, neuriënd en onbelas;  
 en dat alles net reg en goed en veilig was —  
 ten minste dié alles wat ek toe van wis,  
 wat eintlik maar niks was, en seker nou steeds is  

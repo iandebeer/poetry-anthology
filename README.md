@@ -40,6 +40,7 @@ The admin server loads `.env` via [dotenv](https://github.com/motdotla/dotenv). 
 | `npm run generate-af-dict` | Generate Afrikaans dictionary asset used by the project |
 | `npm run export-kindle` | Export all poems to EPUB for KDP (`dist/Digbundel.epub` or `Anthology.epub`). Options: `--title`, `--author`, `--output`, `--lang` (`af`, `en`, or `both`) |
 | `npm run export-html` | After **convert-poems**, writes **`export/1-index.html`** (index of all poems; name sorts first in folder listings), plus each `export/<id>/afrikaans.html`, optional `english.html`, and `export/<id>/media/` — open that file in a normal browser from disk, or run **`cd export && python3 -m http.server`** and open **`http://127.0.0.1:8000/1-index.html`** if your editor’s HTML preview blocks local links |
+| `npm run pages:build` | **`convert-poems` + `export-html`** — used by the GitHub Pages workflow to publish the static bundle |
 
 **HTML backgrounds:** `npm run convert-poems` copies the chosen image from `public/media/poems/<id>/` into **`poems/<id>/media/`** and references it as **`media/<file>`** (relative to `af.html` / `en.html`). Open those files directly in a browser or use `export/<id>/afrikaans.html` (and `english.html` when present) the same way. The admin UI still serves images from **`/media/…`** (not the bundled copy).
 
@@ -137,6 +138,16 @@ Default credentials: `admin` / `changeme` (change via env in production).
 - Set **`SESSION_SECRET`** to a long random string so session cookies cannot be forged.
 - Poem API routes validate paths so IDs like `../..` cannot escape the `poems/` directory.
 - Use **`NODE_ENV=production`** and HTTPS so the session cookie is marked `secure`.
+
+## GitHub Pages (static poems + media)
+
+The workflow **`.github/workflows/deploy-pages.yml`** runs on pushes to **`main`** or **`master`**: it runs **`npm run pages:build`**, uploads the **`export/`** folder (list + `export/<id>/afrikaans.html`, `english.html`, `media/`), and deploys it as the site.
+
+1. In the GitHub repo: **Settings → Pages → Build and deployment**, set **Source** to **GitHub Actions** (not “Deploy from a branch”).
+2. Push to your default branch (or run the workflow manually under **Actions**).
+3. The site URL is **`https://<user>.github.io/<repo>/`** — **`index.html`** redirects to **`1-index.html`**.
+
+Poem links use relative URLs, so they work at that project URL without a base path.
 
 ## Resolution
 

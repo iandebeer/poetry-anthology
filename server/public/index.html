@@ -66,9 +66,15 @@
     .message.info { background: rgba(107,140,206,0.2); color: var(--accent); }
     .poem-list { list-style: none; padding: 0; margin: 0; }
     .poem-list li {
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex; justify-content: flex-start; align-items: center;
+      gap: 0.5rem;
       padding: 0.25rem 0; border-bottom: 1px solid var(--border);
     }
+    .poem-list li label.poem-row {
+      display: flex; align-items: center; gap: 0.5rem; width: 100%; cursor: pointer;
+    }
+    .poem-list .poem-select { flex-shrink: 0; width: 1rem; height: 1rem; accent-color: var(--accent); }
+    .poem-list .poem-row-main { flex: 1; display: flex; justify-content: space-between; align-items: center; min-width: 0; }
     .poem-list li:last-child { border-bottom: none; }
     .logout { float: right; font-size: 0.9rem; }
     .hidden { display: none !important; }
@@ -133,7 +139,11 @@
 
       <div class="card">
         <h2>Poems</h2>
-        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">Click a poem to open its HTML in a new tab.</p>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem;">Click a title to open its HTML in a new tab. Use the checkboxes for Convert, Export HTML bundle, and Export Kindle EPUB. The <strong>All / Afrikaans / English</strong> tabs also control the HTML bundle: with Afrikaans or English selected, each exported folder contains only that language’s HTML (poems missing that language are skipped).</p>
+        <div class="actions" style="margin-bottom: 1rem;">
+          <button type="button" id="btn-select-all-poems" class="secondary">Select all</button>
+          <button type="button" id="btn-select-none-poems" class="secondary">Select none</button>
+        </div>
         <div class="lang-tabs">
           <button type="button" data-lang="all" class="active">All</button>
           <button type="button" data-lang="af">Afrikaans</button>
@@ -154,7 +164,7 @@
         </div>
       </div>
 
-      <div class="card">
+      <div class="card" id="operations-card">
         <h2>Operations</h2>
         <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
           Translate skips poems that already have en.md. Convert uses af.md / af-translate.md and en.md. Import temp reads <code style="font-size:0.85em">temp/*.png</code> with OpenAI vision.
@@ -166,6 +176,7 @@
           <button type="button" id="btn-generate">Generate poems data</button>
           <button type="button" id="btn-convert">Convert to HTML/text</button>
           <button type="button" id="btn-export-html">Export HTML bundle</button>
+          <a href="/export/" target="_blank" rel="noopener" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none">Open HTML bundle</a>
           <button type="button" id="btn-af-dict">Generate Afrikaans dictionary</button>
           <button type="button" id="btn-export-kindle">Export Kindle EPUB</button>
           <a id="btn-download-kindle" href="/api/export-kindle/download?lang=both" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none" download>Download EPUB</a>
@@ -277,6 +288,10 @@
 
     let poemLang = "all";
 
+    function getSelectedPoemIds() {
+      return Array.from(document.querySelectorAll(".poem-select:checked")).map((cb) => cb.dataset.id);
+    }
+
     function renderPoems(poems) {
       const list = document.getElementById("poem-list");
       if (!poems.length) {
@@ -286,7 +301,15 @@
       list.innerHTML = poems.map((p) => {
         const title = p.config.titleAf || p.config.titleEn || p.id;
         const author = p.config.author ? ` · ${escapeHtml(p.config.author)}` : "";
-        return `<li style="display: flex; justify-content: space-between; align-items: center;"><a class="poem-link" href="#" data-id="${escapeHtml(p.id)}" data-title="${escapeHtml(title)}">${escapeHtml(title)}</a><span style="color: var(--muted); font-size: 0.85rem">${escapeHtml(p.id)}${author}</span></li>`;
+        return `<li>
+  <label class="poem-row">
+    <input type="checkbox" class="poem-select" data-id="${escapeHtml(p.id)}" checked />
+    <span class="poem-row-main">
+      <a class="poem-link" href="#" data-id="${escapeHtml(p.id)}" data-title="${escapeHtml(title)}">${escapeHtml(title)}</a>
+      <span style="color: var(--muted); font-size: 0.85rem">${escapeHtml(p.id)}${author}</span>
+    </span>
+  </label>
+</li>`;
       }).join("");
       list.querySelectorAll(".poem-link").forEach((a) => {
         a.onclick = (e) => {
@@ -349,9 +372,20 @@
       }
     };
 
-    async function runOp(name, path, body) {
+    const OPS_NEED_SELECTION = ["/convert-poems", "/export-html", "/export-kindle"];
+
+    async function runOp(name, path, bodyExtra) {
       const out = document.getElementById("op-output");
-      const actionButtons = document.querySelectorAll(".actions button");
+      const actionButtons = document.querySelectorAll("#operations-card .actions button");
+      let body = bodyExtra;
+      if (OPS_NEED_SELECTION.includes(path)) {
+        const ids = getSelectedPoemIds();
+        if (ids.length === 0) {
+          msg("Select at least one poem.", "error");
+          return;
+        }
+        body = { ...(bodyExtra || {}), ids };
+      }
       out.classList.remove("hidden");
       out.textContent = "Running...";
       actionButtons.forEach((b) => (b.disabled = true));
@@ -360,7 +394,7 @@
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",
-          body: body ? JSON.stringify(body) : undefined,
+          body: body && Object.keys(body).length ? JSON.stringify(body) : undefined,
         });
         const data = await res.json().catch(() => ({}));
         if (!res.ok) {
@@ -386,7 +420,7 @@
 
     async function reloadPoemsOp() {
       const out = document.getElementById("op-output");
-      const actionButtons = document.querySelectorAll(".actions button");
+      const actionButtons = document.querySelectorAll("#operations-card .actions button");
       out.classList.remove("hidden");
       out.textContent = "Reloading poem list…";
       actionButtons.forEach((b) => (b.disabled = true));
@@ -403,6 +437,17 @@
       }
     }
 
+    document.getElementById("btn-select-all-poems").onclick = () => {
+      document.querySelectorAll(".poem-select").forEach((c) => {
+        c.checked = true;
+      });
+    };
+    document.getElementById("btn-select-none-poems").onclick = () => {
+      document.querySelectorAll(".poem-select").forEach((c) => {
+        c.checked = false;
+      });
+    };
+
     document.getElementById("btn-reload-poems").onclick = () => reloadPoemsOp();
     document.getElementById("btn-import-temp").onclick = () => runOp("Import temp poems", "/import-temp-poems");
     document.getElementById("btn-translate").onclick = () => runOp("Translate", "/translate");
@@ -410,7 +455,8 @@
     document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");
     document.getElementById("btn-af-dict").onclick = () => runOp("Afrikaans dict", "/generate-af-dict");
     document.getElementById("btn-export-kindle").onclick = () => runOp("Export Kindle", "/export-kindle", { lang: poemLang === "all" ? "both" : poemLang });
-    document.getElementById("btn-export-html").onclick = () => runOp("Export HTML bundle", "/export-html");
+    document.getElementById("btn-export-html").onclick = () =>
+      runOp("Export HTML bundle", "/export-html", { bundleLang: poemLang });
 
     checkAuth();
   </script>

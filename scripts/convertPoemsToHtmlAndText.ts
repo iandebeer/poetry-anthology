@@ -12,6 +12,7 @@ import {
 } from "../engine/loadPoems.js";
 import { bundledPoemImagePath, syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
 import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
+import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 
@@ -124,16 +125,21 @@ function main() {
     process.exit(1);
   }
 
+  const filterIds = getPoemIdsFilterFromEnv();
+  const filterSet = filterIds ? new Set(filterIds) : null;
+
   const entries = readdirSync(POEMS_DIR, { withFileTypes: true });
   let total = 0;
 
   for (const entry of entries) {
     if (!entry.isDirectory()) continue;
+    if (filterSet && !filterSet.has(entry.name)) continue;
     const count = convertPoemDir(join(POEMS_DIR, entry.name), entry.name);
     total += count;
   }
 
-  console.log(`Converted ${total} files (HTML + text) from poems/`);
+  const scope = filterIds ? ` (${filterIds.length} poem folder(s) via POEM_IDS)` : "";
+  console.log(`Converted ${total} files (HTML + text) from poems/${scope}`);
 }
 
 main();

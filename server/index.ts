@@ -32,9 +32,42 @@ const execAsync = promisify(exec);
 
 const SCRIPT_EXEC = { cwd: process.cwd(), maxBuffer: 10 * 1024 * 1024 } as const;
 
-async function execTsx(script: string, extraArgs = "") {
+async function execTsx(script: string, extraArgs = "", envExtra?: Record<string, string>) {
   const suffix = extraArgs.trim() ? ` ${extraArgs.trim()}` : "";
-  return execAsync(`npx tsx ${script}${suffix}`, SCRIPT_EXEC);
+  const env = envExtra ? { ...process.env, ...envExtra } : process.env;
+  return execAsync(`npx tsx ${script}${suffix}`, { ...SCRIPT_EXEC, env });
+}
+
+/** Pass POEM_IDS=id1,id2 to scripts; omit for all poems. */
+function buildPoemIdsEnv(ids: string[] | undefined): Record<string, string> | undefined {
+  if (!ids?.length) return undefined;
+  return { POEM_IDS: ids.join(",") };
+}
+
+/** POEM_IDS + optional EXPORT_HTML_LANG for scripts/exportHtml.ts (af|en = one language only). */
+function buildExportHtmlEnv(ids: string[] | undefined, bundleLang: string): Record<string, string> | undefined {
+  const out: Record<string, string> = {};
+  if (ids?.length) out.POEM_IDS = ids.join(",");
+  if (bundleLang === "af" || bundleLang === "en") out.EXPORT_HTML_LANG = bundleLang;
+  return Object.keys(out).length ? out : undefined;
+}
+
+/**
+ * Body.ids omitted → process all poems (CLI / legacy).
+ * Body.ids [] → invalid. Body.ids non-empty → filter.
+ */
+function validatePoemSelection(req: express.Request, res: express.Response): { ids: string[] | undefined } | false {
+  const raw = (req.body as { ids?: unknown } | undefined)?.ids;
+  if (raw === undefined) return { ids: undefined };
+  if (!Array.isArray(raw) || !raw.every((x) => typeof x === "string")) {
+    res.status(400).json({ error: "Invalid ids: expected a string array." });
+    return false;
+  }
+  if (raw.length === 0) {
+    res.status(400).json({ error: "Select at least one poem." });
+    return false;
+  }
+  return { ids: raw };
 }
 const PORT = process.env.ADMIN_PORT || 3333;
 const ADMIN_USER = process.env.ADMIN_USER || "admin";
@@ -269,9 +302,9 @@ app.post("/api/poems", requireAuth, async (req, res) => {
   }
 });
 
-async function runScript(script: string, res: express.Response) {
+async function runScript(script: string, res: express.Response, envExtra?: Record<string, string>) {
   try {
-    const { stdout, stderr } = await execTsx(script);
+    const { stdout, stderr } = await execTsx(script, "", envExtra);
     res.json({ ok: true, stdout: stdout || "", stderr: stderr || "" });
   } catch (err: unknown) {
     const e = err as { stdout?: string; stderr?: string; message?: string };
@@ -287,13 +320,23 @@ app.post("/api/translate", requireAuth, (req, res) => runScript("scripts/transla
 /** Each temp/*.png → vision → poems/<stem>/af.md + config.json; then generate-poems (requires OPENAI_API_KEY). */
 app.post("/api/import-temp-poems", requireAuth, (req, res) => runScript("scripts/importTempPoems.ts", res));
 app.post("/api/generate-poems", requireAuth, (req, res) => runScript("scripts/generatePoemsData.ts", res));
-app.post("/api/convert-poems", requireAuth, (req, res) => runScript("scripts/convertPoemsToHtmlAndText.ts", res));
+app.post("/api/convert-poems", requireAuth, async (req, res) => {
+  const v = validatePoemSelection(req, res);
+  if (v === false) return;
+  await runScript("scripts/convertPoemsToHtmlAndText.ts", res, buildPoemIdsEnv(v.ids));
+});
 app.post("/api/generate-af-dict", requireAuth, (req, res) => runScript("scripts/generateAfrikaansDictionary.ts", res));
 app.post("/api/export-kindle", requireAuth, async (req, res) => {
   const lang = (req.body?.lang as string) || "both";
   const validLang = ["af", "en", "both"].includes(lang) ? lang : "both";
+  const v = validatePoemSelection(req, res);
+  if (v === false) return;
   try {
-    const { stdout, stderr } = await execTsx("scripts/exportKindle.ts", `--lang ${validLang}`);
+    const { stdout, stderr } = await execTsx(
+      "scripts/exportKindle.ts",
+      `--lang ${validLang}`,
+      buildPoemIdsEnv(v.ids),
+    );
     res.json({ ok: true, stdout: stdout || "", stderr: stderr || "", lang: validLang });
   } catch (err: unknown) {
     const e = err as { stdout?: string; stderr?: string; message?: string };
@@ -315,10 +358,16 @@ app.get("/api/export-kindle/download", requireAuth, (req, res) => {
 });
 
 /** Convert → HTML + media/, then export/1-index.html (toc) + export/<id>/afrikaans.html (+ english.html) + media/. */
-app.post("/api/export-html", requireAuth, async (_req, res) => {
+app.post("/api/export-html", requireAuth, async (req, res) => {
+  const v = validatePoemSelection(req, res);
+  if (v === false) return;
+  const rawBundle = (req.body?.bundleLang as string) || "all";
+  const bundleLang = ["af", "en", "all"].includes(rawBundle) ? rawBundle : "all";
+  const env = buildExportHtmlEnv(v.ids, bundleLang);
+  const convertEnv = buildPoemIdsEnv(v.ids);
   try {
-    const convert = await execTsx("scripts/convertPoemsToHtmlAndText.ts");
-    const exp = await execTsx("scripts/exportHtml.ts");
+    const convert = await execTsx("scripts/convertPoemsToHtmlAndText.ts", "", convertEnv);
+    const exp = await execTsx("scripts/exportHtml.ts", "", env);
     const stdout = [convert.stdout, exp.stdout].filter(Boolean).join("\n");
     const stderr = [convert.stderr, exp.stderr].filter(Boolean).join("\n");
     res.json({ ok: true, stdout: stdout || "", stderr: stderr || "" });
@@ -368,6 +417,9 @@ app.post("/api/translate/:id", requireAuth, async (req, res) => {
 // Serve poem media (for HTML background images)
 app.use("/media", express.static(join(process.cwd(), "public", "media")));
 
+// Portable HTML bundle (export/1-index.html + export/<id>/*.html) — use this URL so relative poem links resolve
+app.use("/export", express.static(join(process.cwd(), "export")));
+
 // Serve admin UI
 app.get("/admin", (_req, res) => res.sendFile(join(process.cwd(), "server", "public", "index.html")));
 app.use("/admin", express.static(join(process.cwd(), "server", "public")));
@@ -375,6 +427,7 @@ app.get("/", (_req, res) => res.redirect("/admin"));
 
 app.listen(PORT, () => {
   console.log(`Admin server: http://localhost:${PORT}/admin`);
+  console.log(`HTML export bundle: http://localhost:${PORT}/export/ (→ 1-index.html)`);
   const envFile = join(process.cwd(), ".env");
   console.log(`Auth: ${ADMIN_USER} / ${ADMIN_PASSWORD === "changeme" ? "changeme (default)" : "***"}`);
   if (ADMIN_PASSWORD === "changeme") {

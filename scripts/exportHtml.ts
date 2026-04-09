@@ -17,6 +17,14 @@ import { copyFileSync, existsSync, mkdirSync, cpSync, readdirSync, rmSync, write
 import { join } from "path";
 import { getPoemMediaConfig } from "../engine/loadPoems.js";
 import { syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
+import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
+
+/** EXPORT_HTML_LANG=af|en: copy only that language’s HTML; unset or all → both when present. */
+function getExportHtmlLang(): "all" | "af" | "en" {
+  const raw = process.env.EXPORT_HTML_LANG?.trim().toLowerCase();
+  if (raw === "af" || raw === "en") return raw;
+  return "all";
+}
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const EXPORT_DIR = join(process.cwd(), "export");
@@ -44,62 +52,61 @@ interface ExportedPoemRow {
   hasEnglish: boolean;
 }
 
-function writeExportIndex(rows: ExportedPoemRow[]) {
+function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "en") {
   const sorted = [...rows].sort((a, b) => a.titleAf.localeCompare(b.titleAf, undefined, { sensitivity: "base" }));
+  const pageHeading = bundleLang === "en" ? "Poems" : "Gedigte";
+  const pageLang = bundleLang === "en" ? "en" : "af";
+
   const items = sorted
     .map((r) => {
       const seg = encSeg(r.id);
-      // ./ + explicit resolution in <script> fixes IDE preview and quirky file:// bases
-      const af = r.hasAfrikaans ? `<a href="./${seg}/afrikaans.html">Afrikaans</a>` : "";
-      const en = r.hasEnglish ? `<a href="./${seg}/english.html">English</a>` : "";
-      const links = [af, en].filter(Boolean).join(" · ");
-      const sub = escapeHtml(r.id);
+      // Plain relative URLs: Safari often blocks file→file navigation if href is rewritten to absolute file:// via script
+      const href =
+        r.hasAfrikaans ? `${seg}/afrikaans.html` : r.hasEnglish ? `${seg}/english.html` : "#";
       const title = escapeHtml(r.titleAf);
       const titleEn = r.titleEn !== r.titleAf ? ` <span class="muted">(${escapeHtml(r.titleEn)})</span>` : "";
-      return `      <li><span class="title">${title}</span>${titleEn}<br><span class="links">${links}</span><span class="id">${sub}</span></li>`;
+      const sub = escapeHtml(r.id);
+      return `      <li><a class="poem-title" href="${href}">${title}</a>${titleEn}<span class="id">${sub}</span></li>`;
     })
     .join("\n");
 
   const html = `<!DOCTYPE html>
-<html lang="en">
+<html lang="${pageLang}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <base href="./">
-  <title>Poetry export</title>
+  <title>${escapeHtml(pageHeading)}</title>
   <style>
     :root { --bg: #0f0f14; --text: #e8e8ed; --muted: #8888a0; --link: #6b8cce; }
     body { font-family: Georgia, "Times New Roman", serif; background: var(--bg); color: var(--text); margin: 0; padding: 2rem; line-height: 1.5; }
-    h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 0.5rem; }
-    p.lead { color: var(--muted); margin: 0 0 2rem; font-size: 0.95rem; }
+    h1 { font-size: 1.5rem; font-weight: 600; margin: 0 0 1.25rem; }
     ul { list-style: none; padding: 0; margin: 0; max-width: 40rem; }
     li { padding: 1rem 0; border-bottom: 1px solid #2a2a36; }
     li:last-child { border-bottom: none; }
-    .title { font-weight: 600; }
+    .poem-title { font-weight: 600; color: var(--link); text-decoration: none; }
+    .poem-title:hover { text-decoration: underline; }
     .muted { color: var(--muted); font-weight: normal; font-size: 0.9em; }
-    .links { display: block; margin-top: 0.35rem; }
-    .links a { color: var(--link); text-decoration: none; }
-    .links a:hover { text-decoration: underline; }
-    .id { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+    .id { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.35rem; }
   </style>
 </head>
 <body>
-  <h1>Poems</h1>
-  <p class="lead">${sorted.length} poem folder(s). Copy this <code>export</code> directory to use offline. If links fail in a browser preview, open <code>1-index.html</code> from disk or run <code style="white-space:nowrap">cd export &amp;&amp; python3 -m http.server</code> then open <code>/1-index.html</code> on that server.</p>
+  <h1>${escapeHtml(pageHeading)}</h1>
   <ul>
 ${items}
   </ul>
+  <!-- Safari (file://): if poem links do nothing, use Develop → Disable Local File Restrictions, or: cd to this folder, python3 -m http.server, open http://127.0.0.1:8000/1-index.html -->
   <script>
   (function () {
-    try {
-      var root = new URL("./", location.href);
-      document.querySelectorAll(".links a[href]").forEach(function (a) {
-        var h = a.getAttribute("href");
-        if (!h || /^[a-z][a-z0-9+.-]*:/i.test(h)) return;
-        var rel = h.startsWith("./") ? h.slice(2) : h;
-        a.href = new URL(rel, root).href;
-      });
-    } catch (e) { /* keep static href */ }
+    // Do not rewrite href on file:// — absolute file URLs break poem navigation in Safari; http(s) still needs fixing for some IDE previews
+    if (location.protocol === "file:") return;
+    var base = location.href.split("#")[0];
+    document.querySelectorAll("a.poem-title[href]").forEach(function (a) {
+      var h = a.getAttribute("href");
+      if (!h || h === "#" || /^[a-z][a-z0-9+.-]*:/i.test(h)) return;
+      try {
+        a.href = new URL(h, base).href;
+      } catch (e) {}
+    });
   })();
   </script>
 </body>
@@ -107,8 +114,24 @@ ${items}
 `;
   const indexPath = join(EXPORT_DIR, EXPORT_INDEX_HTML);
   writeFileSync(indexPath, html, "utf-8");
-  const legacyIndex = join(EXPORT_DIR, "index.html");
-  if (existsSync(legacyIndex)) rmSync(legacyIndex, { force: true });
+  // GitHub Pages and http://…/export/ need a root document; keep 1-index.html for folder-sort order
+  const rootIndexPath = join(EXPORT_DIR, "index.html");
+  const rootIndexHtml = `<!DOCTYPE html>
+<html lang="${pageLang}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="refresh" content="0; url=1-index.html">
+  <title>${escapeHtml(pageHeading)}</title>
+  <link rel="canonical" href="1-index.html">
+  <script>location.replace("1-index.html");</script>
+</head>
+<body>
+  <p><a href="1-index.html">${escapeHtml(pageHeading)}</a></p>
+</body>
+</html>
+`;
+  writeFileSync(rootIndexPath, rootIndexHtml, "utf-8");
 }
 
 function main() {
@@ -119,6 +142,10 @@ function main() {
 
   mkdirSync(EXPORT_DIR, { recursive: true });
 
+  const filterIds = getPoemIdsFilterFromEnv();
+  const filterSet = filterIds ? new Set(filterIds) : null;
+  const bundleLang = getExportHtmlLang();
+
   const entries = readdirSync(POEMS_DIR, { withFileTypes: true });
   let exported = 0;
   let skipped = 0;
@@ -128,6 +155,7 @@ function main() {
     if (!entry.isDirectory()) continue;
 
     const id = entry.name;
+    if (filterSet && !filterSet.has(id)) continue;
     const poemDir = join(POEMS_DIR, id);
     const afHtml = join(poemDir, "af.html");
     const enHtml = join(poemDir, "en.html");
@@ -139,7 +167,20 @@ function main() {
     const config = getPoemMediaConfig(poemDir, id);
     syncPoemMediaToPoemDir(poemDir, config.image);
 
-    if (!existsSync(afHtml) && !enSource) {
+    const hasAf = existsSync(afHtml);
+    const hasEn = Boolean(enSource);
+
+    if (bundleLang === "af" && !hasAf) {
+      console.warn(`[export-html] ${id}: skipped — no af.html (Afrikaans-only bundle)`);
+      skipped++;
+      continue;
+    }
+    if (bundleLang === "en" && !hasEn) {
+      console.warn(`[export-html] ${id}: skipped — no en.html / en.generated.html (English-only bundle)`);
+      skipped++;
+      continue;
+    }
+    if (bundleLang === "all" && !hasAf && !hasEn) {
       console.warn(`[export-html] No af.html or en.html for ${id} — run npm run convert-poems`);
       skipped++;
       continue;
@@ -150,17 +191,23 @@ function main() {
     }
     mkdirSync(outDir, { recursive: true });
 
-    if (existsSync(afHtml)) {
+    let copied = 0;
+    if ((bundleLang === "all" || bundleLang === "af") && hasAf) {
       copyFileSync(afHtml, join(outDir, "afrikaans.html"));
-      exported++;
-    } else if (enSource) {
-      copyFileSync(enSource, join(outDir, "english.html"));
-      exported++;
+      copied++;
+    }
+    if ((bundleLang === "all" || bundleLang === "en") && hasEn) {
+      copyFileSync(enSource!, join(outDir, "english.html"));
+      copied++;
     }
 
-    if (enSource && existsSync(afHtml)) {
-      copyFileSync(enSource, join(outDir, "english.html"));
+    if (copied === 0) {
+      rmSync(outDir, { recursive: true, force: true });
+      skipped++;
+      continue;
     }
+
+    exported++;
 
     if (existsSync(poemMedia)) {
       cpSync(poemMedia, join(outDir, "media"), { recursive: true });
@@ -180,7 +227,7 @@ function main() {
   }
 
   if (exportedRows.length > 0) {
-    writeExportIndex(exportedRows);
+    writeExportIndex(exportedRows, bundleLang);
   } else {
     const idx = join(EXPORT_DIR, EXPORT_INDEX_HTML);
     const legacy = join(EXPORT_DIR, "index.html");
@@ -188,8 +235,10 @@ function main() {
     if (existsSync(legacy)) rmSync(legacy, { force: true });
   }
 
+  const scope = filterIds ? ` (${filterIds.length} poem(s) via POEM_IDS)` : "";
+  const langNote = bundleLang !== "all" ? ` [${bundleLang} only]` : "";
   console.log(
-    `Exported ${exported} portable folder(s): ${EXPORT_DIR}/${EXPORT_INDEX_HTML} + ${EXPORT_DIR}/<id>/afrikaans.html (+ english.html) + media/`,
+    `Exported ${exported} portable folder(s)${scope}${langNote}: ${EXPORT_DIR}/${EXPORT_INDEX_HTML} + ${EXPORT_DIR}/<id>/afrikaans.html (+ english.html) + media/`,
   );
   if (skipped) console.log(`Skipped ${skipped} poem folder(s) with no HTML.`);
 }

@@ -5,7 +5,7 @@
  * Output by language: --lang af or both → dist/Digbundel.epub, --lang en → dist/Anthology.epub
  */
 
-import { readFileSync, existsSync, mkdirSync } from "fs";
+import { readFileSync, existsSync, mkdirSync, unlinkSync } from "fs";
 import { join } from "path";
 import { pathToFileURL } from "url";
 import {
@@ -14,6 +14,7 @@ import {
   resolveEnglishMarkdownPath,
 } from "../engine/loadPoems.js";
 import { syncPoemMediaToPoemDir, bundledPoemImagePath } from "../engine/syncPoemBundledMedia.js";
+import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const DIST_DIR = join(process.cwd(), "dist");
@@ -116,9 +117,15 @@ async function main() {
     process.exit(1);
   }
 
-  const poems = loadPoems();
+  const poemsAll = loadPoems();
+  const filterIds = getPoemIdsFilterFromEnv();
+  const poems = filterIds ? poemsAll.filter((p) => filterIds.includes(p.id)) : poemsAll;
   if (poems.length === 0) {
-    console.error("No poems found. Each poem needs Afrikaans (af.md or af-translate.md).");
+    console.error(
+      filterIds?.length
+        ? "No poems match POEM_IDS (each id needs af.md or af-translate.md)."
+        : "No poems found. Each poem needs Afrikaans (af.md or af-translate.md).",
+    );
     process.exit(1);
   }
 
@@ -198,11 +205,14 @@ async function main() {
     mkdirSync(outDir, { recursive: true });
   }
 
+  if (existsSync(output)) unlinkSync(output);
+
   await new Promise<void>((resolve, reject) => {
     new Epub(options, output).promise.then(resolve, reject);
   });
 
-  console.log(`Exported ${poems.length} poems to ${output}`);
+  const scope = filterIds ? ` (${filterIds.length} selected)` : "";
+  console.log(`Exported ${poems.length} poem(s)${scope} to ${output}`);
   console.log("Upload this EPUB to Amazon KDP (Kindle Direct Publishing).");
 }
 
