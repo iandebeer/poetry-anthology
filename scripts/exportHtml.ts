@@ -19,6 +19,17 @@ import { getPoemMediaConfig } from "../engine/loadPoems.js";
 import { syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
 
+/** If set (e.g. www.iandebeer.co.za), writes export/CNAME for GitHub Pages custom domain. */
+function writePagesCname() {
+  const host = process.env.GITHUB_PAGES_CNAME?.trim();
+  const cnamePath = join(EXPORT_DIR, "CNAME");
+  if (!host) {
+    if (existsSync(cnamePath)) rmSync(cnamePath, { force: true });
+    return;
+  }
+  writeFileSync(cnamePath, `${host}\n`, "utf-8");
+}
+
 /** EXPORT_HTML_LANG=af|en: copy only that language’s HTML; unset or all → both when present. */
 function getExportHtmlLang(): "all" | "af" | "en" {
   const raw = process.env.EXPORT_HTML_LANG?.trim().toLowerCase();
@@ -219,6 +230,8 @@ function main() {
     if (existsSync(idx)) rmSync(idx, { force: true });
     if (existsSync(legacy)) rmSync(legacy, { force: true });
   }
+
+  writePagesCname();
 
   const scope = filterIds ? ` (${filterIds.length} poem(s) via POEM_IDS)` : "";
   const langNote = bundleLang !== "all" ? ` [${bundleLang} only]` : "";

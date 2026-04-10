@@ -29,7 +29,11 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run pages:build
+      - name: Build static site
+        run: npm run pages:build
+        env:
+          # Repository variable PAGES_CUSTOM_DOMAIN (e.g. www.iandebeer.co.za) → export/CNAME
+          GITHUB_PAGES_CNAME: ${{ vars.PAGES_CUSTOM_DOMAIN }}
 
       - uses: actions/upload-pages-artifact@v3
         with:

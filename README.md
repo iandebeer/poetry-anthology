@@ -152,6 +152,43 @@ Poem links use relative URLs, so they work at that project URL without a base pa
 
 **If you deploy from a branch** (folder `/ (root)`): root **`index.html`** redirects to **`export/`** (same list there), and **`.nojekyll`** disables Jekyll so README is not the homepage. Prefer **GitHub Actions** so **`/`** is the anthology only.
 
+### Custom domain (e.g. `iandebeer.co.za`)
+
+Your domain name is **`iandebeer.co.za`** (not `iandebeer/co/za`). Use either the **apex** (`iandebeer.co.za`) or a **subdomain** (e.g. `www.iandebeer.co.za` or `gedigte.iandebeer.co.za`).
+
+1. **Repository → Settings → Secrets and variables → Actions → Variables** (tab **Variables**): create **`PAGES_CUSTOM_DOMAIN`** with the **exact** hostname you want (e.g. `www.iandebeer.co.za`). The Pages workflow passes it as **`GITHUB_PAGES_CNAME`** so **`export/CNAME`** is generated on each deploy. For a one-off local build: `GITHUB_PAGES_CNAME=www.iandebeer.co.za npm run export-html`.
+
+2. **DNS** at your registrar (for **GitHub Pages** with this repo as a **project site**, Git username **`iandebeer`**):
+   - **Subdomain** (`www` or `gedigte` etc.): create a **CNAME** record: host `www` (or `gedigte`) → target **`iandebeer.github.io`**.
+   - **Apex** (`iandebeer.co.za` with no subdomain): add **four A records** for **`@`** to GitHub’s IPs (see [GitHub: managing a custom domain](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain)); or use your DNS provider’s **ALIAS/ANAME** to **`iandebeer.github.io`** if supported.
+
+3. **Repository → Settings → Pages → Custom domain**: enter the same hostname (e.g. `www.iandebeer.co.za`), save, and enable **Enforce HTTPS** once DNS validates.
+
+4. Wait for DNS propagation (often minutes, sometimes up to 24–48 hours).
+
+#### “InvalidDNSError” / “Domain’s DNS record could not be retrieved”
+
+GitHub’s check **cannot see** the records it expects, or **DNS resolution fails** from the public internet.
+
+| Check | What to do |
+|--------|------------|
+| **Cloudflare (or similar)** | Turn **proxy off** — **DNS only** / grey cloud (not orange). Proxied records often cause this exact error. Keep it **off** for GitHub Pages so HTTPS renewal keeps working. |
+| **CNAME target** | Must be **`iandebeer.github.io`** only — no `https://`, no repo path, no `/poetry-anthology`. |
+| **Apex** (`iandebeer.co.za`) | Use **four A records** for `@` (or the apex name your provider uses): **`185.199.108.153`**, **`185.199.109.153`**, **`185.199.110.153`**, **`185.199.111.153`**. Confirm [current IPs in GitHub’s docs](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site#configuring-an-apex-domain) in case they change. |
+| **www** | Use a **CNAME** for `www` → **`iandebeer.github.io`**. Do **not** CNAME the apex `@` to `github.io` (invalid on many DNS systems). |
+| **Where you edit DNS** | The domain’s **nameservers** must point to the provider where you added these records (registrar vs Cloudflare vs Route 53). |
+| **Propagation** | After changes, wait and retry **Settings → Pages → Custom domain**, or run `dig www.iandebeer.co.za` / `dig iandebeer.co.za` from your machine. |
+
+If you use **both** apex and `www` in GitHub, both need correct records; **“alternate name”** is often the second hostname you added (e.g. `www` when apex is primary).
+
+#### DomainRegister.co.za (or similar ZA registrars)
+
+1. Sign in at your registrar → open **Domains** / **My domains** → **`iandebeer.co.za`** → **DNS**, **DNS zone**, **ZDNS**, or **Manage DNS** (wording varies).
+2. Confirm the domain’s **nameservers** are the ones for **where you are editing** these records (often the registrar’s own NS if DNS is hosted there). If NS point elsewhere (e.g. Cloudflare), you must add the A/CNAME records **there** instead.
+3. **Apex** `iandebeer.co.za`: add **four A records** for the root host (often **`@`**, **blank**, or **`iandebeer.co.za`**) → GitHub’s four IPs (see table above). Remove conflicting old A records for `@` if the panel only allows one set.
+4. **`www`**: add **CNAME** → host **`www`** → target **`iandebeer.github.io`** (no `https://`). Some panels want a **trailing dot**: `iandebeer.github.io.`
+5. Save, wait a few minutes, then retry **GitHub → Settings → Pages → Custom domain**.
+
 ## Resolution
 
 Videos are rendered at **1920×1080** at 30fps.
