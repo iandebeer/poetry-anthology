@@ -3,7 +3,7 @@
 Sal ek op die stoep sit -, of op die bed lê en lees;
 dit maak weinig verskil,
 want die see is turkoois en wit agter die blaaie van my boek
-ongag na waar ek, met swaar oë myself verplaas -
+ongeag na waar ek, met swaar oë myself verplaas -
 ek is steeds net 'n gedagte weg van alles en almal wat my dae vul
 met eindelose eise en keuses en beramings;
 maar vir nou vul die ruising van branders op rots en sand die vakuum wat dié ledigheid laat,
