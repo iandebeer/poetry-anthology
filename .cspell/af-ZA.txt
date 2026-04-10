@@ -45558,6 +45558,7 @@ behavioristies
 Behavioristies
 behavioristiese
 Behavioristiese
+beheen
 beheer
 beheerafsluitkraan
 beheerbaar
@@ -311994,6 +311995,7 @@ swartbonte
 swartbord
 swartborde
 Swartborsslangarend
+Swartboskloof
 swartbout
 swartbrand
 swartbruin
@@ -387736,6 +387738,7 @@ vyfvoud
 vyfvoude
 vyfvoudig
 vyfvoudige
+vyge
 Vygeboom
 vygie
 vygieagtige

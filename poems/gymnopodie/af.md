@@ -1,4 +1,4 @@
-# gymnopodie van die waaigras
+# Gymnopodie vir die waaigras
 
 die hasie-sterte wieg in die wind
 ’n tussenspel van lug en son en aard

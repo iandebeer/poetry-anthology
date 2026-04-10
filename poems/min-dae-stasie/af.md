@@ -5,7 +5,7 @@ dis mý trein se wiele wat so ritmies klik
 tik-tik, tik-tik; tik-tik, tik-tik…  
 
 die kompartement was eens vol maar nou is hy leeg  
-my mede-pasasiers het een-vir-een aanbeweeg  
+my mede-passasiers het een-vir-een aan beweeg  
 sommige het gegroet, ander is stil-stil uit;  
 
 tik-tik, tik-tik; tik-tik, tik-tik…  
@@ -26,6 +26,6 @@ ek dink ek is reg om nou af te stap,
 maar nou moet ek eers wag  — wie is dan in beheer?  
 iewers in die nag is my trok op ’n sy-lyn rangeer  
 
-alternatiewe einde (vir Hermie)  
+alternatiewe einde (vir Hermie):  
 nie langer sal ek die oomblik met vrees beheen  
 ek vind nou my rus in die Een  

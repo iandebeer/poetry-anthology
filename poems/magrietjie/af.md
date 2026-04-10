@@ -1,20 +1,20 @@
-# liedjie vir ’n magrietjie
+# Liedjie vir ’n Magrietjie
 
 vanoggend
-terwyl ‘n skoolklok ievers in die verte vir kort-pouse lui,
+terwyl ‘n skoolklok iewers in die verte vir kort-pouse lui,
 het ek my op ’n grasperk
-tussen skoppelmaaie, rondomtalies en wipplanke neergevlei,
+tussen skoppelmaaie, rondomtalies en wipplanke neer gevlei,
 op magrietjies wat soos vroeg lente kapok,
 wit en onbeteuld oor die veld wyd strek
 met hier en daar 'n kolletjie geel suringblomme
 wat in die sonlig jou aandag sal trek —
   
-hier waar klein voetjies en stootwa wiele die blommietjies trap
+hier waar klein voetjies en stootwa wiele die blommetjies trap
 en ou mense met ou honde in die voetpaadjies stap
 kon ek die reuk van klam grond en nat populier blaar
 diep in my longe teug
-en in die sambreel sampioenjies
-wat deur dennenaalde beurs,
+en in die sambreel sampioentjies
+wat deur denne-naalde beurs,
 my siel verheug
   
 soos in ’n droom kon ek my ledemate voel smelt

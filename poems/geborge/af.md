@@ -10,7 +10,7 @@ Na die gedwonge stilte van die “Nuus om Sewe”
 En die eerbiedige stilte vir “Laat ons Boeke Vat”
 Luister ons saam na die wel en wee van oom Kobie, tant Hybie en ou Bartel
 Elkeen in die stilte van sy verbeeldings wêreld  
-Dan bed toe waar ek lê en luister hoe Pa sy “Tromp van Diggeling”-oefeninge doen — in stilte  
+Dan bed toe waar ek lê en luister hoe Pa sy “Tromp van Diggelin”-oefeninge doen — in stilte  
 tot die kwart-voor-tien alarm ons laat weet;
 “Die ongewenstes is van die strate — alles is nou veilig”
 

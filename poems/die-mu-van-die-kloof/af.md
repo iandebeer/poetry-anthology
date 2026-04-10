@@ -16,8 +16,8 @@ Watsonia en Aarons-lelies
 weerbarstig uit die steeds geskroeide bodem
 kleur die kloof met die belofte van die bloeityd wat kom, 
 stilweg bevestig deur ’n groen uitloopseltjie
-uit ooglopend veskroeide Waboom
-Varings omlyn die silwer stroompies wat oor mosbegroeide klippe bruis
+uit ooglopend verskroeide Waboom
+Varings omlyn die silwer stroompies wat oor mos-begroeide klippe bruis
 Jou hart spring met vreugde oor dit wat intuitief nuwe lewe blyk te wees
 Tog die kloof weet nie van meer as die ewige oomblik
 waarin hy die leegheid en volheid is

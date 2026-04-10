@@ -2,11 +2,11 @@
 
 Waar kreupelhout hang oor 'n blare tapyt
 en knoets-wortels die paadjie anker bo die see,
-maak ryke komorante reg vir ontbyt -
-wyl ons as 'bygangers tydloosheid betreë.
+maak ryke kormorante reg vir ontbyt -
+wyl ons as 'bygangers tydloosheid betree.
 
 En in 'n vallei waar stroompies met soet water sleur
-tot 'n diepvloeiende donker rivier,
+tot 'n diep vloeiende donker rivier,
 wat teen die oseaan se gety durf beur
 en saam met wind en sand, die ewige rotse glad skuur.
 

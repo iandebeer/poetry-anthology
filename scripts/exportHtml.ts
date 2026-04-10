@@ -76,8 +76,7 @@ function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "e
         r.hasAfrikaans ? `${seg}/afrikaans.html` : r.hasEnglish ? `${seg}/english.html` : "#";
       const title = escapeHtml(r.titleAf);
       const titleEn = r.titleEn !== r.titleAf ? ` <span class="muted">(${escapeHtml(r.titleEn)})</span>` : "";
-      const sub = escapeHtml(r.id);
-      return `      <li><a class="poem-title" href="${href}">${title}</a>${titleEn}<span class="id">${sub}</span></li>`;
+      return `      <li><a class="poem-title" href="${href}">${title}</a>${titleEn}</li>`;
     })
     .join("\n");
 
@@ -97,7 +96,6 @@ function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "e
     .poem-title { font-weight: 600; color: var(--link); text-decoration: none; }
     .poem-title:hover { text-decoration: underline; }
     .muted { color: var(--muted); font-weight: normal; font-size: 0.9em; }
-    .id { display: block; font-size: 0.8rem; color: var(--muted); margin-top: 0.35rem; }
   </style>
 </head>
 <body>

@@ -18,6 +18,6 @@ hier het ek jul in my hart saam gedra
 as als soms te veel was
 of soms net as vreugde dit vra
 
-maar jul sal moet uiithaal om by te bly
-want ek draf nou losvoet,
+maar jul sal moet uithaal om by te bly
+want ek draf nou los-voet,
 want ek is nou vry

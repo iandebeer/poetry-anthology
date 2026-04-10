@@ -7,7 +7,7 @@ hulle almal werk saam  die wind te maak waai
 
 net so naief as om te glo: die ego is dié Een -  
 hy, die bewussyn wat alles beheen;
-my ligaam met en vyf sintuie  
+my liggaam met en vyf sintuie  
 bied ervaring, sensasies aan die aktiewe getuie  
 wat my persepsies en gewaarwording interpreteer,
 my gedagtes en emosies - my doen en late wil beheer  

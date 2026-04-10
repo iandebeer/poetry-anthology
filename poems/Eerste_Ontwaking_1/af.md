@@ -2,7 +2,7 @@
 
 Dit was in dommel-slaap
 waar ’n diep, dog helder droom,
-my laat sweef en swiep, asof opgegraap
+my laat sweef en swiep, asof opgeraap
 in ’n onsigbare lugstroom –
 
 ek kon vlieg na waar die witste wolke bol

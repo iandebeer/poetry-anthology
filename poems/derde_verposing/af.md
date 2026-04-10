@@ -3,15 +3,15 @@
 'n tolbos, 'n rolbos, het dié landskap mos geverf,
  en sag met grys-olyf deurspek,
  op skakerings van sand- en roesbruin,
- onder eindloos blou lug wat bo die swartberg strek —
+ onder eind'loos blou lug wat bo die swartberg strek —
 
 die mense — hulle het later eens gekom,
  in die wit huisies wat onder bloekoms skadu vind,
  daar waar soet vye en rooi granate lok,
  om hul vir nog bietjie langer hier te bind;
 
-maar as die warreld stofsuile draai,
- onder die son se ongeankbaar baan,
+maar as die warrel-wind stof-suile draai,
+ onder die son se ongenaakbare baan,
  het oë hul wild en wyd, soekend gewonder
  waar hul nou kan gaan;
 
