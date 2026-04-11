@@ -10,5 +10,6 @@ but it rings trite and devoid of meaning -
 here in the quiet of my chapel,  
 where a gentle breeze from outside  
 makes the candles flicker,
-while the bells, rhythmically sway in silence,
-calling to all who are weary.
+while the bells, rhythmically sway in silence,  
+calling to all who are weary.  
+

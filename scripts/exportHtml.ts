@@ -61,6 +61,8 @@ interface ExportedPoemRow {
   titleEn: string;
   hasAfrikaans: boolean;
   hasEnglish: boolean;
+  /** True when poems/<id>/en.md exists (not only en.generated.md). */
+  hasEnMd: boolean;
 }
 
 function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "en") {
@@ -74,8 +76,18 @@ function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "e
       // Plain relative URLs: Safari often blocks file→file navigation if href is rewritten to absolute file:// via script
       const href =
         r.hasAfrikaans ? `${seg}/afrikaans.html` : r.hasEnglish ? `${seg}/english.html` : "#";
+      const hrefEn = `${seg}/english.html`;
       const title = escapeHtml(r.titleAf);
-      const titleEn = r.titleEn !== r.titleAf ? ` <span class="muted">(${escapeHtml(r.titleEn)})</span>` : "";
+      const enLinked = r.hasEnMd && r.hasEnglish;
+      let titleEn = "";
+      if (r.titleEn !== r.titleAf) {
+        const inner = enLinked
+          ? `<a class="poem-lang-link" href="${hrefEn}">${escapeHtml(r.titleEn)}</a>`
+          : escapeHtml(r.titleEn);
+        titleEn = ` <span class="muted">(${inner})</span>`;
+      } else if (enLinked && r.hasAfrikaans) {
+        titleEn = ` <a class="poem-lang-link muted" href="${hrefEn}">English</a>`;
+      }
       return `      <li><a class="poem-title" href="${href}">${title}</a>${titleEn}</li>`;
     })
     .join("\n");
@@ -96,6 +108,9 @@ function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "e
     .poem-title { font-weight: 600; color: var(--link); text-decoration: none; }
     .poem-title:hover { text-decoration: underline; }
     .muted { color: var(--muted); font-weight: normal; font-size: 0.9em; }
+    a.poem-lang-link { color: var(--link); text-decoration: none; font-weight: 500; }
+    a.poem-lang-link:hover { text-decoration: underline; }
+    a.poem-lang-link.muted { font-weight: normal; font-size: 0.9em; }
   </style>
 </head>
 <body>
@@ -109,7 +124,7 @@ ${items}
     // Do not rewrite href on file:// — absolute file URLs break poem navigation in Safari; http(s) still needs fixing for some IDE previews
     if (location.protocol === "file:") return;
     var base = location.href.split("#")[0];
-    document.querySelectorAll("a.poem-title[href]").forEach(function (a) {
+    document.querySelectorAll("a.poem-title[href], a.poem-lang-link[href]").forEach(function (a) {
       var h = a.getAttribute("href");
       if (!h || h === "#" || /^[a-z][a-z0-9+.-]*:/i.test(h)) return;
       try {
@@ -163,6 +178,7 @@ function main() {
 
     const hasAf = existsSync(afHtml);
     const hasEn = Boolean(enSource);
+    const hasEnMd = existsSync(join(poemDir, "en.md"));
 
     if (bundleLang === "af" && !hasAf) {
       console.warn(`[export-html] ${id}: skipped — no af.html (Afrikaans-only bundle)`);
@@ -217,6 +233,7 @@ function main() {
       titleEn: config.titleEn || config.titleAf || id,
       hasAfrikaans: existsSync(join(outDir, "afrikaans.html")),
       hasEnglish: existsSync(join(outDir, "english.html")),
+      hasEnMd,
     });
   }
 
