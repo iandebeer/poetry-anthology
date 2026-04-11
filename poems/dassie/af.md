@@ -1,6 +1,6 @@
 # Tao van die Dassie (Kampsbaai)
 
-Bakoven se dassies sit in klossies en waag vir die son se vroeë strale
+Bakoven se dassies sit in klossies en wag vir die son se vroeë strale
 op ronde rotse wat soos olifant-rûe in die vlakwater dyn —
 die ronde rotse wat die twaalf vir hul gegee het;
 
@@ -17,5 +17,5 @@ dobber see-bamboese soos duisende baaiende dassies —
 blinklyf tussen die groot ronde rotse wat die twaalf vir hul gegee het;
 
 Nog die swart oestervanger, skril in verbyvlug,
-nog die stampende stoet van son-soekers, wat angstig digitale oomblike kaap,
+nog die stampende stoet van son-soekers, wat angstig 'n digitale oomblik kaap,
 versteur die sluimerende satori waarin hul die twaalf se seëninge tel.
