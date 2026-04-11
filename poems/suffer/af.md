@@ -1,0 +1,19 @@
+# Bring die kindertjies na my
+
+Skerfies van kristal lê verstrooi in die strate van Khayelitsha,
+klein juweeltjies in die net van Indra,
+elk 'n prisma wat die eens wit lig versag
+tot 'n helder skitterende kleure prag; 
+maar nou in die bleek skemer vertoon hul grys en dof
+met honger versonke oë waar hul in deurgange slof
+en versteek die genot wat hul lag kan bring
+as hulle helder hul vreugdelied kan sing.
+
+Maar waar nasies deur hebsug en vrees beheer
+en korporasies in wapens en toekoms-verhandeling presteer, 
+gee hul nie om dat hul opgeblase skadu's bestuur
+armoede wat groei soos muf op 'n klam muur
+en verdoem tot wanhoop dié van wie sê Hy:
+"Wat julle aan hulle doen, so doen jul aan My".
+Maar weet dit, nie vir hul onthalwe alleen -  
+saam maak hul die reënboog wat ons nasie seën

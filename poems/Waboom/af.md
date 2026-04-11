@@ -2,7 +2,7 @@
 
 As ek 'n boom,
 iewers in 'n woestyn,
-of in 'n rotskeur
+of in 'n rotsskeur
 vind groei,
 
 dan vlug ek in gedagte
@@ -16,13 +16,13 @@ en die innerlike lewenskrag,
 die Prana – die Qi, in my geestesoog skik:
 
 en te sien, die onuitbluslike vuur van wéés -
-wat drifdig deur eeue heen,
+wat driftig deur eeue heen,
 die ongenaakbare klimaat ten bes,
-met knoetskige wortels steeds geanker is —
+met knoetsige wortels steeds geanker is —
 
 om dan, as die seisoen hom voordoen,
 weer uit te bars
-in 'n uitdrukking van louter vreugd —
+in 'n uitdrukking van louter vreugde —
 
 om net te wéés,
 vir niemand om te sien
