@@ -1,4 +1,4 @@
-# potentialiteit van wees
+# Potentialiteit van wees
 
 tussen hier en daar is die uitgestrektheid  
 waarin alle uitkomste reeds bestaan;
