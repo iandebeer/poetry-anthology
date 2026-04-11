@@ -17,3 +17,5 @@ en verdoem tot wanhoop dié van wie sê Hy:
 "Wat julle aan hulle doen, so doen jul aan My".
 Maar weet dit, nie vir hul onthalwe alleen -  
 saam maak hul die reënboog wat ons nasie seën
+
+(Skildery - WL Eaton)
