@@ -112,6 +112,7 @@ function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "e
       --rule: rgba(74, 59, 50, 0.2);
     }
     html { min-height: 100%; }
+    * { box-sizing: border-box; }
     body {
       font-family: "Yuji Syuku", "Shippori Mincho", "Hiragino Mincho ProN", "Yu Mincho", "Times New Roman", serif;
       color: var(--text);
@@ -120,6 +121,10 @@ function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "e
       line-height: 1.65;
       font-size: 1.05rem;
       font-weight: 400;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       background-color: var(--cream);
       background-image:
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E"),
@@ -132,9 +137,12 @@ function writeExportIndex(rows: ExportedPoemRow[], bundleLang: "all" | "af" | "e
       font-weight: 400;
       margin: 0 0 1.75rem;
       letter-spacing: 0.04em;
+      text-align: center;
+      width: 100%;
+      max-width: 42rem;
     }
-    ul { list-style: none; padding: 0; margin: 0; max-width: 42rem; }
-    li { padding: 1rem 0; border-bottom: 1px solid var(--rule); }
+    ul { list-style: none; padding: 0; margin: 0; max-width: 42rem; width: 100%; text-align: center; }
+    li { padding: 1rem 0; border-bottom: 1px solid var(--rule); text-align: center; }
     li:last-child { border-bottom: none; }
     .poem-title { color: var(--link); text-decoration: none; }
     .poem-title:hover { color: var(--link-hover); text-decoration: underline; text-underline-offset: 0.22em; }
