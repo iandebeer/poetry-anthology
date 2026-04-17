@@ -52,6 +52,43 @@
     button:hover { background: var(--accent-hover); }
     button.secondary { background: var(--surface); color: var(--text); }
     button.danger { background: var(--error); }
+    /* Operations: one consistent shade for all procedure actions */
+    button.procedure,
+    a.procedure {
+      background: #252836;
+      color: var(--text);
+      border: 1px solid #363a4d;
+      font-weight: 500;
+    }
+    button.procedure:hover,
+    a.procedure:hover {
+      background: #2e3248;
+      border-color: #454a62;
+      color: var(--text);
+    }
+    button.procedure:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    #op-output {
+      width: 100%;
+      margin-top: 1rem;
+      min-height: 10rem;
+      font-family: ui-monospace, "SF Mono", Menlo, monospace;
+      font-size: 0.8rem;
+      line-height: 1.45;
+      resize: vertical;
+      background: #0a0a0f;
+      color: var(--text);
+    }
+    #op-output::placeholder { color: var(--muted); }
+    .op-output-label {
+      display: block;
+      margin-top: 1rem;
+      margin-bottom: 0.35rem;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
     .card {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -170,21 +207,19 @@
           Translate skips poems that already have en.md. Convert uses af.md / af-translate.md and en.md. Import temp reads <code style="font-size:0.85em">temp/*.png</code> with OpenAI vision.
         </p>
         <div class="actions">
-          <button type="button" id="btn-reload-poems">Reload poems</button>
-          <button type="button" id="btn-import-temp">Import from temp (PNG → af.md)</button>
-          <button type="button" id="btn-translate">Translate all</button>
-          <button type="button" id="btn-generate">Generate poems data</button>
-          <button type="button" id="btn-convert">Convert to HTML/text</button>
-          <button type="button" id="btn-export-html">Export HTML bundle</button>
-          <a href="/export/" target="_blank" rel="noopener" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none">Open HTML bundle</a>
-          <button type="button" id="btn-af-dict">Generate Afrikaans dictionary</button>
-          <button type="button" id="btn-export-kindle">Export Kindle EPUB</button>
-          <a id="btn-download-kindle" href="/api/export-kindle/download?lang=both" class="button secondary" style="display:inline-flex;align-items:center;text-decoration:none" download>Download EPUB</a>
+          <button type="button" id="btn-reload-poems" class="procedure" title="Refetches the poem list for this page from the server. Does not change files on disk.">Reload poems</button>
+          <button type="button" id="btn-import-temp" class="procedure" title="Reads temp/*.png with OpenAI vision; creates poems/&lt;stem&gt;/af.md and config.json; regenerates src/poemsData.json. Requires OPENAI_API_KEY; can take a while.">Import from temp (PNG → af.md)</button>
+          <button type="button" id="btn-translate" class="procedure" title="For poems that do not have en.md: generates English as en.generated.md.">Translate all</button>
+          <button type="button" id="btn-generate" class="procedure" title="Regenerates src/poemsData.json from the poems/ tree (generatePoemsData).">Generate poems data</button>
+          <button type="button" id="btn-convert" class="procedure" title="Selected poems: markdown → .html and .txt, plus poems/&lt;id&gt;/media/.">Convert to HTML/text</button>
+          <button type="button" id="btn-export-html" class="procedure" title="Selected poems: writes export/1-index.html (list), per-poem HTML, and media/. Follows the All / Afrikaans / English tab.">Export HTML bundle</button>
+          <a href="/export/" target="_blank" rel="noopener" class="procedure" style="display:inline-flex;align-items:center;text-decoration:none;padding:0.6rem 0.9rem;border-radius:6px;font:inherit">Open HTML bundle</a>
+          <button type="button" id="btn-af-dict" class="procedure" title="Regenerates the Afrikaans dictionary asset from the corpus (generateAfrikaansDictionary).">Generate Afrikaans dictionary</button>
+          <button type="button" id="btn-export-kindle" class="procedure" title="Selected poems: builds the Kindle EPUB. Language follows the All / Afrikaans / English tab.">Export Kindle EPUB</button>
+          <a id="btn-download-kindle" href="/api/export-kindle/download?lang=both" class="procedure" style="display:inline-flex;align-items:center;text-decoration:none;padding:0.6rem 0.9rem;border-radius:6px;font:inherit" download title="Downloads the generated EPUB (language matches the tab: both, af, or en).">Download EPUB</a>
         </div>
-        <p style="font-size: 0.8rem; color: var(--muted); margin-top: 0.5rem;">
-          Import temp: <code style="font-size:0.85em">temp/*.png</code> → <code style="font-size:0.85em">poems/&lt;stem&gt;/af.md</code> + <code style="font-size:0.85em">config.json</code> + regenerate <code style="font-size:0.85em">src/poemsData.json</code> (needs <code style="font-size:0.85em">OPENAI_API_KEY</code>, can take a while). · Translate: only poems without en.md → en.generated.md · Convert: markdown → .html & .txt + <code style="font-size:0.85em">poems/&lt;id&gt;/media/</code> · Export HTML: <code style="font-size:0.85em">export/1-index.html</code> (list) + per-poem HTML + <code style="font-size:0.85em">media/</code>
-        </p>
-        <pre id="op-output" class="hidden" style="margin-top: 1rem;"></pre>
+        <label class="op-output-label" for="op-output">Procedure output</label>
+        <textarea id="op-output" readonly rows="10" placeholder="Run an operation to see output here."></textarea>
 
         <h3 style="margin-top: 1.5rem; margin-bottom: 0.75rem; color: var(--muted); font-size: 1rem;">Add poem</h3>
         <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem;">Creates poems/&lt;id&gt;/ with config.json and af.md (title stub). Add English via translate or en.md when ready.</p>
@@ -386,8 +421,7 @@
         }
         body = { ...(bodyExtra || {}), ids };
       }
-      out.classList.remove("hidden");
-      out.textContent = "Running...";
+      out.value = "Running...";
       actionButtons.forEach((b) => (b.disabled = true));
       try {
         const res = await fetch(API + path, {
@@ -401,18 +435,18 @@
           let text = data.error || res.statusText || "Request failed";
           if (data.stdout) text += "\n\n--- stdout ---\n" + data.stdout;
           if (data.stderr) text += "\n\n--- stderr ---\n" + data.stderr;
-          out.textContent = text;
+          out.value = text;
           msg(`${name} failed.`, "error");
           return;
         }
         let text = [data.stdout, data.stderr].filter(Boolean).join("\n");
         if (data.skipped) text = (text ? text + "\n" : "") + (data.message || "Skipped.");
-        out.textContent = text || "Done.";
+        out.value = text || "Done.";
         msg(data.skipped ? `${name}: ${data.message || "skipped"}` : `${name} completed.`, data.skipped ? "info" : "success");
         if (name === "Import temp poems") loadPoems();
       } catch (err) {
-        out.textContent = err instanceof Error ? err.message : String(err);
-        msg(out.textContent, "error");
+        out.value = err instanceof Error ? err.message : String(err);
+        msg(out.value, "error");
       } finally {
         actionButtons.forEach((b) => (b.disabled = false));
       }
@@ -421,16 +455,15 @@
     async function reloadPoemsOp() {
       const out = document.getElementById("op-output");
       const actionButtons = document.querySelectorAll("#operations-card .actions button");
-      out.classList.remove("hidden");
-      out.textContent = "Reloading poem list…";
+      out.value = "Reloading poem list…";
       actionButtons.forEach((b) => (b.disabled = true));
       try {
         await loadPoems();
-        out.textContent = "Poem list refreshed from the server.";
+        out.value = "Poem list refreshed from the server.";
         msg("Reload poems completed.", "success");
       } catch (err) {
         const t = err instanceof Error ? err.message : String(err);
-        out.textContent = t;
+        out.value = t;
         msg(t, "error");
       } finally {
         actionButtons.forEach((b) => (b.disabled = false));
