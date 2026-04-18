@@ -1,28 +1,28 @@
 # Quo Vadis
 
-Says the one who splashes by the stream:  
-"I am so favored,  
-in this little nook where I have landed,  
-it fits me perfectly,  
-I fill it to the brim, so splendid."
+Says the one who splashes in the stream:  
+"I’m so privileged,  
+in this little nook where I’ve found my way,  
+it’s tailor-made for me,  
+I fill it from edge to edge."
 
-but the stream remains silent –  
-it flows softly around the bend…
+but the stream says nothing –  
+it flows quietly around the bend…
 
-Says the one who splashes by the stream:  
-"You hold your current so nobly  
-there where you ripple and rush,  
-at least I am safe –  
-who might your path one day crush?"
+Says the one who splashes in the stream:  
+"You hold yourself so proudly  
+where you ripple and rush,  
+I’m at least safe here –  
+with whom will your path ever brush?"
 
 but the river says nothing –  
-it roars loud over the fall…
+it rushes loudly over the falls…
 
-Says the one who splashes by the stream:  
-"I may understand  
-beneath the sun's blazing hand,  
-but I’ve lingered here so long,  
-I have nowhere better to belong."
+Says the one who splashes in the stream:  
+"I might understand  
+under the sun’s scorching, blazing hand,  
+but I’ve been lying here so long,  
+I have nowhere else to belong."
 
-but the sea simply rests –  
-in her eternal embrace.
+but the sea remains still –  
+in her eternal existence.

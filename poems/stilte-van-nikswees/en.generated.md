@@ -3,15 +3,15 @@
 I live,  
 adrift somewhere on a Cartesian plane -  
 an imagined point,  
-on a projection  
+upon a projection  
 of God’s infinite universe.  
 
-Here - sometimes the martyr,  
-sometimes the fool,  
-I flutter briefly,  
+Here - at times the martyr,  
+at times the fool,  
+I flit momentarily,  
 seemingly helplessly lost,  
-in the silence of nothingness -  
+in the silence of nothingness—  
 the nothingness of now.  
 
 Yet I can know:  
-I am safe, enveloped in His arms.  
+I am cradled safe in His embrace.

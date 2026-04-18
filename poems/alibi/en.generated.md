@@ -5,16 +5,16 @@ So, where is elsewhere then?
 Elsewhere is somewhere I am not,  
 neither in thought,  
 nor in form,  
-beyond the beyond...  
-past the other side —  
+beyond the other side...  
+past the far edge —  
 uncharted, uncoordinated,  
 unshaped and unnamed,  
-without sense, without reason, and yet  
-the focal point of perfect knowledge  
-insight — whole and familiar  
-etched and marked  
+without meaning, without reason, yet  
+is the focal point of perfect knowledge,  
+insight — complete and known,  
+described and defined  
 here, here...  
-only in the moment,  
+only in this moment,  
 only here —  
 elsewhere is everywhere I am,  
-without thought and form.
+without thought and form.  

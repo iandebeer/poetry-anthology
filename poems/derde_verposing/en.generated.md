@@ -1,26 +1,26 @@
-# Third Viewpoint (Writer’s Mind, Prince Albert)
+# Third Composition (Writers' Head, Prince Albert)
 
-A scrub bush, a tumbleweed, has painted this land,
-in soft hues of grey-olive laced,
-on shades of sand and rust-brown stand,
-beneath the endless blue sky that stretches over the Black Mountain’s face —
+A scrub bush, a rolling bush, has painted this land,
+Softly veined with gray-olive hues,
+In shades of sand and rust-brown,
+Beneath the endless blue sky stretching over the Black Mountain —
 
-the people — they came later, you see,
-to the white houses where booja fruit shade the ground,
-where sweet figs and red pomegranates tempt,
-to perhaps bind them here just a little longer, unbound;
+The people — they came here once,
+To the white cottages that find shade beneath the bloom,
+Where sweet figs and red pomegranates entice,
+To bind them here for just a touch longer;
 
-but as the world kicks up its dust devils high,
-under the sun’s unchained arc,
-their eyes wild and far sought answers untold,
-wondering where they might embark;
+But when the whirling wind turns dust into columns,
+Under the sun’s unyielding arc,
+Their eyes wandered wild and wide, searching,
+Wondering where they might go next;
 
-until finally, in the cool evening air,
-enfolded closely in friendship’s embrace,
-the uncertainty in their gazes softened,
-and secrets were whispered in that quiet place,
+Until at last, in the cool evening air,
+Embraced snugly in friendship’s warmth,
+The uncertainty in their eyes softened,
+And was entrusted to them,
 
-to hear how the scrub bush once more paints the land,
-in twilight glow under a starry cloak,
-for tomorrow, and tomorrow’s tomorrow,
-and what else might stir in the wake they invoke...
+To hear how the scrub bush once more paints the land,
+In twilight’s glow beneath a tapestry of stars,
+For tomorrow, and tomorrow’s tomorrow,
+And whatever may await them beyond that...

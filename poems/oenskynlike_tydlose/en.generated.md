@@ -1,19 +1,19 @@
-# Sonnet to the Apparent Timeless (Otter Trail)
+# Sonnet to the Apparent Timeless (Otter Winding Way)
 
-Where brushwood drapes over a carpet of leaves,  
-and knotted roots anchor the path above the sea,  
-rich cormorants prepare for their breakfast feast—  
-while we, as mere wanderers, embrace eternity.  
+Where twisted wood hangs over a carpet of leaves,  
+and knobby roots anchor the path above the sea,  
+rich cormorants prepare for breakfast -  
+as we, like bystanders, enter eternity.
 
-And in a valley where streams tug at sweet waters,  
-to a deep-flowing dark river,  
-that dares to challenge the ocean's mighty tides,  
-along with wind and sand, smooths the timeless stones.  
+In a valley where streams pull sweet water's flow  
+to a deep, dark river that glides and winds,  
+defying the ocean's tide, daring to show  
+how with wind and sand, eternal rocks are refined.
 
-It’s here where my footsteps struggle to find their way,  
-and breath sets my lungs ablaze,  
-where I can quiet my thoughts into stillness,  
-and gratefully reach for a helping hand.  
+It’s here my footsteps find their heavy stride,  
+and breath feels like fire in my chest,  
+where I can quiet my thoughts, side by side,  
+and gratefully reach for a hand that's blessed.
 
-Now back at home, I lie clean and cared for in my bed;  
-still, I cling to each step with quiet defiance.  
+Now home again, I lie cleansed and cared for in bed;  
+still, I cling to each step, in silent dread.

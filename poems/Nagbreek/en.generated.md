@@ -1,12 +1,12 @@
-# Dawn's Awakening (Vanderbijlpark - 1973)
+# Dawnbreak (Vanderbijlpark - 1973)
 
-The sun's retreat before the gray griffin,  
-Leaves a trail of blood in tarnished vermilion,  
-The night's shadow creeps ahead.
+The sun takes flight before the grey griffin,  
+leaving a trail of blood in filthy vermilion  
+that creeps forth from the shadows of night.  
 
-And over the yellow fields grows a somber gray,  
-Until only the reddened tips of clouds  
-Reveal the last hints of break of day.
+And over the yellowing fields a dreary grey grows,  
+until only the red-tinged clouds’ tips  
+reveal the final moments of daybreak.  
 
 And the greenest tree of the day stands still and shy,  
-Waiting for the eastern light to shine, adorned in soft whispers.
+awaiting the eastern glow, dressed in a cloak of light.  

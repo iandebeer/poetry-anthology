@@ -1,17 +1,17 @@
 # Sheltered
 
-Rachmaninoff - a Rhapsody on a Theme by Paganini —  
+Rachmaninoff - a Rhapsody on a Theme of Paganini —  
 the prelude to “The du Plooys of Soetmelksvlei”  
 Memories flood my mind  
-of a time so long past yet so easily recalled;
+of a time long past yet so easily recalled;  
 
-Our family gathered by the radio,  
-After the forced silence of “News at Seven”  
-And the reverent hush for “Let Us Take Our Books”  
-We listen together to the fortunes of Uncle Kobie, Aunt Hybie, and old Bartel,  
-Each in the stillness of their imaginative worlds.  
-Then bed calls me where I lie and listen to Dad practicing his “Tromp of Diggeling” — in silence,  
-Until the quarter to ten alarm reveals:  
-“The unwanted are off the streets — all is now safe.”
+Our family before the radio,  
+After the forced silence of the “News at Seven”  
+And the reverent hush for “Let Us Take Books”  
+We listen together to the fate of Uncle Kobie, Aunty Hybie, and old Bartel,  
+Each caught in the stillness of his imagined world.  
+Then tucked in bed, I hear Dad practice his “Tromp van Diggelin” — in silence,  
+Until the quarter-to-ten alarm lets us know;  
+“The unwanted are off the streets — all is safe now.”  
 
-… it’s strange, for I never felt unsafe in that house.  
+… funny, for I never felt unsafe in that house.  

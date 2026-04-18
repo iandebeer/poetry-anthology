@@ -1,16 +1,16 @@
-# Winter’s Sleep
+# Winter Sleep
 
-Yellow raincoats in a rust-brown vineyard -  
-the scent of a wood smoke lures with its promise of warmth  
-to where white houses shelter against the northwest’s grip.  
-Brownies and snot-nosed children peek from doorways,  
-waiting, trembling, for a respite in the grey mists that sweep over hills -  
-And quietly, beneath the earth, the vineyard rests deep after yet another harvest.
+Yellow raincoats in a rusty-brown vineyard -  
+the scent of wet wood smoke beckons with warmth's promise  
+to where white houses hide against the northwest's grasp.  
+Sniveling toddlers peek from doorways,  
+waiting for a reprieve in the gray mists that sweep over hills -  
+And quietly, beneath the earth, the vineyard lies deep, resting, after yet another harvest.
 
-And when the sky breaks blue  
-and the sun makes waterfalls glisten on the mountain;  
-when rustling streams grind the pebbles smooth  
-and summer’s silt and moss wash down to the sea;  
-and honey-suckers flutter where fynbos blooms anew in the  
-black of the wildfire’s wake:  
-Still, beneath the earth, the vineyard lies deep, awaiting another harvest.
+And when the sky breaks open in blue  
+and the sun sets waterfalls glistening down the mountain;  
+as murmuring streams grind the stones smooth  
+and summer's silt and moss trickle to the sea;  
+and honeybirds flutter where fynbos blooms anew in the  
+black of the wildfire's wake:  
+Then still, beneath the earth, the vineyard lies deep, resting, before yet another harvest.

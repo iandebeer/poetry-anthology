@@ -1,12 +1,12 @@
 # Stonework
 
-Beyond the emptiness,  
+On the edge of emptiness,  
 long before the wholeness,  
 lies form:  
-flow, frozen in the moment;  
-merely to be shaped beneath chisel and file  
-into a figure, the embodiment —  
-of purpose as meaning —  
+flowing, frozen in the instant;  
+only to be shaped under chisel and file  
+into a likeness, the embodiment —  
+a purpose as meaning —  
 thought etched in the eternal.  
 
 (dedicated to David Steele)

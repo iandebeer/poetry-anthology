@@ -1,13 +1,13 @@
-# First Pause (Keurboomstrand)
+# First Contemplation (Keurboomstrand)
 
-Shall I sit on the porch - or lie on the bed, lost in a book;  
-it matters little which,  
-for the sea is turquoise and white behind the leaves of my page,  
-drifting far from where I, with heavy eyes, displace myself -  
-I am still just a thought away from all and everyone who fills my days  
-with endless demands and choices and plans;  
-but for now, the crashing waves upon rock and sand fill the void this emptiness leaves,  
-while words and verses soothe me into a calm  
-in the inevitability of what is, and was, and shall be,  
-from now until forever,  
+Shall I sit on the porch – or lie in bed with a book in hand;  
+it matters little,  
+for the sea is turquoise and white beyond the leaves of my page,  
+no matter where I, with heavy eyes, settle my thoughts –  
+I am still just a thought away from everything and everyone who fills my days  
+with endless demands and choices and deliberations;  
+but for now, the crashing of waves on rock and sand fills the void that this idleness leaves,  
+while word and verse cradle me softly to rest  
+in the inevitability of what is, and was, and will be,  
+from now, unto all eternity,  
 Amen.

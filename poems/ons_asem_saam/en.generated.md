@@ -1,23 +1,22 @@
 # Our Breath Together
 
-If a balloon could embrace the earth’s expanse,  
-My breath alone would hardly make it dance;  
-But our breath together, in rhythmic embrace,  
-Will surely stir a ripple, a gentle trace —  
-Like a stone in the pond on a lazy summer day,  
-Where a windmill strains, pushing hard, in dismay,  
-Almost as if it sighs, yearning to be free  
-From the tether of winds that bind it in glee.  
+If a balloon could embrace the earth's expanse,  
+Then my breath alone would struggle to enhance—  
+But our breath together, in rhythmic flow,  
+Will surely create ripples that show—  
+Like a pebble tossed in the still of a lake,  
+On a lazy summer day, where the winds awake,  
+A windmill straining, yearning to break free,  
+As if to hum a tune, longing to be—  
+While the circles of our breaths diffuse through the reeds,  
+Where finches weave their nests, fulfilling their needs,  
+With their sharp songs daring the wind to engage,  
+Testing their craft on willow branches, a stage.  
+But when our breath syncs, crafting ripples anew,  
+It stirs the winds, prompting them to pursue,  
+Rocking the nests and easing the strain,  
+With the deep hum of “OM” making the windmill gain.  
+And with our breaths entwined, we find a shared beat,  
+In the balloon that envelops our world, so sweet.  
 
-While the circle of our breaths weaves through the reeds,  
-Where finches are busy weaving their nests with ease,  
-With chirps that clash against the daring breeze,  
-Challenging the wind to turn the mill with ease,  
-And testing their toil ‘neath the willows that sway,  
-Yet when our breaths converge, creating waves in play,  
-The wind is stirred to awaken, swift as a spark,  
-To rock the little nests and loosen its mark,  
-
-With the hum of "OM" sending the windmill to clap,  
-And together, our breaths keep a rhythm, a map,  
-In the balloon that envelops our shared earthly space.
+Om Mani Padme Hum
