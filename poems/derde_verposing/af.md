@@ -18,7 +18,7 @@ maar as die warrel-wind stof-suile draai,
 tot eindelik, in die koel aandlug
  en knus in vriendskap omvou,
  het die onsekerheid in hul oë versag,
- en is aan hul toevertrou,
+ en is aan hul weereens toevertrou,
 
 om te hoor hoe die tolbos opnuut die landskap verf,
  in skemerlig onder sterreprag,

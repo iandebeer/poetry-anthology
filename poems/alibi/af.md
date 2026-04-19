@@ -1,4 +1,4 @@
-# Alibi
+# Anderkant nêrens
 
 So, waar is elders dan?
 
@@ -15,6 +15,9 @@ insig — volledig en bekend
 beskrewe en gebaken
 hier, hier...
 net in die oomblik,
-net hier —
+net hier —  
+  
 elders is órals waar ek is,
 sonder gedagte en gedaante
+  
+gate, gate, pāra gate, pārasum gate, bhodi svāhā

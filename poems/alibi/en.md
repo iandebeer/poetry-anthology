@@ -5,8 +5,8 @@ So, where is elsewhere then?
 Elsewhere is somewhere I am not,  
 neither in thought,  
 nor in form,  
-beyond the other side...  
-past the far edge —  
+beyond, beyond the other side...  
+past the furthest edge —  
 uncharted, uncoordinated,  
 unshaped and unnamed,  
 without meaning, without reason, yet  
@@ -16,5 +16,8 @@ described and defined
 here, here...  
 only in this moment,  
 only here —  
+  
 elsewhere is everywhere I am,  
 without thought and form.  
+  
+gate, gate, pāra gate, pārasum gate, bhodi svāhā
