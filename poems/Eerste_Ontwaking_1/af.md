@@ -1,17 +1,16 @@
 # Eerste Ontwaking
 
-Dit was in dommel-slaap
-waar ’n diep, dog helder droom,
-my laat sweef en swiep, asof opgeraap
-in ’n onsigbare lugstroom –
+Dit was in dommel-slaap  
+waar ’n diep, dog helder droom,  
+my laat sweef en swiep, asof opgeraap  
+in ’n onsigbaar' lugstroom –  
+ek kon vlieg na waar die witste wolke bol,  
+teen die asuur-blou lug;  
+om momenteel selfs tyd te stol  
+in my ongebonde vlug –  
+en dan in vreugdevolle sielerus,     
+van alles wat net-is,  
+raak ek diep bewus:  
+dat Ek-self ook onsterflik is.   
 
-ek kon vlieg na waar die witste wolke bol
-teen blou, blou lug;
-en momenteel selfs tyd laat stol
-in my ongebonde vlug –
-
-en wie sou ooit kon wis
-dat ek in dié stille oomblik
-onsterflik is  
-
-So Hum
+So'hum, So'hum, Shivo'hum  
