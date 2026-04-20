@@ -7,29 +7,29 @@ Ek dink God het uit berge uitgehardloop toe hy in daardie geweste gekom het, Hy 
 
  My jare in Stellenbosch is grootliks verryk deur vriendskap's bande wat ek met mede-drawwers, die Moegoes (Middag Oefen Groep) kon smee. Saam het ons menige marathon (ultra-, vol - en half-) voltooi. Op gereelde basis het ons al die berg-paaie, wat die skilderagtige omgewing bied, verken - een van die vele bronne van groot  vreugde in my lewe.
    
-Die verloop van die lewe het egter 'n nuwe wending geneem toe my loopbaan en hardloops-plesier oornag beëindig is deur 'n outo-immuun toestand wat my vir 7 maande in die hospitaal beland het. In die na-gevolge en herstel-periode het my lewe radikaal verander.  
+Die verloop van die lewe het egter 'n nuwe wending geneem toe my loopbaan en hardloops-plesier oornag beëindig is deur 'n outo-immuun toestand wat my vir 5 maande in die hospitaal beland het. In die na-gevolge en herstel-periode is my lewe radikaal verander.  
   
 My nuwe lewe, op Stellenbosch, Pringlebaai en Bathurst (Oos Kaap), is toegewy aan gedigte skryf, meditasie, filosofie, musiek en - soos my kragte dit toelaat - wandel in die natuur. O, en moenie vergeet nie - kos maak en lekker eet.  
     
-Ek en  Analda, my rots en steunpilaar deur baie moeilike tye, is só bevoorreg om baie tyd met ons kinders en kleinkinders te spandeer. My hart loop oor van dankbaarheid van dit wat ís, wat was, en sal wees.  Amen.
+Ek en vroulief Analda, my rots en steunpilaar deur baie moeilike tye, is só bevoorreg om baie tyd met ons kinders en kleinkinders te spandeer. My hart loop oor van dankbaarheid vir dit wat ís, wat was, en sal wees.  Amen.
   
 So-hum.
   
 ---
 
-I was born on 20 August 1955 in Vanderbijlpark, Gauteng. Here I grew up alongside the young, newly planted trees of this recently established industrial town on the Transvaal highveld.
+I was born on 20 August 1955 in Vanderbijlpark, Gauteng. Here I grew up alongside the young, newly planted trees, of this recently established industrial town, on the Transvaal highveld.
 
-I imagine God ran out of mountains when he reached that part of the country — he did not even have hills left  — so he gave us the Vaal River instead. Those treeless, flat grasslands stirred in me a longing for mountains, fynbos and the sea. Still, it would be thirty years before my wife Analda and I, with three young children — Dyani, Reghardt and Irené — moved to Stellenbosch (Mourits completed the family four years later).
+I imagine God ran out of mountains when he reached that part of the country — he did not even have hills left  — so he gave us the Vaal River instead. Those treeless, flat grasslands stirred in me an appreciation of mountains, fynbos and the sea. Still, it would be thirty years before my wife, Analda ,and I, with three young children — Dyani, Reghardt and Irené — moved to Stellenbosch (the youngest, Mourits, completed the family four years later).
 
-In Stellenbosch I was able to follow my creative drive and entrepreneurial bent, and over thirty-five years I built four IT-related businesses: Ursa Software, Visoft, zenAptix and MN8 Technology. In 2022 Lohan Spies and I decided to combine our strengths in founding DIDx, a company focused on the exciting new field of self-sovereign identity.
+In Stellenbosch I was able to follow my creative drive and entrepreneurial bent, and over the next thirty-five years I built four IT-related businesses: Ursa Software, Visoft, zenAptix and MN8 Technology. In 2022, Lohan Spies and I decided to combine our strengths in founding DIDx, a company focused on the exciting new field of Self-Sovereign Identity.
 
-My years in Stellenbosch were deeply enriched by friendships forged with fellow runners, the Moegoes (Middag Oefen Groep — Afternoon Exercise Group). Together we completed many marathons — ultra, full and half. We regularly explored the mountain roads that thread the painterly landscape - one of the many great sources of joy in my life.
+My years in Stellenbosch were deeply enriched by friendships forged with fellow runners, the Moegoes (Middag Oefen Groep — Afternoon Exercise Group). Together we completed many marathons — ultra, full and half. We regularly explored the mountain roads that thread the picturesque landscape - one of the many great sources of joy in my life.
 
-The course of life took a new turn, however, when my career and love of running were ended overnight by an autoimmune condition that kept me in hospital for seven months. In the aftermath and recovery my life changed radically.
+The course of life took a new turn, however, when my career and love of running were ended overnight by an autoimmune condition that kept me in hospital for five months. In the aftermath and recovery my life changed radically.
 
 My new life, across Stellenbosch, Pringle Bay and Bathurst (Eastern Cape), is given to writing poetry, meditation, philosophy, music and — as my strength allows — hiking in nature. Oh, and not to forget — cooking and enjoying good food.
 
-My rock and pillar through many hard times, Analda and I are blessed to spend much time with our children and grandchildren. My heart overflows with gratitude for what is, what was, and what will be. Amen.
+My dear wife Analda, my rock and pillar through many hard times, and I are blessed to spend much time with our children and grandchildren. My heart overflows with gratitude for what is, what was, and what will be. Amen.
 
 So-hum.
 
