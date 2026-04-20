@@ -11,7 +11,7 @@ Die verloop van die lewe het egter 'n nuwe wending geneem toe my loopbaan en har
   
 My nuwe lewe, op Stellenbosch, Pringlebaai en Bathurst (Oos Kaap), is toegewy aan gedigte skryf, meditasie, filosofie, musiek en - soos my kragte dit toelaat - wandel in die natuur. O, en moenie vergeet nie - kos maak en lekker eet.  
     
-Ek en my rots en steunpilaar deur baie moeilike tye, Analda, is só bevoorreg om baie tyd met ons kinders en kleinkinders te spandeer. My hart loop oor van dankbaarheid van dit wat ís, wat was, en sal wees.  Amen.
+Ek en  Analda, my rots en steunpilaar deur baie moeilike tye, is só bevoorreg om baie tyd met ons kinders en kleinkinders te spandeer. My hart loop oor van dankbaarheid van dit wat ís, wat was, en sal wees.  Amen.
   
 So-hum.
   
