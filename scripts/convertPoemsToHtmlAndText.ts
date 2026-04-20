@@ -10,7 +10,7 @@ import {
   resolveAfrikaansMarkdownPath,
   resolveEnglishMarkdownPath,
 } from "../engine/loadPoems.js";
-import { bundledPoemImagePath, syncPoemMediaToPoemDir } from "../engine/syncPoemBundledMedia.js";
+import { syncPoemBundledAssets } from "../engine/syncPoemBundledMedia.js";
 import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
 
@@ -87,14 +87,16 @@ function convertOneSource(
   config: ReturnType<typeof getPoemMediaConfig>,
   bundledMediaUrl: string | null,
   imageAbsPath: string | null,
+  bundledAudioUrl: string | null,
 ): number {
   const md = readFileSync(mdPath, "utf-8");
   const base = join(dirPath, outBasename);
 
   const html = mdToHtml(md);
   const htmlPath = base + ".html";
-  const outHtml = bundledMediaUrl
-    ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl, imageAbsPath)
+  const needsWrap = Boolean(bundledMediaUrl || bundledAudioUrl);
+  const outHtml = needsWrap
+    ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl, imageAbsPath, bundledAudioUrl)
     : html;
   writeFileSync(htmlPath, outHtml, "utf-8");
 
@@ -107,14 +109,17 @@ function convertOneSource(
 function convertPoemDir(dirPath: string, poemId: string): number {
   let count = 0;
   const config = getPoemMediaConfig(dirPath, poemId);
-  const bundledMediaUrl = syncPoemMediaToPoemDir(dirPath, config.image);
-  const imageAbsPath = bundledPoemImagePath(dirPath, config.image);
+  const { imageRelative, audioRelative, imageAbsPath } = syncPoemBundledAssets(
+    dirPath,
+    config.image,
+    config.music,
+  );
 
   const afSrc = resolveAfrikaansMarkdownPath(dirPath);
-  if (afSrc) count += convertOneSource(afSrc, "af", dirPath, config, bundledMediaUrl, imageAbsPath);
+  if (afSrc) count += convertOneSource(afSrc, "af", dirPath, config, imageRelative, imageAbsPath, audioRelative);
 
   const enSrc = resolveEnglishMarkdownPath(dirPath);
-  if (enSrc) count += convertOneSource(enSrc, "en", dirPath, config, bundledMediaUrl, imageAbsPath);
+  if (enSrc) count += convertOneSource(enSrc, "en", dirPath, config, imageRelative, imageAbsPath, audioRelative);
 
   return count;
 }

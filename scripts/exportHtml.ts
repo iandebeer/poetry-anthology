@@ -372,7 +372,7 @@ function main() {
     const poemMedia = join(poemDir, "media");
 
     const config = getPoemMediaConfig(poemDir, id);
-    syncPoemMediaToPoemDir(poemDir, config.image);
+    syncPoemMediaToPoemDir(poemDir, config.image, config.music);
 
     const hasAf = existsSync(afHtml);
     const hasEn = Boolean(enSource);

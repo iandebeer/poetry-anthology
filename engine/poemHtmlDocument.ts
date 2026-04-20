@@ -29,10 +29,27 @@ function escapeHtmlAttr(s: string): string {
   return s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;");
 }
 
+/** URL path for &lt;audio src&gt; when serving from admin (public/media). */
+export function adminMediaAudioSrc(music: string | undefined): string | null {
+  if (!music) return null;
+  const path = music.startsWith("poems/") ? music : `music/${music}`;
+  return "/media/" + path.split("/").filter(Boolean).map(encodeURIComponent).join("/");
+}
+
+/** Remove player markup so admin can re-wrap without duplicate &lt;audio&gt; (e.g. from saved af.html). */
+export function stripPoemAudioElementsFromInnerHtml(html: string): string {
+  return html.replace(/<div class="poem-audio-wrap"[^>]*>\s*[\s\S]*?<\/div>/gi, "").trim();
+}
+
 function splitLayoutTintRgb(imageAbsPath: string | null | undefined): Rgb {
   const sampled = imageAbsPath ? dominantRgbFromImageFile(imageAbsPath) : null;
   const base = sampled ?? { r: 118, g: 118, b: 128 };
   return lightTintFromRgb(base, 0.86);
+}
+
+function poemAudioMarkup(audioSrc: string | null): string {
+  if (!audioSrc) return "";
+  return `<div class="poem-audio-wrap"><audio class="poem-audio" controls preload="metadata" src="${escapeHtmlAttr(audioSrc)}"></audio></div>`;
 }
 
 /**
@@ -40,6 +57,7 @@ function splitLayoutTintRgb(imageAbsPath: string | null | undefined): Rgb {
  * @param mediaUrlPrefix - HTTP base for admin, e.g. "/media/"
  * @param relativeToHtmlUrl - if set (e.g. media/l-image.png), CSS background uses this path relative to the .html file
  * @param imageAbsPath - optional filesystem path to the image (for o-image dominant colour sampling)
+ * @param audioSrc - optional &lt;audio src&gt;: relative e.g. media/track.mp3 (beside .html), or absolute path for admin e.g. /media/poems/id/track.mp3
  */
 export function wrapHtmlWithPoemBackground(
   html: string,
@@ -47,6 +65,7 @@ export function wrapHtmlWithPoemBackground(
   mediaUrlPrefix = "/media/",
   relativeToHtmlUrl: string | null = null,
   imageAbsPath: string | null = null,
+  audioSrc: string | null = null,
 ): string {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   const bodyContent = bodyMatch?.[1] ?? html;
@@ -67,10 +86,13 @@ export function wrapHtmlWithPoemBackground(
       ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;flex-shrink:0;object-fit:cover;object-position:center}" +
       ".poem-content{position:relative;z-index:1;flex:1;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}" +
       ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
+      ".poem-audio-wrap{margin-top:1.5rem;width:100%;max-width:28rem}" +
+      ".poem-audio{display:block;width:100%;height:2.5rem}" +
       "@media (max-width:640px){.poem-split-wrap{flex-direction:column}.poem-split-img{width:100%;max-width:none;height:38vh;min-height:160px}}";
     const contentBg = `.poem-content{background-color:${tintCss};border-radius:0}`;
 
-    const splitMarkup = `<div class="poem-split-wrap"><img class="poem-split-img" src="${escapeHtmlAttr(imgSrc)}" alt="" /><div class="poem-content">${bodyContent.trim()}</div></div>`;
+    const audioHtml = poemAudioMarkup(audioSrc);
+    const splitMarkup = `<div class="poem-split-wrap"><img class="poem-split-img" src="${escapeHtmlAttr(imgSrc)}" alt="" /><div class="poem-content">${bodyContent.trim()}${audioHtml}</div></div>`;
 
     return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${splitStyles}${contentBg}</style></head><body>${splitMarkup}</body></html>`;
   }
@@ -81,7 +103,9 @@ export function wrapHtmlWithPoemBackground(
     "body{font-family:serif;line-height:1.6;color:#e8e8ed;background-color:#0f0f14;display:flex;position:relative}" +
     ".poem-bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background-position:center center;background-size:cover;background-repeat:no-repeat}" +
     ".poem-content{position:relative;z-index:1;max-width:36em;padding:2rem}" +
-    ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}";
+    ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}" +
+    ".poem-audio-wrap{margin-top:1.75rem;width:100%;max-width:28rem}" +
+    ".poem-audio{display:block;width:100%;height:2.5rem;filter:brightness(0.95)}";
 
   const placementStyles =
     placement === "top"
@@ -98,16 +122,27 @@ export function wrapHtmlWithPoemBackground(
   const contentOverlay = bgUrl ? ".poem-content{background:rgba(0,0,0,0.65);border-radius:8px}" : "";
 
   const bgMarkup = bgUrl ? '<div class="poem-bg-layer" aria-hidden="true"></div>' : "";
+  const audioHtml = poemAudioMarkup(audioSrc);
 
-  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${placementStyles}${bgLayerStyles}${contentOverlay}</style></head><body>${bgMarkup}<div class="poem-content">${bodyContent.trim()}</div></body></html>`;
+  return `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Poem</title><style>${baseStyles}${placementStyles}${bgLayerStyles}${contentOverlay}</style></head><body>${bgMarkup}<div class="poem-content">${bodyContent.trim()}${audioHtml}</div></body></html>`;
 }
 
 /** Inner markup for combining af+en (strips bg layer / uses .poem-content only). */
 export function extractPoemBodyInnerForCombine(html: string): string {
-  const content = html.match(
-    /<div class="poem-content"[^>]*>([\s\S]*?)<\/div>\s*(?:<\/div>\s*)?<\/body>/i,
-  );
-  if (content) return content[1].trim();
+  const startRx = /<div class="poem-content"[^>]*>/i;
+  const startMatch = startRx.exec(html);
+  if (startMatch) {
+    let i = startMatch.index + startMatch[0].length;
+    let depth = 1;
+    const tagRe = /<\/?div\b[^>]*>/gi;
+    tagRe.lastIndex = i;
+    let m: RegExpExecArray | null;
+    while ((m = tagRe.exec(html)) !== null) {
+      if (m[0].startsWith("</")) depth--;
+      else depth++;
+      if (depth === 0) return html.slice(i, m.index).trim();
+    }
+  }
   const body = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
   let inner = body?.[1] ?? html;
   inner = inner.replace(/<div class="poem-bg-layer"[^>]*>\s*<\/div>\s*/gi, "");

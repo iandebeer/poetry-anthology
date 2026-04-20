@@ -26,7 +26,12 @@ import {
   resolveEnglishMarkdownPath,
 } from "../engine/loadPoems.js";
 import { safePoemDir } from "../engine/safePoemPath.js";
-import { wrapHtmlWithPoemBackground, extractPoemBodyInnerForCombine } from "../engine/poemHtmlDocument.js";
+import {
+  wrapHtmlWithPoemBackground,
+  extractPoemBodyInnerForCombine,
+  adminMediaAudioSrc,
+  stripPoemAudioElementsFromInnerHtml,
+} from "../engine/poemHtmlDocument.js";
 
 const execAsync = promisify(exec);
 
@@ -208,15 +213,21 @@ const POEMS_DIR = join(process.cwd(), "poems");
  * Pre-wrapped af.html used to short-circuit with URL rewrite only, which missed updates
  * and could leave broken or missing backgrounds.
  */
-function htmlForAdminResponse(raw: string, imagePath: string | undefined): string {
-  const inner = extractPoemBodyInnerForCombine(raw);
+function htmlForAdminResponse(
+  raw: string,
+  imagePath: string | undefined,
+  musicPath: string | undefined,
+): string {
+  let inner = extractPoemBodyInnerForCombine(raw);
+  inner = stripPoemAudioElementsFromInnerHtml(inner);
   const shell = `<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"></head><body>${inner}</body></html>`;
   const imageAbs =
     imagePath?.startsWith("poems/")
       ? join(process.cwd(), "public", "media", ...imagePath.split("/").filter(Boolean))
       : null;
   const imageAbsOk = imageAbs && existsSync(imageAbs) ? imageAbs : null;
-  return wrapHtmlWithPoemBackground(shell, imagePath, "/media/", null, imageAbsOk);
+  const audioSrc = adminMediaAudioSrc(musicPath);
+  return wrapHtmlWithPoemBackground(shell, imagePath, "/media/", null, imageAbsOk, audioSrc);
 }
 
 app.get("/api/poems/:id/html", requireAuth, (req, res) => {
@@ -227,6 +238,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   if (!poemDir) return res.status(400).json({ error: "Invalid poem path" });
   const lang = (req.query.lang as string) || "all";
   const imagePath = poem.config.image ?? undefined;
+  const musicPath = poem.config.music ?? undefined;
 
   // Prefer pre-generated .html files from convert-poems
   const afHtmlPath = join(poemDir, "af.html");
@@ -236,7 +248,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   if (lang === "af" && existsSync(afHtmlPath)) {
     const raw = readFileSync(afHtmlPath, "utf-8");
     res.setHeader("Content-Type", "text/html; charset=utf-8");
-    return res.send(htmlForAdminResponse(raw, imagePath));
+    return res.send(htmlForAdminResponse(raw, imagePath, musicPath));
   }
   if (lang === "af" && !existsSync(afHtmlPath)) {
     console.warn(`[html] af.html not found at ${afHtmlPath} (poem: ${poem.id}, cwd: ${process.cwd()})`);
@@ -246,7 +258,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
     if (enPath) {
       const raw = readFileSync(enPath, "utf-8");
       res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.send(htmlForAdminResponse(raw, imagePath));
+      return res.send(htmlForAdminResponse(raw, imagePath, musicPath));
     }
   }
   if (lang === "all") {
@@ -258,7 +270,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
       const enBody = extractPoemBodyInnerForCombine(enHtml);
       const combined = `<!DOCTYPE html><html><head><meta charset="utf-8"><title>Poem</title></head><body><div class="lang-block"><h3>Afrikaans</h3>${afBody}</div><div class="lang-block"><h3>English</h3>${enBody}</div></body></html>`;
       res.setHeader("Content-Type", "text/html; charset=utf-8");
-      return res.send(htmlForAdminResponse(combined, imagePath));
+      return res.send(htmlForAdminResponse(combined, imagePath, musicPath));
     }
   }
 
@@ -279,7 +291,7 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
   else body = `<div class="lang-block"><h3>Afrikaans</h3>${mdToHtml(af)}</div><div class="lang-block"><h3>English</h3>${mdToHtml(en)}</div>`;
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>${body}</body></html>`;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
-  res.send(htmlForAdminResponse(html, imagePath));
+  res.send(htmlForAdminResponse(html, imagePath, musicPath));
 });
 
 app.post("/api/poems", requireAuth, async (req, res) => {

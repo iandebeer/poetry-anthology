@@ -145,7 +145,7 @@ async function main() {
     let html = '<div class="poem-chapter">';
 
     const imagePath = poem.config.image;
-    syncPoemMediaToPoemDir(poemDir, imagePath);
+    syncPoemMediaToPoemDir(poemDir, imagePath, poem.config.music);
     const bundledAbs = bundledPoemImagePath(poemDir, imagePath);
     const hasImage = Boolean(bundledAbs && existsSync(bundledAbs));
 
