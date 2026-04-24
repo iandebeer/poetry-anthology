@@ -9,6 +9,6 @@ en spikkels lig wat wat in dou druppels blink,
 net ekself is hier oorbodig   
 wat ook al ek van myself wil dink;    
   
-neti atma - ek is nie dit, ek is nie dat 
+neti neti atma - ek is nie dit, ek is nie dat 
 niks om vas te hou - niks om saam te vat
   
