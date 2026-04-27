@@ -11,7 +11,7 @@ Die verloop van die lewe het egter 'n nuwe wending geneem toe my loopbaan en har
   
 My nuwe lewe, op Stellenbosch, Pringlebaai en Bathurst (Oos Kaap), is toegewy aan gedigte skryf, meditasie, filosofie, musiek en - soos my kragte dit toelaat - wandel in die natuur. O, en moenie vergeet nie - kos maak en lekker eet.  
 
-Ek vind 'n groot rykdom van non-dualistiese praksis in die skrywe van Meister Eckhart, DT Suzuki, Thich Nhat Hahn, Lao Tzu, Thomas Merton en andere wat die boodskap/dharma van Jesus Christus en Buddha in my lewe van toepassing.  
+Ek vind 'n groot rykdom van non-dualistiese praksis in die skrywe van Meister Eckhart, DT Suzuki, Thich Nhat Hahn, Lao Tzu, Thomas Merton en andere wat die boodskap/dharma van Jesus Christus en Buddha in my lewe van toepassing maak.  
     
 Ek en vroulief Analda, my rots en steunpilaar deur baie moeilike tye, is só bevoorreg om baie tyd met ons kinders en kleinkinders te spandeer. My hart loop oor van dankbaarheid vir dit wat ís, wat was, en sal wees.  
   
