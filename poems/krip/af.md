@@ -1,0 +1,11 @@
+# ou man by die krip
+
+die vervlakste bier druk erg hier op my blaas  
+en ek ken myself, ek sal moet haas;  
+die tou is lank - tot by die deur
+maar vasberade het ek tot voor gebeur;  
+sukkel, sukkel neem ek myself ter hand
+en mik na die stroompie netso oor die rand; 
+om my gooi die manne dat die skuim so spat
+ek "squeeze a kidney" en pis my skoene nat 
+
