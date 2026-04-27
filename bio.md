@@ -10,6 +10,8 @@ Ek dink God het uit berge uitgehardloop toe hy in daardie geweste gekom het. Hy 
 Die verloop van die lewe het egter 'n nuwe wending geneem toe my loopbaan en hardloops-plesier oornag beëindig is deur 'n outo-immuun toestand wat my vir 5 maande in die hospitaal laat beland het. In die na-gevolge en herstel-periode is my lewe radikaal verander.  
   
 My nuwe lewe, op Stellenbosch, Pringlebaai en Bathurst (Oos Kaap), is toegewy aan gedigte skryf, meditasie, filosofie, musiek en - soos my kragte dit toelaat - wandel in die natuur. O, en moenie vergeet nie - kos maak en lekker eet.  
+
+Ek vind 'n groot rykdom van non-dualistiese praksis in die skrywe van Meister Eckhart, DT Suzuki, Thich Nhat Hahn, Lao Tzu, Thomas Merton en andere wat die boodskap/dharma van Jesus Christus en Buddha in my lewe van toepassing.  
     
 Ek en vroulief Analda, my rots en steunpilaar deur baie moeilike tye, is só bevoorreg om baie tyd met ons kinders en kleinkinders te spandeer. My hart loop oor van dankbaarheid vir dit wat ís, wat was, en sal wees.  
   
@@ -27,7 +29,9 @@ My years in Stellenbosch were deeply enriched by friendships forged with fellow 
 
 The course of life took a new turn, however, when my career and love of running were ended overnight by an autoimmune condition that kept me in hospital for five months. In the aftermath and recovery my life changed radically.
 
-My new life, in Stellenbosch, Pringle Bay and Bathurst (Eastern Cape), is given to writing poetry, meditation, philosophy, music and — as my strength allows — hiking in nature. Oh, and not to forget — cooking and enjoying good food.
+My new life, in Stellenbosch, Pringle Bay and Bathurst (Eastern Cape), is given to writing poetry, meditation, philosophy, music and — as my strength allows — hiking in nature. Oh, and not to forget — cooking and enjoying good food.  
+
+I find great enrichment for non-dualistic praxis in the writings of Meister Eckhart, DT Suzuki, Thich Nhat Hahn, Lao Tzu, Thomas Merton and others that makes the message/dharma of Jesus Christ and Buddha applicable in my life.
 
 My dear wife Analda, my rock and pillar through many hard times, and I are blessed to spend much time with our children and grandchildren. My heart overflows with gratitude for what is, what was, and what will be. 
 
