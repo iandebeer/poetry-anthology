@@ -1,0 +1,14 @@
+# Jaarringe  (vir Analda - 17 Oktober 1995)
+
+maande,  
+     seisoene,  
+           jare...  
+vergestalt in konsentriese sirkels  
+rimpelings in ruimte-tyd  
+wat uitkring uit die Self  
+  
+so weerklink "Ek Is"  
+      uit wat is  
+en vorm in aar en grein,  
+      in letsel en knoets
+wat moet wees  
