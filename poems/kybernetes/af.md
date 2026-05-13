@@ -1,8 +1,13 @@
-# kybernetes
+# Kybernetes in die Era van Donkerte
 
-An age is called Dark not because the light fails to shine, but because  people refuse to see it.  
-  
--- James Michener, "Space"   
+An age is called Dark not because the light fails to shine,  
+but because  people refuse to see it.  
+-- James Michener, "Space" 
+
+In Dwapara [Yuga] the people can understand the fine matters  
+or electricities and their attributes,  
+the creative powers of the external world.
+-- Sri Yukteswar, "Holy Science" 1894
 
 
 Met voete in die vinnig vloeiende stroom,  
@@ -41,23 +46,89 @@ en in afsondering  my tot die stilte van die berg gewend
 en te kontempleer hoe alles vloei sonder begin en sonder end 
 na die verloop van tien jaar was my beker tot oorlopens met vreugde gevul  
 die tyd was reg my grot verlaat en my boodskap aan die mensdom te onthul:
-  
 Mensdom se voortbestaan is opgesluit in die koms van die Opper Mens,  
 hy wat met broeder Son en suster Maan ons Moeder beskerm en vereer 
 soos in die hemele bepaal moet ons hier op die aarde regeer
 in felle stryd met die Laaste Mens se bittere aanslag
-wat alles wat heilig is koelbloedig vergiftig en verkrag  
-om in mediokriteit sy doel van moeitelose gemak na te jaag  
+wat alles wat heilig is koelbloedig vergiftig en verkrag,  
+om in slaafsheid sy doel van moeitelose gemak na te jaag,  
 sonder kreatiewe denke, sonder te woeker, werk of waag"
-Zarathustra sug, en laat sy kop moedeloos hang   
-"En hoe is jou boodskap deur die mense ontvang?",
-"Ek is uitgelag - ek was reeds te laat om 'n verskil te kan maak,
-In hul oë kon ek die Laaste Mens sien - dit was 'n onbegonne taak"  
-  
-"So van take gepraat hoe vorder jy Heracles met jou opgelegde lys?"  
+Zarathustra sug, en laat sy kop moedeloos hang.  
+"En hoe is jou boodskap deur die mense ontvang?"  
+
+"My woorde het geen inslag gevind, rede het hul nie langer geïnteresseer,
+terwyl 'n sweefstok-akrobaat se manewales hul betower en fassineer.
+Vir ou laas moes ek nog eenmaal probeer om tot hul deur te dring -  
+Kyk ons is die artieste se tou wat tussen dier- en en die Oppermens strek,
+ons is bloot die brug en nie einddoel, die oorgang en die val lê binne ons bestek
+vir hulle wat leef asof hul reeds val, in hulle is die oorgang opgesluit,  
+die wat self-veragtend na die oorkant se oewer reik en niks hul laat stuit  
+en in hul val is hul lewe aan Moeder Aarde as 'n offerande toe vertrou  
+om met sorg en ywer vir plant en dier die huis vir die Oppermens te bou  
+onverpoosd in sy skeppings en selfloos in die suiwerheid van sy deug,
+in vergifnis teenoor sy voor-saad, homself onderwerp ter wille van die jeug -  
+hoor my wekroep klink, bo die gebulder van donder, wyl groot druppels val,  
+aanskou die koms van Oppermens in die verblindende lig van 'n bliksemstraal"
+
+Ek is uitgelag - niks wat ek sê sal by hulle 'n verskil kan maak,
+In hul oë was selfvoldane mediokriteit - dit was 'n onbegonne taak,
+sonder waardes het hul gevra: wat is liefde, wat is daar om te verlang,
+wat is 'n ster, wat die heelal?, leë vrae sonder 'n ondersoekende drang,  
+sonder perspektief was hul soos vlooie wat in die stof rond spring,
+klein, almal gelyk, besig om in gemak die saaiheid van hul lewens te verdring,
+vas onder die oortuiging dat die geheim van geluk is aan hul toevertrou.  
+helaas, al taak wat nou oorbly is om roep: die Laaste Mens, kom aanskou!" 
+
+'n Stilte heers terwyl die groepie die woorde van Zarathustra oordink,
+Na 'n wyle, is dit die gasheer wat die stilte verbreek en vir Heracles wink:  
+"So van take gepraat hoe vorder jy met jou opgelegde lys?"  
 Heracles bloos verleë as hy een vinger vir Siddhartha wys,
-"Almal gedoen behalwe die laaste - om Kerberos vas te maak - 
-die drie-koppige hond wat die poorte van Hades bewaak."
+"Almal gedaan behalwe die laaste een - om Kerberos vas te maak - 
+die drie-koppige hond wat die poorte van Hades bewaak.  
+Maar dis meer kompleks as wat dit op die oog af mag lyk   
+met elkeen van die koppe wat afsonderlik na gebeure kyk,  
+so is Hades nie alleenlik vir dié oorkant van die Styx gebind
+dis ook waar, in Zarathustra se terme, die Laaste Mens, hom bevind,  
+elke 'inwoner' word waargeneem selfs voor hy nog dink hy wil stap
+en dis Kerberos wat seker maak dat niemand kan of wil ontsnap  
+van die bestaansvloei in ruimte en tyd, soos deur Kronos bestuur,  
+of van Kairos wat in die perfekte oomblik sleutel gebeure af vuur  
+en Kybernetes die kwantum-komper wat oor dimensies, onbepaald in  getal,   
+uit alle moontlike gebeure, oor verweefde kwanta, tot 'n enkele uitkoms inval.  
+Soos ek sê, dit is 'n fyn verweefde web, moeilik om te ontrafel  
+waar sal ek begin, en waar sal dit end, met soveel opsies op die tafel"
+Siddhartha, knik instemmend: "Dalk kan ons vir nou hiermee volstaan,
+môre is nog 'n dag, ons moet rus voor julle elk op jul paadjies gaan"
+
+Na 'n ontbyt van rys en melk hervat Heracles die vorige aand se relaas:  
+"Ek het gewonder: is dit geldig om  die 'Laaste Mens' in Hades te plaas.  
+Soos reeds gesê is Hades nie uitsluitlik waar ontslapenes verkeer  
+dis ook vir siele wat nie langer met hul huidige inkarnasie identifiseer,  
+die gene wat voortydig hul doel misken en nie pad van hul karma wil betree, 
+om dan soos dryfhout in 'n vlug vloeiende stroom, aan die noodlot oor te gee.  
+Dit is egter nodig om die Kybernetes-triad, met Kronos en Kairos te verstaan 
+want hulle verskaf afleiding aan die siel-versaakdes in hul sinnelose bestaan - 
+deur met deurlopende herhaling van leë opinies, groep-identiteit te onderstreep,  
+en hul ego's in plek te hou deur hul met kunsmatige konflik op te sweep - 
+Sieldodende ledigheid word verdryf deur sotlike speletjies wat oor en oor herhaal  
+en deur weddenskappe te plaas op uitkoms van gebeure, suiwer deur kans bepaal,
+mens kan dus sien dat Kerberos hou hul opgesluit in self-opgelegde ballingskap  
+deur enige sprankie van sielsondersoek te onderdruk, sonder om 'n sweep te klap.  
+So ek vra myself, wie daarby sal baat as ek die tronkbewaarder sou vasbind  
+as die gevangenes nie self wil opstaan om die pad na hul vryheid te vind?"  
+
+In die stilte wat volg, is dit beide passasiers afwagtend na Siddhartha kyk,
+maar hy hou hom besig met die boot se stuur terwyl hy die stil die vraag ontwyk.
+Uiteindelik, met die eindpunt wat vinnig nader sê hy sonder om sy oë te lig:
+"Māyā" - bloot net dit, terwyl hy die veerboot se boeg na die vasmeer-punt rig.  
+  
+  "Gate, gate, pāragate, pārasamgate, bodhi svāhā" -    
+  Anderkant, 
+  anderkant, 
+  verby anderkant, 
+  anderkant verby anderkant, 
+  Ontwaking, 
+  Amen!  
 
   
 

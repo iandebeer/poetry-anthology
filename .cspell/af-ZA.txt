@@ -53380,6 +53380,7 @@ bestaansorg
 bestaansrede
 bestaansreg
 bestaansruimte
+bestaansvloei
 bestaanswyse
 bestallingsessie
 bestand
@@ -158361,6 +158362,7 @@ kainsteken
 kairien
 Kaïro
 kairolien
+Kairos
 Kaiser-Guttmann-kriterium
 Kaiser-Meyer-Olkin-steekproefnemingstoereikendheidsmaatstaf
 kajafas
@@ -176518,6 +176520,7 @@ kwanselry
 kwansuis
 kwansuise
 kwant
+kwanta
 kwantaalrespons
 kwantaalresponsie
 kwantasoom
@@ -176974,6 +176977,7 @@ kwytskeld
 kwytskelding
 kwyttempo
 Kyalami
+Kybernetes
 kyf
 kyfagtig
 kyfagtige

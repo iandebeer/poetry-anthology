@@ -176,7 +176,7 @@
 
       <div class="card">
         <h2>Poems</h2>
-        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem;">Click a title to open its HTML in a new tab. Use the checkboxes for Convert, Export HTML bundle, and Export Kindle EPUB. The <strong>All / Afrikaans / English</strong> tabs also control the HTML bundle: with Afrikaans or English selected, each exported folder contains only that language’s HTML (poems missing that language are skipped).</p>
+        <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 0.75rem;">Click a title to open its HTML in a new tab. Use the checkboxes for <strong>Shrink images</strong>, Convert, Export HTML bundle, and Export Kindle EPUB. The <strong>All / Afrikaans / English</strong> tabs also control the HTML bundle: with Afrikaans or English selected, each exported folder contains only that language’s HTML (poems missing that language are skipped).</p>
         <div class="actions" style="margin-bottom: 1rem;">
           <button type="button" id="btn-select-all-poems" class="secondary">Select all</button>
           <button type="button" id="btn-select-none-poems" class="secondary">Select none</button>
@@ -205,12 +205,14 @@
         <h2>Operations</h2>
         <p style="color: var(--muted); font-size: 0.9rem; margin-bottom: 1rem;">
           Translate skips poems that already have en.md. Convert uses af.md / af-translate.md and en.md. Import temp reads <code style="font-size:0.85em">temp/*.png</code> with OpenAI vision.
+          <strong>Shrink images</strong> (selected poems) reduces PNG/JPEG/WebP/GIF under <code style="font-size:0.85em">public/media/poems/&lt;id&gt;/</code> to strictly below 2&nbsp;MiB and may resize pixels — run <strong>Convert</strong> afterward so <code style="font-size:0.85em">poems/&lt;id&gt;/media/</code> picks up the new files. CLI: <code style="font-size:0.85em">npm run shrink-poem-media</code> with optional <code style="font-size:0.85em">POEM_IDS=id1,id2</code>.
         </p>
         <div class="actions">
           <button type="button" id="btn-reload-poems" class="procedure" title="Refetches the poem list for this page from the server. Does not change files on disk.">Reload poems</button>
           <button type="button" id="btn-import-temp" class="procedure" title="Reads temp/*.png with OpenAI vision; creates poems/&lt;stem&gt;/af.md and config.json; regenerates src/poemsData.json. Requires OPENAI_API_KEY; can take a while.">Import from temp (PNG → af.md)</button>
           <button type="button" id="btn-translate" class="procedure" title="For poems that do not have en.md: generates English as en.generated.md.">Translate all</button>
           <button type="button" id="btn-generate" class="procedure" title="Regenerates src/poemsData.json from the poems/ tree (generatePoemsData).">Generate poems data</button>
+          <button type="button" id="btn-shrink-media" class="procedure" title="Selected poems: raster images in public/media/poems/&lt;id&gt;/ → strictly below 2 MiB (may resize). Then run Convert.">Shrink images (&lt; 2 MiB)</button>
           <button type="button" id="btn-convert" class="procedure" title="Selected poems: markdown → .html and .txt, plus poems/&lt;id&gt;/media/.">Convert to HTML/text</button>
           <button type="button" id="btn-export-html" class="procedure" title="Selected poems: writes export/1-index.html (list), per-poem HTML, and media/. Follows the All / Afrikaans / English tab.">Export HTML bundle</button>
           <a href="/export/" target="_blank" rel="noopener" class="procedure" style="display:inline-flex;align-items:center;text-decoration:none;padding:0.6rem 0.9rem;border-radius:6px;font:inherit">Open HTML bundle</a>
@@ -407,7 +409,7 @@
       }
     };
 
-    const OPS_NEED_SELECTION = ["/convert-poems", "/export-html", "/export-kindle"];
+    const OPS_NEED_SELECTION = ["/shrink-poem-media", "/convert-poems", "/export-html", "/export-kindle"];
 
     async function runOp(name, path, bodyExtra) {
       const out = document.getElementById("op-output");
@@ -485,6 +487,7 @@
     document.getElementById("btn-import-temp").onclick = () => runOp("Import temp poems", "/import-temp-poems");
     document.getElementById("btn-translate").onclick = () => runOp("Translate", "/translate");
     document.getElementById("btn-generate").onclick = () => runOp("Generate poems", "/generate-poems");
+    document.getElementById("btn-shrink-media").onclick = () => runOp("Shrink images", "/shrink-poem-media");
     document.getElementById("btn-convert").onclick = () => runOp("Convert", "/convert-poems");
     document.getElementById("btn-af-dict").onclick = () => runOp("Afrikaans dict", "/generate-af-dict");
     document.getElementById("btn-export-kindle").onclick = () => runOp("Export Kindle", "/export-kindle", { lang: poemLang === "all" ? "both" : poemLang });

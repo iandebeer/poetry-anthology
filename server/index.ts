@@ -337,6 +337,12 @@ app.post("/api/convert-poems", requireAuth, async (req, res) => {
   if (v === false) return;
   await runScript("scripts/convertPoemsToHtmlAndText.ts", res, buildPoemIdsEnv(v.ids));
 });
+/** Selected poems: shrink images in public/media/poems/<id>/ to strictly below 2 MiB (may resize). */
+app.post("/api/shrink-poem-media", requireAuth, async (req, res) => {
+  const v = validatePoemSelection(req, res);
+  if (v === false) return;
+  await runScript("scripts/shrinkPoemMedia.ts", res, buildPoemIdsEnv(v.ids));
+});
 app.post("/api/generate-af-dict", requireAuth, (req, res) => runScript("scripts/generateAfrikaansDictionary.ts", res));
 app.post("/api/export-kindle", requireAuth, async (req, res) => {
   const lang = (req.body?.lang as string) || "both";

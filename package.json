@@ -19,6 +19,7 @@
     "export-html": "npx tsx scripts/exportHtml.ts",
     "pages:build": "npm run convert-poems && npm run export-html",
     "optimize-pngs": "npx tsx scripts/optimizePoemPngs.ts",
+    "shrink-poem-media": "npx tsx scripts/shrinkPoemMedia.ts",
     "crop-temp-images": "python3 scripts/cropTempImages.py",
     "import-temp-poems": "npx tsx scripts/importTempPoems.ts"
   },

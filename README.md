@@ -36,6 +36,7 @@ The admin server loads `.env` via [dotenv](https://github.com/motdotla/dotenv). 
 | `npm run translate` | Generate/update English from Afrikaans (needs `OPENAI_API_KEY`) |
 | `npm run convert-poems` | Convert `af.md` / `en.md` to `.html` & `.txt`, sync backgrounds into `poems/<id>/media/` |
 | `npm run optimize-pngs` | Shrink PNGs under `public/media/poems/` **without changing width/height** (default: palette + quality; `--lossless` for zlib-only). Then run **`convert-poems`** to refresh `poems/<id>/media/` |
+| `npm run shrink-poem-media` | Raster images (PNG/JPEG/WebP/single-frame GIF) under `public/media/poems/<id>/` → **strictly below 2&nbsp;MiB** per file (may **resize** pixels). Optional **`POEM_IDS=id1,id2`** for selected poems only (admin **Shrink images** passes this). Then run **`convert-poems`** with the same scope so `poems/<id>/media/` matches |
 | `npm run add-poem` | Add a poem folder: `npm run add-poem <slug>` (optional `--translate`) |
 | `npm run generate-poems` | Regenerate `src/poemsData.json` from `poems/` |
 | `npm run generate-af-dict` | Generate Afrikaans dictionary asset used by the project |
