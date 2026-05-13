@@ -104,7 +104,7 @@ Na 'n ontbyt van rys en melk hervat Heracles die vorige aand se relaas:
 "Ek het gewonder: is dit geldig om  die 'Laaste Mens' in Hades te plaas.  
 Soos reeds gesê is Hades nie uitsluitlik waar ontslapenes verkeer  
 dis ook vir siele wat nie langer met hul huidige inkarnasie identifiseer,  
-diegene wat voortydig hul doel misken en nie pad van hul karma wil betree, 
+diegene wat voortydig hul doel misken en nie die pad van hul karma wil betree, 
 om dan soos dryfhout in 'n vlug vloeiende stroom, aan die noodlot oor te gee.  
 Dit is egter nodig om die Kybernetes-triad, met Kronos en Kairos te verstaan 
 want hulle verskaf afleiding aan die siel-versaakdes in hul sinnelose bestaan - 
@@ -113,7 +113,7 @@ en hul ego's in plek te hou deur hul met kunsmatige konflik op te sweep -
 Sieldodende ledigheid word verdryf deur sotlike speletjies wat oor en oor herhaal  
 en deur weddenskappe te plaas op uitkoms van gebeure, suiwer deur kans bepaal,
 mens kan dus sien dat Kerberos hul opgesluit hou in self-opgelegde ballingskap  
-deur enige sprankie van sielsondersoek te onderdruk, sonder om 'n sweep te klap.  
+deur enige sprankie van sielsondersoek te onderdruk, sonder om 'n vinger te klap.  
 So ek vra myself, wie daarby sal baat as ek die tronkbewaarder sou vasbind  
 as die gevangenes nie self wil opstaan om die pad na hul vryheid te vind?"  
 
