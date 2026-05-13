@@ -11,20 +11,20 @@ the creative powers of the external world.
 
 
 Met voete in die vinnig vloeiende stroom,  
-verlore in die meimering van 'n dagdroom 
+verlore in die meimering van 'n dagdroom, 
 sit Zarathustra, wyl hy op die veerboot wag  
-en merk nie die persoon wat hom met aandag betrag 
+en merk nie die persoon wat hom met aandag betrag; 
 "Mens kan nie twee keer dieselfde rivier betree",  
 waag die jongeling om sy mening te gee,  
 Zarathustra glimlag, "Wyse woorde vir een nog so jonk"
 veral een wat so met sy spiere staan en pronk,
-dink hy snedig, maar kon homself betyds keer.
+dink hy sarkasties, maar kon homself betyds keer.
 "Siddhartha die wyse veerboot-man hy het my dit geleer,  
 elke oorgang met hom bied vir my 'n lewensles, 
 maar hoe ongeskik van my, ek heet Heracles." 
 "Aangename kennis, my naam is Zarathustra,  
 ek is nie bekend met jou bootsman Siddartha,  
-wel van hom gehoor en sal graag binnekort ontmoet
+wel van hom gehoor en sal graag binnekort ontmoet;
 hy is nie meer te ver ek sien die boot se snoet"  
 In stilswye wag hul terwyl die veerboot nader,  
 omring deur oerwoud-geluide en die ruising van die water.  
@@ -42,33 +42,33 @@ Later, na 'n eenvoudige ete van rys, kaas en dahl
 verneem Siddhartha na Zarathustra se lewensverhaal.  
 Na 'n wyle stilte begin Zarathustra: "Daar's min, maar tog baie om te sê,
 op 30 jarige ouderdom het ek my huis en gemeenskap agter my laat lê
-en in afsondering my tot die stilte van die berg gewend  
-om te kontempleer hoe alles vloei sonder begin en sonder end 
-na die verloop van tien jaar was my beker tot oorlopens met vreugde gevul  
-die tyd was reg om my grot te verlaat en my boodskap aan die mensdom te onthul:
+en in afsondering my tot die stilte van die berg gewend,  
+om te kontempleer hoe alles vloei - sonder begin en sonder end; 
+na die verloop van tien jaar was my beker tot oorlopens met vreugde gevul -   
+die tyd was reg om my grot te verlaat en my boodskap aan die mense onthul:
 Mensdom se voortbestaan is opgesluit in die koms van die Opper Mens,  
-hy wat met broeder Son en suster Maan ons Moeder beskerm en vereer 
-soos in die hemele bepaal moet ons hier op die aarde regeer
-in felle stryd met die Laaste Mens se bittere aanslag
+hy, wat met broeder Son en suster Maan, ons Moeder beskerm en vereer; 
+soos in die hemele bepaal moet ons hier op die aarde regeer,
+in felle stryd met die Laaste Mens se bittere aanslag,
 wat alles wat heilig is koelbloedig vergiftig en verkrag,  
 om in slaafsheid sy doel van moeitelose gemak na te jaag,  
-sonder kreatiewe denke, sonder te woeker, werk of waag"
+sonder kreatiewe denke, sonder te woeker, werk of waag.",
 Zarathustra sug, en laat sy kop moedeloos hang.  
 "En hoe is jou boodskap deur die mense ontvang?"  
 
 "My woorde het geen inslag gevind, rede het hul nie langer geïnteresseer,
 terwyl 'n sweefstok-akrobaat se manewales hul betower en fassineer.
 Vir ou laas moes ek nog eenmaal probeer om tot hul deur te dring -  
-Kyk ons is die artieste se tou wat tussen dier- en die Oppermens strek,
-ons is bloot die brug en nie einddoel, die oorgang en die val lê binne ons bestek
+Kyk, ons is die artieste se tou wat tussen dier- en die Oppermens strek,
+ons is bloot die brug en nie einddoel, beide oorgang en val lê binne ons bestek - 
 vir hulle wat leef asof hul reeds val, in hulle is die oorgang opgesluit,  
 die wat self-veragtend na die oorkant se oewer reik en niks hul laat stuit  
 en in hul val is hul lewe aan Moeder Aarde as 'n offerande toevertrou  
-om met sorg en ywer vir plant en dier die huis vir die Oppermens te bou  
+om met sorg en ywer vir plant en dier 'n tuiste vir die Oppermens te bou  
 onverpoosd in sy skeppings en selfloos in die suiwerheid van sy deug,
-in vergifnis teenoor sy voor-saad, homself onderwerp ter wille van die jeug -  
-hoor my wekroep klink, bo die gebulder van donder, wyl groot druppels val,  
-aanskou die koms van Oppermens in die verblindende lig van 'n bliksemstraal"
+in vergifnis teenoor sy voor-saad, homself onderwerp ter wille van die jeug.  
+Hoor my wekroep, bo die gebulder van donder, wyl groot druppels val,  
+aanskou die Oppermens, in die verblindende lig van 'n bliksemstraal"
 
 Ek is uitgelag - niks wat ek sê sal by hulle 'n verskil kan maak,
 In hul oë was selfvoldane mediokriteit - dit was 'n onbegonne taak,
