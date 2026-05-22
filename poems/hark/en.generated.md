@@ -1,0 +1,12 @@
+# Hark
+
+I lay down the rake, askew and rare,  
+for there’s nothing left to rearrange,  
+or wish for something elsewhere—  
+with the scent of damp earth and compost trails,  
+and specks of light glistening in the dew,  
+only I remain here—superfluous,  
+whatever I think I am feels askew;  
+  
+neti neti atma— I am not this, I am not that,  
+nothing to cling to—nothing to take back.  

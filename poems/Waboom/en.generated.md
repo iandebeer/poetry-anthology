@@ -1,36 +1,38 @@
 # Ode to a Waboom
 
-If I find a tree,  
+If I were a tree,  
 somewhere in a desert,  
-or within a crack in the rocks,  
-that dares to grow,  
+or in a rocky cleft  
+finding life,  
 
-my thoughts take flight  
-to the shepherd Moses,  
-and the thornbush fire  
-that eternally glows;  
+I would flee in thought  
+to the shepherd Moses  
+and the burning bush  
+that forever glows;  
 
-and as I venture to glance  
-beyond the tree’s mere form,  
-to the inner pulse of life,  
-the Prana — the Qi, in my mind’s eye is adorned:  
+and should I dare to gaze  
+past the physical form  
+of the tree,  
+and gather the life force within,  
+the Prana – the Qi, in my mind's eye arranged:  
 
-to behold the unquenchable flame of being—  
-that fervently through the ages  
-withstands the harshest climates,  
-with gnarled roots firmly entwined—  
+to behold the unquenchable fire of being—  
+that ardently through ages has thrived,  
+with gnarled roots firmly anchored  
+against the callous climate—  
 
-to then, when the season arrives,  
-burst forth again  
-in an expression of pure joy—  
+then, when the season arrives,  
+to burst forth once more  
+in pure expressions of joy—  
 
 to simply be,  
 for no one to see  
-or appreciate,  
-only to cry out: I Am!  
+or to cherish,  
+only to shout:  
+I Am!  
 
-And I, …  
-I must remove my shoes,  
-upon this sacred ground where I may only stand in silence—  
-a stutterer who knows not words,  
-in the presence of that which is eternal.
+And I, ...  
+I must remove the shoes from my feet,  
+on this sacred ground where I may stand in silence—  
+a stammerer who cannot speak,  
+in the presence of what is eternal.  

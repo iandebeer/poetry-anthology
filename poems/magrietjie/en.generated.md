@@ -1,26 +1,26 @@
 # Song for a Daisy
 
-This morning,  
-while a school bell far away rings for break,  
-I laid myself on a meadow,  
-among grasshoppers, merry-go-rounds, and seesaws,  
-on daisies that stretch like early spring fluff,  
-white and pure across the meadow vast,  
-with spots of yellow sorrel blooms  
-that catch your eye in the sunlight—  
-  
-here where little feet and tricycles trample the flowers  
-and old folks stroll with aged dogs on paths,  
-I could breathe in the scent of damp earth and drenched poplar leaves,  
-drawing it deep into my lungs,  
-and in the umbrella mushrooms  
-that break through pine needles,  
-my soul rejoiced—  
-  
+this morning  
+while a school bell rang somewhere in the distance for a brief break,  
+I lay down on a grassy patch  
+among clover leaves, roundabouts, and seesaws,  
+upon daisies that, like early spring cotton,  
+stretched wide and pure across the field,  
+with here and there a splash of yellow sorrel  
+caught in the sunlight to draw your gaze —  
+
+here where tiny feet and push-wheel carts trample the blooms  
+and old folks stroll with ancient dogs on the pathways,  
+I could taste the scent of damp earth and wet poplar leaves  
+deep in my lungs,  
+and in the mushroom umbrellas  
+that peek through pine needles,  
+my soul rejoiced  
+
 as if in a dream, I felt my limbs melt  
-beneath the morning sun and the blue of the sky,  
-letting this old earth softly embrace me,  
-and I knew it was right—  
-like the daisies,  
+under the morning sun and the sky's blue,  
+allowing this old earth to gently wrap around me,  
+and I knew it was right —  
+just like the daisies,  
 I was here yesterday,  
-but now I am gone.
+but now, I am gone.

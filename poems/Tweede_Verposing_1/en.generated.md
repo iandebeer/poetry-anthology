@@ -1,14 +1,13 @@
 # Second Verse Offering (Keurboomstrand)
 
-like self-assured car guards, the seagulls circle,
-persistently drawing near,
-while the last few fishermen roll up their lines once more,
-casting aside untouched bait as alms upon the rounded rock
-that has long been cast in shadows over the dry sand,
-where thousands of footprints from the day await again,
-without any traceable goal or pattern,
-like impressions of fleeting thoughts,
-waiting for the tide to rise,
-to wipe everything clear,
-— until tomorrow, perhaps...
- d.v.
+like self-assured car guards, seagulls circle, boldly drawing near,  
+as the last few anglers reel in their lines, one final cast,  
+and their unused bait is left as alms upon the round rock,  
+which has long since cast shadows over the dry sand,  
+where thousands of footprints from the day again,  
+without any discernible aim or pattern,  
+like imprints of fleeting thoughts,  
+await the coming of high tide,  
+to sweep all clean with dazzling white foam—  
+until tomorrow, perhaps...  
+d.v.

@@ -1,13 +1,14 @@
 # die ongebore ek
 
-die oomblik waarin die eerste mens sy asem teug
-en  laaste mens se asem word soos wind,
-is die selfde oomblik waarin ek
-in vorm en gevoel,
-in waarneming en  projeksie
-as bewustheid manifesteer
+die oomblik waarin die eerste mens sy asem teug  
+en die laaste mens se asem weer word soos wind,  
+is die selfde oomblik waarin ek,  
+in vorm en gevoel,  
+in waarneming en projeksie  
+as bewustheid manifesteer  
 
-en tussen my in- en uitasem
-— leeg van self
-weer tot niks kan  keer.
+en tussen my in- en uitasem  
+— leeg van self  
+weer tot niks kan  keer.  
+
   

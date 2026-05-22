@@ -1,0 +1,21 @@
+# Confession of a Foot Soldier
+
+Strange was the peace of Christmas Day;  
+strange, with the sound of “Silent Night”  
+upon lips that usually curse and scold  
+when bombs erupt in hell’s fiery hold.
+
+But come the dawn, we attacked once more—  
+shattering peace with gunfire’s roar;  
+the calm and repose of twenty-four hours  
+swiftly consumed by blood and by powers.
+
+Everywhere was hate and envy ran high,  
+the scent of burning chalk filled the sky,  
+with a primal urge raging deep within,  
+my mind dulled, my body succumbed to its sin:
+
+Suddenly from a hut a child did charge,  
+but he did not go far, my sight was large;  
+and as his body collapsed in the dust,  
+from his small hands fell a soccer ball’s thrust.

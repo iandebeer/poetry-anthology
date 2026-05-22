@@ -1,19 +1,19 @@
 *Sonnet to a Wild Olive*
 
-I bow my head in deep humility  
-To the aged fallen Olive tree,  
-Who, despite winds and storms and fiery fate,  
-Stands steadfast, a marvel of nature’s decree.  
+I nod my head in deep gratitude  
+to the aged olive tree, bent and worn,  
+who, despite the winds, the storms, and the fire,  
+has found its way through nature’s whims forlorn.  
 
-With roots that cling to rugged rocks so tight,  
-He’s granted still a chance for growth anew;  
-From my perspective, framed in prayerful light,  
-I see him kneeling, seeking skies of blue.  
+With roots that cling to rocks as if in prayer,  
+it stands, defying further loss or fate,  
+and from this vantage, I behold it there,  
+kneeling now, in humble reverence, straight.  
 
-I reach out, to touch his weathered bark,  
-In silence hoping he might heed my call,  
-And ask that together we might embark,  
-As Jesus once stirred his disciples all.  
+I reach out to touch its rugged bark,  
+to draw its gaze, to bring it close to me,  
+and ask it to keep watch against the dark,  
+as Jesus once roused his company.  
 
-With humble hearts for what awaits ahead,  
-“Thy will be done, O Father”—unafraid.  
+And in this meekness, for what lies ahead,  
+“Let Your will be done, oh Father,” I said.

@@ -1,14 +1,14 @@
-# Late Summer's Bounty
+# Late Summer's Fruits
 
-Gently, they unfolded my chest,  
-To peer closely at my condition, no jest.  
-  
-Amidst atrophied muscles, frail and thin,  
-A layer of old fat, where shadows begin—  
-The organs, like late-season fruits,  
-Cling only by grace, as time slowly roots;  
-Tormented by fruit flies, a wretched plight,  
-This old shell of mine is a sorrowful sight.  
-  
-So, what do you say—can he still be made sweet,  
-Or shall we toss him to compost, admit defeat?
+Gently they unfolded my chest,  
+to peer within, to gauge my rest.  
+
+Amid withered muscle's feeble trace,  
+a thin veil of fat in sad embrace –  
+the organs lie like late-season fruit,  
+clinging to life by grace, resolute;  
+plagued by fruit flies, a sorry sight,  
+this old shell a testament to plight.  
+
+So tell me now – is he fit for jam,  
+or shall we toss him on the compost, damned?  

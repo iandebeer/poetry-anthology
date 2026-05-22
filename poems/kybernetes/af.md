@@ -45,14 +45,14 @@ op 30 jarige ouderdom het ek my huis en gemeenskap agter my laat lê
 en in afsondering my tot die stilte van die berg gewend,  
 om te kontempleer hoe alles vloei - sonder begin en sonder end; 
 na die verloop van tien jaar was my beker tot oorlopens met vreugde gevul -   
-die tyd was reg om my grot te verlaat en my boodskap aan die mense onthul:
+die tyd was reg om my grot te verlaat en my boodskap aan die mense te onthul:
 Mensdom se voortbestaan is opgesluit in die koms van die Opper Mens,  
 hy, wat met broeder Son en suster Maan, ons Moeder beskerm en vereer; 
 soos in die hemele bepaal moet ons hier op die aarde regeer,
 in felle stryd met die Laaste Mens se bittere aanslag,
 wat alles wat heilig is koelbloedig vergiftig en verkrag,  
 om in slaafsheid sy doel van moeitelose gemak na te jaag,  
-sonder kreatiewe denke, sonder te woeker, werk of waag.",
+sonder kreatiewe denke, sonder te woeker, werk of waag",
 Zarathustra sug, en laat sy kop moedeloos hang.  
 "En hoe is jou boodskap deur die mense ontvang?"  
 
@@ -70,7 +70,7 @@ in vergifnis teenoor sy voor-saad, homself onderwerp ter wille van die jeug.
 Hoor my wekroep, bo die gebulder van donder, wyl groot druppels val,  
 aanskou die Oppermens, in die verblindende lig van 'n bliksemstraal"
 
-Ek is uitgelag - niks wat ek sê sal by hulle 'n verskil kan maak,
+"Ek is uitgelag - niks wat ek sê sal by hulle 'n verskil kan maak,
 In hul oë was selfvoldane mediokriteit - dit was 'n onbegonne taak,
 sonder waardes het hul gevra: wat is liefde, wat is daar om te verlang,
 wat is 'n ster, wat die heelal?, leë vrae sonder 'n ondersoekende drang,  
@@ -121,6 +121,8 @@ In die stilte wat volg, is dit beide passasiers wat afwagtend na Siddhartha kyk,
 maar hy hou hom besig met die boot se stuur terwyl hy stil die vraag ontwyk.
 Uiteindelik, met die eindpunt wat vinnig nader sê hy sonder om sy oë te lig:
 "Māyā" - bloot net dit, terwyl hy die veerboot se boeg na die vasmeer-punt rig.  
+  
+  -------------------------------------------------------------------------
   
   "Gate, gate, pāragate, pārasamgate, bodhi svāhā" -    
   Anderkant, 

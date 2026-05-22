@@ -1,0 +1,14 @@
+# Year Rings (for Analda - October 17, 1995)
+
+Months,  
+     seasons,  
+           years...  
+Molded in concentric circles,  
+Ripples in space-time  
+That radiate from the Self.  
+  
+So reverberates "I Am"  
+      from what is  
+And shapes in vein and grain,  
+      in scars and knots  
+That must be.  

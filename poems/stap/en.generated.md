@@ -1,17 +1,17 @@
-# To Be Able to Walk
+# To Be Able to Walk  
 
-crack, crunch, snap, and pop —  
+cracks, snaps, crisp and clear—  
 dusty boots  
-and socks tangled in grass,  
+and socks with flecks of grass,  
 
-with the measure of footfall  
+with a measured pace of footfall  
 and rhythmic breaths,  
 the tameness of the body  
-that fills you with deep delight;  
+that brings you profound joy;  
 
-for wherever I once found myself  
-I am now here, as if preordained.  
+for from wherever I may have been,  
+I stand here now, as if it were destined.  
 
-there ahead, guiding markers hint at where the path may lead,  
+there ahead, markers show where the path still may lead,  
 but here, now, my soul soars like an eagle,  
-on winds — free from beaten tracks.
+on winds—free from well-trodden ways.  

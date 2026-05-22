@@ -1,0 +1,12 @@
+# the unborn I
+
+the moment in which the first man drew hia breath  
+and mankind final exhale becomes just a soft blowing wind,  
+is the very moment I,  
+in shape and feeling,  
+in perception and projection  
+manifest as awareness.  
+
+and between my in and out breath  
+— empty of self,  
+I return to nothingness once more.  

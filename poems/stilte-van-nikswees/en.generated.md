@@ -1,17 +1,17 @@
 # Silence of Nothingness
 
-I live,  
+I exist,  
 adrift somewhere on a Cartesian plane -  
 an imagined point,  
-upon a projection  
+on a projection  
 of God’s infinite universe.  
-
+  
 Here - at times the martyr,  
 at times the fool,  
-I flit momentarily,  
+I flicker briefly,  
 seemingly helplessly lost,  
-in the silence of nothingness—  
+in the silence of nothingness -  
 the nothingness of now.  
-
+  
 Yet I can know:  
-I am cradled safe in His embrace.
+I am safe, wrapped in His arms.  

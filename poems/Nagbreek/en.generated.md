@@ -1,12 +1,12 @@
-# Dawnbreak (Vanderbijlpark - 1973)
+# Break of Dawn (Vanderbijlpark - 1973)
 
-The sun takes flight before the grey griffin,  
-leaving a trail of blood in filthy vermilion  
-that creeps forth from the shadows of night.  
-
-And over the yellowing fields a dreary grey grows,  
-until only the red-tinged clouds’ tips  
-reveal the final moments of daybreak.  
-
-And the greenest tree of the day stands still and shy,  
-awaiting the eastern glow, dressed in a cloak of light.  
+The sun takes flight from the gray griffin's grasp,  
+leaving a trail of blood in soiled vermilion,  
+the night's shadow crawls forth,  
+   
+and over the yellowing fields grows a somber gray,  
+where only the red-tipped clouds  
+reveal the day's last light.  
+   
+And the greenest tree of the day stands still,  
+hushed and waiting for the eastern glow, clothed in lambent.  
