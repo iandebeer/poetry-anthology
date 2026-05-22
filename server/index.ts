@@ -26,6 +26,7 @@ import {
   resolveEnglishMarkdownPath,
 } from "../engine/loadPoems.js";
 import { safePoemDir } from "../engine/safePoemPath.js";
+import { poemMarkdownToHtmlBody } from "../engine/poemMarkdownHtml.js";
 import {
   wrapHtmlWithPoemBackground,
   extractPoemBodyInnerForCombine,
@@ -176,33 +177,7 @@ app.get("/api/poems/:id", requireAuth, (req, res) => {
 });
 
 function mdToHtml(md: string): string {
-  const esc = (s: string) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-  const lines = md.split("\n");
-  const parts: string[] = [];
-  let i = 0;
-  while (i < lines.length && lines[i].trim() === "") i++;
-  if (lines[i]?.trim().startsWith("# ")) {
-    parts.push(`<h1>${esc(lines[i].replace(/^#\s+/, "").trim())}</h1>`);
-    i++;
-  }
-  const stanzas: string[][] = [];
-  let current: string[] = [];
-  for (; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.trim() === "") {
-      if (current.length > 0) {
-        stanzas.push(current);
-        current = [];
-      }
-    } else {
-      current.push(line.trimEnd());
-    }
-  }
-  if (current.length > 0) stanzas.push(current);
-  for (const stanza of stanzas) {
-    parts.push(`<p>${stanza.map((l) => esc(l)).join("<br>\n  ")}</p>`);
-  }
-  return parts.join("\n");
+  return poemMarkdownToHtmlBody(md);
 }
 
 // Use cwd (project root when run via npm) - same as loadPoems

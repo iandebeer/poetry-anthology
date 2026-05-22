@@ -13,65 +13,9 @@ import {
 import { syncPoemBundledAssets } from "../engine/syncPoemBundledMedia.js";
 import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
+import { poemMarkdownToHtmlDocument } from "../engine/poemMarkdownHtml.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
-
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
-function mdToHtml(md: string): string {
-  const lines = md.split("\n");
-  const parts: string[] = [];
-  let i = 0;
-
-  // Skip leading blank lines
-  while (i < lines.length && lines[i].trim() === "") i++;
-
-  // Optional title (# title)
-  if (lines[i]?.trim().startsWith("# ")) {
-    const title = lines[i].replace(/^#\s+/, "").trim();
-    parts.push(`<h1>${escapeHtml(title)}</h1>`);
-    i++;
-  }
-
-  // Stanzas (paragraphs separated by blank lines)
-  const stanzas: string[][] = [];
-  let current: string[] = [];
-
-  for (; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.trim() === "") {
-      if (current.length > 0) {
-        stanzas.push(current);
-        current = [];
-      }
-    } else {
-      current.push(line.trimEnd());
-    }
-  }
-  if (current.length > 0) stanzas.push(current);
-
-  for (const stanza of stanzas) {
-    const inner = stanza.map((l) => escapeHtml(l)).join("<br>\n  ");
-    parts.push(`<p>\n  ${inner}\n</p>`);
-  }
-
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Poem</title>
-</head>
-<body>
-${parts.join("\n\n")}
-</body>
-</html>`;
-}
 
 function mdToText(md: string): string {
   return md
@@ -92,7 +36,7 @@ function convertOneSource(
   const md = readFileSync(mdPath, "utf-8");
   const base = join(dirPath, outBasename);
 
-  const html = mdToHtml(md);
+  const html = poemMarkdownToHtmlDocument(md);
   const htmlPath = base + ".html";
   const needsWrap = Boolean(bundledMediaUrl || bundledAudioUrl);
   const outHtml = needsWrap

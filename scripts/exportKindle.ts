@@ -15,6 +15,7 @@ import {
 } from "../engine/loadPoems.js";
 import { syncPoemMediaToPoemDir, bundledPoemImagePath } from "../engine/syncPoemBundledMedia.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
+import { escapeHtml, poemMarkdownToHtmlBody } from "../engine/poemMarkdownHtml.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const DIST_DIR = join(process.cwd(), "dist");
@@ -24,53 +25,8 @@ function getOutputPath(lang: "both" | "af" | "en"): string {
   return join(DIST_DIR, "Digbundel.epub");
 }
 
-function escapeHtml(s: string): string {
-  return s
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
-}
-
 function mdToHtmlBody(md: string, skipTitle = false): string {
-  let lines = md.split("\n");
-  if (skipTitle) {
-    const firstTitleIdx = lines.findIndex((l) => l.trim().startsWith("# "));
-    if (firstTitleIdx >= 0) lines.splice(firstTitleIdx, 1);
-  }
-  const parts: string[] = [];
-  let i = 0;
-
-  while (i < lines.length && lines[i].trim() === "") i++;
-
-  if (lines[i]?.trim().startsWith("# ") && !skipTitle) {
-    const title = lines[i].replace(/^#\s+/, "").trim();
-    parts.push(`<h2>${escapeHtml(title)}</h2>`);
-    i++;
-  }
-
-  const stanzas: string[][] = [];
-  let current: string[] = [];
-
-  for (; i < lines.length; i++) {
-    const line = lines[i];
-    if (line.trim() === "") {
-      if (current.length > 0) {
-        stanzas.push(current);
-        current = [];
-      }
-    } else {
-      current.push(line.trimEnd());
-    }
-  }
-  if (current.length > 0) stanzas.push(current);
-
-  for (const stanza of stanzas) {
-    const inner = stanza.map((l) => escapeHtml(l)).join("<br>\n  ");
-    parts.push(`<p>\n  ${inner}\n</p>`);
-  }
-
-  return parts.join("\n\n");
+  return poemMarkdownToHtmlBody(md, { skipTitle, titleTag: "h2" });
 }
 
 /** Split poem HTML into chunks of ~4 stanzas (paragraphs) per page */
