@@ -1,14 +1,15 @@
-# Kybernetes in die Era van Donkerte
+# Kybernetes in die Era van Donkerte  
 
-An age is called Dark not because the light fails to shine,  
-but because  people refuse to see it.  
--- James Michener, "Space" 
+*An age is called Dark not because the light fails to shine,* 
+*but because  people refuse to see it.*
+*-- James Michener, "Space"*
+  
+*In Dwapara [Yuga] the people can understand the fine matters* 
+*or electricities and their attributes,*
+*the creative powers of the external world.*
+*-- Sri Yukteswar, "Holy Science" 1894*
 
-In Dwapara [Yuga] the people can understand the fine matters  
-or electricities and their attributes,  
-the creative powers of the external world.
--- Sri Yukteswar, "Holy Science" 1894
-
+-----------------------------------------------------------------
 
 Met voete in die vinnig vloeiende stroom,  
 verlore in die meimering van 'n dagdroom, 
