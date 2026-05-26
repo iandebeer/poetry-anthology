@@ -1,0 +1,5 @@
+
+Eskom krag weer af
+Son sal battery moet laai
+Hoor branders bulder
+
