@@ -82,13 +82,13 @@ export function wrapHtmlWithPoemBackground(
     const splitStyles =
       "html,body{min-height:100%;margin:0}" +
       "body{font-family:serif;line-height:1.6;color:#1a1a20;background-color:#e8e8ec;display:flex;position:relative}" +
-      ".poem-split-wrap{display:flex;flex-direction:row;flex:1;width:100%;min-height:100vh;align-items:flex-start}" +
-      ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;height:auto;flex-shrink:0;object-fit:contain;object-position:top center;align-self:flex-start}" +
-      ".poem-content{position:relative;z-index:1;flex:1;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;min-height:100vh}" +
+      ".poem-split-wrap{display:flex;flex-direction:row;flex:1;width:100%;min-height:100vh;align-items:center}" +
+      ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;height:auto;flex-shrink:0;object-fit:contain;object-position:center center}" +
+      ".poem-content{position:relative;z-index:1;flex:1;align-self:stretch;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;min-height:100vh}" +
       ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
       ".poem-audio-wrap{margin-top:1.5rem;width:100%;max-width:28rem}" +
       ".poem-audio{display:block;width:100%;height:2.5rem}" +
-      "@media (max-width:640px){.poem-split-wrap{flex-direction:column}.poem-split-img{width:100%;max-width:none;height:auto}}";
+      "@media (max-width:640px){.poem-split-wrap{flex-direction:column;align-items:center}.poem-split-img{width:100%;max-width:none;height:auto}.poem-content{align-self:stretch;width:100%}}";
     const contentBg = `.poem-content{background-color:${tintCss};border-radius:0}`;
 
     const audioHtml = poemAudioMarkup(audioSrc);
