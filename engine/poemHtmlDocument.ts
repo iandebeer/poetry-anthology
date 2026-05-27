@@ -82,13 +82,13 @@ export function wrapHtmlWithPoemBackground(
     const splitStyles =
       "html,body{min-height:100%;margin:0}" +
       "body{font-family:serif;line-height:1.6;color:#1a1a20;background-color:#e8e8ec;display:flex;position:relative}" +
-      ".poem-split-wrap{display:flex;flex-direction:row;flex:1;width:100%;min-height:100vh;align-items:stretch}" +
-      ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;flex-shrink:0;object-fit:cover;object-position:center}" +
-      ".poem-content{position:relative;z-index:1;flex:1;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center}" +
+      ".poem-split-wrap{display:flex;flex-direction:row;flex:1;width:100%;min-height:100vh;align-items:flex-start}" +
+      ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;height:auto;flex-shrink:0;object-fit:contain;object-position:top center;align-self:flex-start}" +
+      ".poem-content{position:relative;z-index:1;flex:1;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;min-height:100vh}" +
       ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
       ".poem-audio-wrap{margin-top:1.5rem;width:100%;max-width:28rem}" +
       ".poem-audio{display:block;width:100%;height:2.5rem}" +
-      "@media (max-width:640px){.poem-split-wrap{flex-direction:column}.poem-split-img{width:100%;max-width:none;height:38vh;min-height:160px}}";
+      "@media (max-width:640px){.poem-split-wrap{flex-direction:column}.poem-split-img{width:100%;max-width:none;height:auto}}";
     const contentBg = `.poem-content{background-color:${tintCss};border-radius:0}`;
 
     const audioHtml = poemAudioMarkup(audioSrc);
@@ -101,7 +101,7 @@ export function wrapHtmlWithPoemBackground(
   const baseStyles =
     "html,body{min-height:100%;margin:0}" +
     "body{font-family:serif;line-height:1.6;color:#e8e8ed;background-color:#0f0f14;display:flex;position:relative}" +
-    ".poem-bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background-position:center center;background-size:cover;background-repeat:no-repeat}" +
+    ".poem-bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background-repeat:no-repeat;background-size:100% auto}" +
     ".poem-content{position:relative;z-index:1;max-width:36em;padding:2rem}" +
     ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}" +
     ".poem-audio-wrap{margin-top:1.75rem;width:100%;max-width:28rem}" +
@@ -109,14 +109,14 @@ export function wrapHtmlWithPoemBackground(
 
   const placementStyles =
     placement === "top"
-      ? "body{flex-direction:column;align-items:center;justify-content:flex-start;padding-top:2rem}.poem-content{margin:0 auto}"
+      ? "body{flex-direction:column;align-items:center;justify-content:flex-start;padding-top:2rem}.poem-content{margin:0 auto}.poem-bg-layer{background-position:top center}"
       : placement === "bottom"
-        ? "body{flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:2rem}.poem-content{margin:0 auto}"
+        ? "body{flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:2rem}.poem-content{margin:0 auto}.poem-bg-layer{background-position:bottom center}"
         : placement === "left"
-          ? "body{align-items:center;justify-content:flex-start;padding-left:2rem}.poem-content{margin:0}"
+          ? "body{align-items:center;justify-content:flex-start;padding-left:2rem}.poem-content{margin:0}.poem-bg-layer{background-position:left center}"
           : placement === "right"
-            ? "body{align-items:center;justify-content:flex-end;padding-right:2rem}.poem-content{margin:0 2rem 0 0;text-align:right}"
-            : "body{align-items:center;justify-content:center}.poem-content{margin:2rem auto}";
+            ? "body{align-items:center;justify-content:flex-end;padding-right:2rem}.poem-content{margin:0 2rem 0 0;text-align:right}.poem-bg-layer{background-position:right center}"
+            : "body{align-items:center;justify-content:center}.poem-content{margin:2rem auto}.poem-bg-layer{background-position:center top}";
 
   const bgLayerStyles = bgUrl ? `.poem-bg-layer{background-image:${cssUrlQuoted(bgUrl)}}` : "";
   const contentOverlay = bgUrl ? ".poem-content{background:rgba(0,0,0,0.65);border-radius:8px}" : "";
