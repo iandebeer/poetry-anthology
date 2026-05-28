@@ -1,3 +1,0 @@
-By Dapat’s Hole  
-Where Clarens Drive winds and weaves  
-The sea and white sand smile and gleam  

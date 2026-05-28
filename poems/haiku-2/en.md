@@ -1,0 +1,3 @@
+Eskom power fails,  
+Sun must charge the battery  
+Waves fiercely break.  

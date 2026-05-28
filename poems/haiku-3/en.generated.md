@@ -1,4 +1,0 @@
-Winter rages outside,  
-The red karoo burns bright within.  
-Hear the weather-cock turn,  
-A tale of frost and fire begins.  
