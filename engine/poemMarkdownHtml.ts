@@ -2,11 +2,6 @@
  * Shared markdown → HTML for poem files (headings, stanzas, inline emphasis).
  */
 
-import {
-  DEFAULT_ANTHOLOGY_INDEX_HREF,
-  injectPoemAnthologyNav,
-} from "./poemHtmlDocument.js";
-
 export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -43,7 +38,7 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
 
   if (!skipTitle && lines[i]?.trim().startsWith("# ")) {
     const title = lines[i].replace(/^#\s+/, "").trim();
-    parts.push(`<${titleTag}>${formatPoemInlineMarkdown(title)}</${titleTag}>`);
+    parts.push(`<h1 class="poem-title">${formatPoemInlineMarkdown(title)}</h1>`);
     i++;
   } else if (skipTitle) {
     while (i < lines.length && lines[i].trim().startsWith("# ")) i++;
@@ -74,15 +69,16 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
 }
 
 /** Full HTML document wrapper used by convert-poems (poems without bundled media). */
-export function poemMarkdownToHtmlDocument(md: string, anthologyIndexHref = DEFAULT_ANTHOLOGY_INDEX_HREF): string {
-  const body = injectPoemAnthologyNav(poemMarkdownToHtmlBody(md), anthologyIndexHref);
+export function poemMarkdownToHtmlDocument(md: string): string {
+  const body = poemMarkdownToHtmlBody(md);
   const plainStyles =
     "body{font-family:serif;line-height:1.6;color:#1a1a20;max-width:36em;margin:2rem auto;padding:0 1.5rem}" +
-    ".poem-header{display:flex;flex-direction:column;align-items:center;margin-bottom:1.25rem;text-align:center}" +
-    ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit;text-align:center}" +
-    ".poem-back{text-align:center;margin-top:1.25rem;font-size:1.15rem}" +
+    ".poem-back{text-align:center;font-size:1.15rem}" +
+    ".poem-back-top{margin-bottom:1.25rem}" +
+    ".poem-back-bottom{margin-top:1.25rem}" +
     ".poem-back a{color:#444;text-decoration:none;opacity:0.72}" +
     ".poem-back a:hover{opacity:1;text-decoration:underline}" +
+    ".poem-title{margin:0 0 0.75rem;font-size:inherit;font-weight:bold;line-height:inherit;text-align:center}" +
     "p{margin:0.5rem 0}";
   return `<!DOCTYPE html>
 <html lang="en">

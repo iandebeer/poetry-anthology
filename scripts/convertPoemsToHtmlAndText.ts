@@ -11,7 +11,7 @@ import {
   resolveEnglishMarkdownPath,
 } from "../engine/loadPoems.js";
 import { syncPoemBundledAssets } from "../engine/syncPoemBundledMedia.js";
-import { wrapHtmlWithPoemBackground } from "../engine/poemHtmlDocument.js";
+import { wrapHtmlWithPoemBackground, injectPoemAnthologyNav } from "../engine/poemHtmlDocument.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
 import { poemMarkdownToHtmlDocument } from "../engine/poemMarkdownHtml.js";
 
@@ -39,9 +39,14 @@ function convertOneSource(
   const html = poemMarkdownToHtmlDocument(md);
   const htmlPath = base + ".html";
   const needsWrap = Boolean(bundledMediaUrl || bundledAudioUrl);
-  const outHtml = needsWrap
-    ? wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl, imageAbsPath, bundledAudioUrl)
-    : html;
+  let outHtml = html;
+  if (needsWrap) {
+    outHtml = wrapHtmlWithPoemBackground(html, config.image, "/media/", bundledMediaUrl, imageAbsPath, bundledAudioUrl);
+  } else {
+    const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
+    const body = injectPoemAnthologyNav(bodyMatch?.[1]?.trim() ?? "");
+    outHtml = html.replace(/<body[^>]*>[\s\S]*<\/body>/i, `<body>\n${body}\n</body>`);
+  }
   writeFileSync(htmlPath, outHtml, "utf-8");
 
   const text = mdToText(md);

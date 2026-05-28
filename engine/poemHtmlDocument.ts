@@ -56,32 +56,34 @@ function poemAudioMarkup(audioSrc: string | null): string {
 export const DEFAULT_ANTHOLOGY_INDEX_HREF = "../index.html";
 
 const poemHeaderNavStyles =
-  ".poem-header{display:flex;flex-direction:column;align-items:center;width:100%;text-align:center;margin-bottom:0.25rem}" +
-  ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit;text-align:center}" +
-  ".poem-back{width:100%;text-align:center;margin-top:1.25rem;font-size:1.15rem}" +
+  ".poem-back{width:100%;text-align:center;font-size:1.15rem}" +
+  ".poem-back-top{margin-bottom:1.25rem}" +
+  ".poem-back-bottom{margin-top:1.25rem}" +
   ".poem-back a{text-decoration:none;opacity:0.72}" +
   ".poem-back a:hover{opacity:1;text-decoration:underline}" +
-  ".poem-main{display:flex;flex-direction:column;justify-content:center;min-height:0;width:100%}";
+  ".poem-main{display:flex;flex-direction:column;justify-content:center;min-height:0;width:100%}" +
+  ".poem-title{margin:0 0 0.75rem;font-size:inherit;font-weight:bold;line-height:inherit;text-align:center}";
 
-export function poemAnthologyNavMarkup(indexHref: string): string {
-  return `<nav class="poem-back" aria-label="Nog gedigte"><a href="${escapeHtmlAttr(indexHref)}">← Nog Gedigte</a></nav>`;
+export function poemAnthologyNavMarkup(indexHref: string, position: "top" | "bottom"): string {
+  const posClass = position === "top" ? "poem-back-top" : "poem-back-bottom";
+  return `<nav class="poem-back ${posClass}" aria-label="Nog gedigte"><a href="${escapeHtmlAttr(indexHref)}">← Nog Gedigte</a></nav>`;
 }
 
-/** Adds centered anthology nav below the poem; title stays in `.poem-header`. Idempotent. */
+/** Adds anthology nav above and below the poem; title sits directly above the verses in `.poem-main`. Idempotent. */
 export function injectPoemAnthologyNav(html: string, indexHref = DEFAULT_ANTHOLOGY_INDEX_HREF): string {
   const trimmed = html.trim();
   if (!trimmed || trimmed.includes('class="poem-back"')) return html;
 
-  const nav = poemAnthologyNavMarkup(indexHref);
+  const navTop = poemAnthologyNavMarkup(indexHref, "top");
+  const navBottom = poemAnthologyNavMarkup(indexHref, "bottom");
   const titleMatch = trimmed.match(/^<h([12])\b[^>]*>[\s\S]*?<\/h\1>/i);
   if (titleMatch) {
     const title = titleMatch[0];
     const rest = trimmed.slice(titleMatch[0].length).trimStart();
-    const main = `<div class="poem-main">${rest}</div>`;
-    return `<div class="poem-header">${title}</div>${main}${nav}`;
+    return `${navTop}<div class="poem-main">${title}${rest}</div>${navBottom}`;
   }
 
-  return `<div class="poem-main">${trimmed}</div>${nav}`;
+  return `${navTop}<div class="poem-main">${trimmed}</div>${navBottom}`;
 }
 
 /**
@@ -121,7 +123,7 @@ export function wrapHtmlWithPoemBackground(
       ".poem-content{position:relative;z-index:1;flex:1;align-self:stretch;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto auto;align-content:stretch;min-height:100vh}" +
       poemHeaderNavStyles +
       ".poem-back a{color:#444}" +
-      ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
+      ".lang-block{margin-bottom:2rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
       ".poem-audio-wrap{margin-top:1.5rem;width:100%;max-width:28rem}" +
       ".poem-audio{display:block;width:100%;height:2.5rem}" +
       "@media (max-width:640px){.poem-split-wrap{flex-direction:column;align-items:center}.poem-split-img{width:100%;max-width:none;height:auto}.poem-content{align-self:stretch;width:100%}}";
@@ -141,7 +143,7 @@ export function wrapHtmlWithPoemBackground(
     ".poem-content{position:relative;z-index:1;max-width:36em;padding:2rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto auto;align-content:stretch;min-height:100vh}" +
     poemHeaderNavStyles +
     ".poem-back a{color:#ccc}" +
-    ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}" +
+    ".lang-block{margin-bottom:2rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}" +
     ".poem-audio-wrap{margin-top:1.75rem;width:100%;max-width:28rem}" +
     ".poem-audio{display:block;width:100%;height:2.5rem;filter:brightness(0.95)}";
 
