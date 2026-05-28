@@ -56,9 +56,9 @@ function poemAudioMarkup(audioSrc: string | null): string {
 export const DEFAULT_ANTHOLOGY_INDEX_HREF = "../index.html";
 
 const poemHeaderNavStyles =
-  ".poem-header{display:flex;align-items:baseline;gap:1.25rem;width:100%}" +
-  ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit}" +
-  ".poem-back{font-size:0.85rem;flex-shrink:0}" +
+  ".poem-header{display:flex;flex-direction:column;align-items:center;gap:0.5rem;width:100%;text-align:center;margin-bottom:0.25rem}" +
+  ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit;text-align:center}" +
+  ".poem-back{font-size:0.85rem}" +
   ".poem-back a{text-decoration:none;opacity:0.72}" +
   ".poem-back a:hover{opacity:1;text-decoration:underline}" +
   ".poem-main{display:flex;flex-direction:column;justify-content:center;min-height:0;width:100%}";
@@ -67,7 +67,7 @@ export function poemAnthologyNavMarkup(indexHref: string): string {
   return `<nav class="poem-back" aria-label="Terug na gedigte"><a href="${escapeHtmlAttr(indexHref)}">← Gedigte</a></nav>`;
 }
 
-/** Prepends anthology nav beside the title; wraps remaining body in `.poem-main`. Idempotent. */
+/** Adds centered anthology nav above the title; wraps remaining body in `.poem-main`. Idempotent. */
 export function injectPoemAnthologyNav(html: string, indexHref = DEFAULT_ANTHOLOGY_INDEX_HREF): string {
   const trimmed = html.trim();
   if (!trimmed || trimmed.includes('class="poem-back"')) return html;

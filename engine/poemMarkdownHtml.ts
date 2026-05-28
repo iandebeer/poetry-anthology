@@ -78,9 +78,9 @@ export function poemMarkdownToHtmlDocument(md: string, anthologyIndexHref = DEFA
   const body = injectPoemAnthologyNav(poemMarkdownToHtmlBody(md), anthologyIndexHref);
   const plainStyles =
     "body{font-family:serif;line-height:1.6;color:#1a1a20;max-width:36em;margin:2rem auto;padding:0 1.5rem}" +
-    ".poem-header{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.25rem}" +
-    ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit}" +
-    ".poem-back{font-size:0.85rem;flex-shrink:0}" +
+    ".poem-header{display:flex;flex-direction:column;align-items:center;gap:0.5rem;margin-bottom:1.25rem;text-align:center}" +
+    ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit;text-align:center}" +
+    ".poem-back{font-size:0.85rem}" +
     ".poem-back a{color:#444;text-decoration:none;opacity:0.72}" +
     ".poem-back a:hover{opacity:1;text-decoration:underline}" +
     "p{margin:0.5rem 0}";
