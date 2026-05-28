@@ -1,24 +1,25 @@
-# Hush, Baby  
+# Hush, My Child
 
-This morning I longed to be a child once more,  
-To be wrapped tight in a soft blanket's shore,  
-Held against gentle curves, with a humming lull,  
-Where all felt right, secure, and whole —  
-At least that was all I truly knew,  
-Which turned out to be nothing, and still rings true.  
+This morning I longed once more to be a little one,  
+Wrapped tight in a cozy blanket, a soothing song to be spun,  
+Held close against a gentle body, humming soft and clear;  
+Where everything felt right and safe, devoid of worry or fear—  
+At least that was all I knew, which turned out to be,  
+Nothing much at all, and perhaps it still is me.  
   
 So off I wandered,  
-Aimless, drifting in reverie’s embrace,  
-Or was it regret? Regardless, I fell into space —  
-As I stumbled over the dune, the sea and mountains in view,  
-I realized I was wrapped in nature’s comfort too:  
+Aimless in my wandering thought,  
+Was it remorse or just the ache? Whatever it was, I fought—  
+As I stumbled over dunes, taking in the sea and peaks,  
+I found I was enfolded in nature’s warm mystique.  
 
-Hush, hush, baby,  
-Hush, hush, dear one,  
-Father will come tomorrow to take you home,  
-And bring you sweet porridge, a feast of your own.  
+Hush, hush, my child,  
+Hush now, little one,  
+Daddy will come tomorrow,  
+With sweet porridge to be done.  
 
-Hush, hush; hush, baby mine,  
-Hush, baby, hush, dear one,  
+Hush, hush; hush now, my dear,  
+Hush, my child, hush now, sincere,  
 To Tare Tuttare Ture Soha,  
-A lullaby whispered under the stars' soft glow.
+A lullaby, a gentle sigh,  
+Here, under the wide and starry sky.

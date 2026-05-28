@@ -1,15 +1,15 @@
 # Pranayama  
 
-I wait on the breath -  
-knowing He will come,  
+I wait for the breath —  
+knowing He will come  
 unbidden,  
-like the day when God first breathed into my nose.  
-Then soft as a lover's caress,  
-it fills me with sweet silence -  
-to once more be emptied -  
-of thoughts unformed,  
+like on the day God breathed into my nose.  
+Then soft, like the caress of the Beloved,  
+it fills me with sweet silence —  
+to become empty once more —  
+of formless thought,  
 in surrender to the moment.  
-To wait again on the breath -  
+To wait anew for the breath —  
 that will fill me  
-with the emptiness of nothingness,  
-with the fullness of being.
+with the emptiness of nothingness  
+and the fullness of being.  

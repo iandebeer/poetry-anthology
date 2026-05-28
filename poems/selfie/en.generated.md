@@ -1,0 +1,15 @@
+# Who Then Is?
+
+The Zen koan asks:  
+"What was your original face -  
+before your parents gave you birth?"  
+  
+And I try to recall:  
+"Who was I,  
+before I became  
+what I am today?"  
+  
+Yet, how can I forget:  
+"I am still  
+who I was,  
+before I even was."

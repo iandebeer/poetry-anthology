@@ -1,14 +1,14 @@
-# Late Summer's Fruits
+# Late Summer Fruits
 
-Gently they unfolded my chest,  
-to peer within, to gauge my rest.  
-
-Amid withered muscle's feeble trace,  
-a thin veil of fat in sad embrace –  
-the organs lie like late-season fruit,  
-clinging to life by grace, resolute;  
-plagued by fruit flies, a sorry sight,  
-this old shell a testament to plight.  
-
-So tell me now – is he fit for jam,  
-or shall we toss him on the compost, damned?  
+Gently, they’ve unfolded my chest wide,  
+to glimpse my state, from close beside.  
+  
+Within, amidst atrophied little threads,  
+a thin layer of ancient fat spreads -  
+the organs, like late-season fruits,  
+that cling on still, by grace, in shoots;  
+harassed, like overripe, they’re pestered and frail,  
+this old soul is quite a dismal tale.  
+  
+So, what do you say - is there still hope for jam,  
+or shall we toss him onto the compost, a quiet sham?

@@ -1,13 +1,13 @@
-# Gymnopody for the Grass
+# Gymnopédie for the Feather Grass
 
-the bunny tails sway in the breeze  
-a interlude of air and sun and earth  
-uncoreographed - driven by gusts of wind  
-each seed cluster dances in its own rhythm, each passion unique.  
+the bunny-tails sway in the breeze  
+an interlude of air and sun and soil  
+uncanned - driven by gusts of wind  
+each seed head dances to its own rhythm, each passion unique.  
 never still or cracked,  
 they bow reverently to the ground where they are anchored  
-to again reach in port de bras towards the sun  
-tirelessly and unceasingly  
+to reach again in port de bras toward the sun  
+tireless and unending  
 like the Sufi Dervish  
 in his unity with Allah  
 dance, dance, dance…  

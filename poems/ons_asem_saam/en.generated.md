@@ -1,22 +1,21 @@
 # Our Breath Together
 
-If a balloon could wrap the Earth in its air,
-My breath alone would scarcely make it stir.
-But our breath together, in rhythmic embrace,
-Will surely send forth a rippling trace —
-Like a pebble cast in a pond on a lazy summer's day,
-Where a windmill strains with all its might,
-Groaning, as if it yearns to break free,
-From the tether of winds that bind it so tightly.
-While the circle of our breaths diffuses in the reeds,
-Where finches industriously weave their nests, 
-With piercing songs, they dare the wind to turn,
-And test their labor that sways on willow branches.
-Yet when our breaths unite, more harmony creates a wave,
-And the wind stirs briskly, eager to awake,
-To rock the nests and let go of its hold,
-With the deep chant of “OM,” the windmill clicks bold.
-And with our breaths, we’ll keep a rhythm true,
-In the balloon that cradles our world anew.
+If a balloon could wrap round the Earth's embrace,
+My breath alone would scarcely stir its grace,
+But our breath together, in rhythmic sway,
+Will surely send ripples bright on their way—
+Like a pebble tossed in a pond on a warm summer's day,
+Where a windmill, straining, turns with all its power,
+Almost as if to plead, to free itself from its bower,
+While the circle of our breaths spreads soft through the reeds,
+Where finches weave their nests with fervent, spirited needs,
+Challenging the wind, in song they boldly play,
+To spin the windmill round and sway the willow's fray.
+Yet, it’s our breath together that creates a grander wave,
+Rousing the wind swiftly, in dance we both engrave,
+To rock the nests gently and let go of the strain,
+With the deep hum of "OM," the windmill shatters the chain,
+And with our breaths united, we keep a rhythm found,
+In the balloon that lovingly wraps our world around.
 
 Om Mani Padme Hum

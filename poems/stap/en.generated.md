@@ -1,17 +1,17 @@
 # To Be Able to Walk  
 
-cracks, snaps, crisp and clear—  
+Grunts, groans, crackles and pops —  
 dusty boots  
-and socks with flecks of grass,  
+and socks with clumpy grass,  
 
-with a measured pace of footfall  
+with the cadence of footsteps  
 and rhythmic breaths,  
-the tameness of the body  
-that brings you profound joy;  
+the calmness of body  
+that deeply delights the heart;  
 
-for from wherever I may have been,  
-I stand here now, as if it were destined.  
+for from wherever I might have found myself,  
+I am now here, as if destined from the start.  
 
-there ahead, markers show where the path still may lead,  
+There ahead lie markers where the path may still lead,  
 but here, now, my soul soars like an eagle,  
-on winds—free from well-trodden ways.  
+on winds — unbound from beaten tracks indeed.  

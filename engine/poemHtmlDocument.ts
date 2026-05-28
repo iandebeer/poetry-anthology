@@ -56,18 +56,18 @@ function poemAudioMarkup(audioSrc: string | null): string {
 export const DEFAULT_ANTHOLOGY_INDEX_HREF = "../index.html";
 
 const poemHeaderNavStyles =
-  ".poem-header{display:flex;flex-direction:column;align-items:center;gap:0.5rem;width:100%;text-align:center;margin-bottom:0.25rem}" +
+  ".poem-header{display:flex;flex-direction:column;align-items:center;width:100%;text-align:center;margin-bottom:0.25rem}" +
   ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit;text-align:center}" +
-  ".poem-back{font-size:0.85rem}" +
+  ".poem-back{width:100%;text-align:center;margin-top:1.25rem;font-size:1.15rem}" +
   ".poem-back a{text-decoration:none;opacity:0.72}" +
   ".poem-back a:hover{opacity:1;text-decoration:underline}" +
   ".poem-main{display:flex;flex-direction:column;justify-content:center;min-height:0;width:100%}";
 
 export function poemAnthologyNavMarkup(indexHref: string): string {
-  return `<nav class="poem-back" aria-label="Terug na gedigte"><a href="${escapeHtmlAttr(indexHref)}">← Gedigte</a></nav>`;
+  return `<nav class="poem-back" aria-label="Nog gedigte"><a href="${escapeHtmlAttr(indexHref)}">← Nog Gedigte</a></nav>`;
 }
 
-/** Adds centered anthology nav above the title; wraps remaining body in `.poem-main`. Idempotent. */
+/** Adds centered anthology nav below the poem; title stays in `.poem-header`. Idempotent. */
 export function injectPoemAnthologyNav(html: string, indexHref = DEFAULT_ANTHOLOGY_INDEX_HREF): string {
   const trimmed = html.trim();
   if (!trimmed || trimmed.includes('class="poem-back"')) return html;
@@ -77,11 +77,11 @@ export function injectPoemAnthologyNav(html: string, indexHref = DEFAULT_ANTHOLO
   if (titleMatch) {
     const title = titleMatch[0];
     const rest = trimmed.slice(titleMatch[0].length).trimStart();
-    const main = rest ? `<div class="poem-main">${rest}</div>` : "";
-    return `<div class="poem-header">${nav}${title}</div>${main}`;
+    const main = `<div class="poem-main">${rest}</div>`;
+    return `<div class="poem-header">${title}</div>${main}${nav}`;
   }
 
-  return `<div class="poem-header">${nav}</div><div class="poem-main">${trimmed}</div>`;
+  return `<div class="poem-main">${trimmed}</div>${nav}`;
 }
 
 /**
@@ -118,7 +118,7 @@ export function wrapHtmlWithPoemBackground(
       "body{font-family:serif;line-height:1.6;color:#1a1a20;background-color:#e8e8ec;display:flex;position:relative}" +
       ".poem-split-wrap{display:flex;flex-direction:row;flex:1;width:100%;min-height:100vh;align-items:center}" +
       ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;height:auto;flex-shrink:0;object-fit:contain;object-position:center center}" +
-      ".poem-content{position:relative;z-index:1;flex:1;align-self:stretch;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto;align-content:stretch;min-height:100vh}" +
+      ".poem-content{position:relative;z-index:1;flex:1;align-self:stretch;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto auto;align-content:stretch;min-height:100vh}" +
       poemHeaderNavStyles +
       ".poem-back a{color:#444}" +
       ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
@@ -138,7 +138,7 @@ export function wrapHtmlWithPoemBackground(
     "html,body{min-height:100%;margin:0}" +
     "body{font-family:serif;line-height:1.6;color:#e8e8ed;background-color:#0f0f14;display:flex;position:relative}" +
     ".poem-bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background-repeat:no-repeat;background-size:100% auto}" +
-    ".poem-content{position:relative;z-index:1;max-width:36em;padding:2rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto;align-content:stretch;min-height:100vh}" +
+    ".poem-content{position:relative;z-index:1;max-width:36em;padding:2rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto auto;align-content:stretch;min-height:100vh}" +
     poemHeaderNavStyles +
     ".poem-back a{color:#ccc}" +
     ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}" +

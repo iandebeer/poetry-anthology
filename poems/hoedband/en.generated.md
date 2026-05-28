@@ -1,13 +1,13 @@
-# Who Will Bring Me a Feather for My Hatband?  
-  
+# Who will bring me a feather for my headband?  
+
 Bring me a feather from the fish eagle,  
-a speck against the blue, calling forth God's blessing over Africa.  
+a speck against the blue, calling God's blessing upon Africa.  
 Bring me a feather from the owl,  
-that wraps me in rest come evening: "Hoo, hoo, how, whoop."  
-  
-And if we meet somewhere along the way,  
-I'll tip my hat in politeness to greet you,  
+that wraps me in rest at dusk: "Hoo, hoo, hoo hoo."  
+
+And if we chance to meet along the way,  
+and I lift my hat politely to greet you,  
 then we are part of the here and now, in this moment,  
-knowing God has a plan.  
-And we breathe together, free,  
+knowing God ordains it all.  
+And we breathe together, free and true,  
 Om - Shanti - Shanti - Shanti.  

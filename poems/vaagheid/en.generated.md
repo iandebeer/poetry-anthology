@@ -1,16 +1,16 @@
 # Vagueness of Words
 
 With the vagueness of words,  
-a secret partially unfurls—  
-like an image in a misty glass,  
-a fragment of the grander whole;  
+a secret partially unfolds—  
+like an image in a misty mirror,  
+a fragment of the greater whole;  
 
-What, through phrasing, like breath determined,  
-must draw meaning from a wide ontology,  
-words that once drifted like dandelion seeds on the breeze,  
-now must bind themselves to solid significance—  
+As phrasing, like breath, is defined,  
+it must draw meaning from the vast ontology,  
+words that once floated like seed fluff on the breeze  
+must now bind themselves to solid meaning—  
 
-And then, like Mahākāsyapa’s silent smile  
-as he beholds the flower in the Buddha’s hand,  
-to softly proclaim, for those rich in silence:  
-“the kingdom within you—there lies your heritage.”  
+What then, like Mahākāśyapa’s silent laugh  
+as he gazes upon the flower in the Buddha’s hand,  
+to quietly say to those who are poor in words:  
+"the kingdom within you—there lies your legacy."

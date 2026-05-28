@@ -1,0 +1,3 @@
+Eskom power cut once more,  
+The sun must charge the battery’s core,  
+Waves still rumble, fierce and high.  

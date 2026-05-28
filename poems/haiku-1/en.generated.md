@@ -1,0 +1,3 @@
+Dew glimmers on leaves  
+King’s flower greets the sun,  
+The wind holds its breath.  
