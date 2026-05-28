@@ -2,6 +2,11 @@
  * Shared markdown → HTML for poem files (headings, stanzas, inline emphasis).
  */
 
+import {
+  DEFAULT_ANTHOLOGY_INDEX_HREF,
+  injectPoemAnthologyNav,
+} from "./poemHtmlDocument.js";
+
 export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -68,14 +73,23 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
   return parts.join("\n\n");
 }
 
-/** Full HTML document wrapper used by convert-poems. */
-export function poemMarkdownToHtmlDocument(md: string): string {
-  const body = poemMarkdownToHtmlBody(md);
+/** Full HTML document wrapper used by convert-poems (poems without bundled media). */
+export function poemMarkdownToHtmlDocument(md: string, anthologyIndexHref = DEFAULT_ANTHOLOGY_INDEX_HREF): string {
+  const body = injectPoemAnthologyNav(poemMarkdownToHtmlBody(md), anthologyIndexHref);
+  const plainStyles =
+    "body{font-family:serif;line-height:1.6;color:#1a1a20;max-width:36em;margin:2rem auto;padding:0 1.5rem}" +
+    ".poem-header{display:flex;align-items:baseline;gap:1.25rem;margin-bottom:1.25rem}" +
+    ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit}" +
+    ".poem-back{font-size:0.85rem;flex-shrink:0}" +
+    ".poem-back a{color:#444;text-decoration:none;opacity:0.72}" +
+    ".poem-back a:hover{opacity:1;text-decoration:underline}" +
+    "p{margin:0.5rem 0}";
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Poem</title>
+  <style>${plainStyles}</style>
 </head>
 <body>
 ${body}

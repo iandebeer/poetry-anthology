@@ -202,7 +202,7 @@ function htmlForAdminResponse(
       : null;
   const imageAbsOk = imageAbs && existsSync(imageAbs) ? imageAbs : null;
   const audioSrc = adminMediaAudioSrc(musicPath);
-  return wrapHtmlWithPoemBackground(shell, imagePath, "/media/", null, imageAbsOk, audioSrc);
+  return wrapHtmlWithPoemBackground(shell, imagePath, "/media/", null, imageAbsOk, audioSrc, "/export/index.html");
 }
 
 app.get("/api/poems/:id/html", requireAuth, (req, res) => {

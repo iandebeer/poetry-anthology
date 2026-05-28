@@ -52,12 +52,45 @@ function poemAudioMarkup(audioSrc: string | null): string {
   return `<div class="poem-audio-wrap"><audio class="poem-audio" controls preload="metadata" src="${escapeHtmlAttr(audioSrc)}"></audio></div>`;
 }
 
+/** Relative link from export/&lt;id&gt;/afrikaans.html to the anthology index. */
+export const DEFAULT_ANTHOLOGY_INDEX_HREF = "../index.html";
+
+const poemHeaderNavStyles =
+  ".poem-header{display:flex;align-items:baseline;gap:1.25rem;width:100%}" +
+  ".poem-header h1,.poem-header h2{margin:0;font-size:1.25rem;font-weight:inherit}" +
+  ".poem-back{font-size:0.85rem;flex-shrink:0}" +
+  ".poem-back a{text-decoration:none;opacity:0.72}" +
+  ".poem-back a:hover{opacity:1;text-decoration:underline}" +
+  ".poem-main{display:flex;flex-direction:column;justify-content:center;min-height:0;width:100%}";
+
+export function poemAnthologyNavMarkup(indexHref: string): string {
+  return `<nav class="poem-back" aria-label="Terug na gedigte"><a href="${escapeHtmlAttr(indexHref)}">← Gedigte</a></nav>`;
+}
+
+/** Prepends anthology nav beside the title; wraps remaining body in `.poem-main`. Idempotent. */
+export function injectPoemAnthologyNav(html: string, indexHref = DEFAULT_ANTHOLOGY_INDEX_HREF): string {
+  const trimmed = html.trim();
+  if (!trimmed || trimmed.includes('class="poem-back"')) return html;
+
+  const nav = poemAnthologyNavMarkup(indexHref);
+  const titleMatch = trimmed.match(/^<h([12])\b[^>]*>[\s\S]*?<\/h\1>/i);
+  if (titleMatch) {
+    const title = titleMatch[0];
+    const rest = trimmed.slice(titleMatch[0].length).trimStart();
+    const main = rest ? `<div class="poem-main">${rest}</div>` : "";
+    return `<div class="poem-header">${nav}${title}</div>${main}`;
+  }
+
+  return `<div class="poem-header">${nav}</div><div class="poem-main">${trimmed}</div>`;
+}
+
 /**
  * @param imagePath - logical path under public/media, e.g. poems/<id>/r-image.png (used for placement + admin URL)
  * @param mediaUrlPrefix - HTTP base for admin, e.g. "/media/"
  * @param relativeToHtmlUrl - if set (e.g. media/l-image.png), CSS background uses this path relative to the .html file
  * @param imageAbsPath - optional filesystem path to the image (for o-image dominant colour sampling)
  * @param audioSrc - optional &lt;audio src&gt;: relative e.g. media/track.mp3 (beside .html), or absolute path for admin e.g. /media/poems/id/track.mp3
+ * @param anthologyIndexHref - link back to the poem list (default export-relative ../index.html)
  */
 export function wrapHtmlWithPoemBackground(
   html: string,
@@ -66,9 +99,10 @@ export function wrapHtmlWithPoemBackground(
   relativeToHtmlUrl: string | null = null,
   imageAbsPath: string | null = null,
   audioSrc: string | null = null,
+  anthologyIndexHref = DEFAULT_ANTHOLOGY_INDEX_HREF,
 ): string {
   const bodyMatch = html.match(/<body[^>]*>([\s\S]*)<\/body>/i);
-  const bodyContent = bodyMatch?.[1] ?? html;
+  const bodyContent = injectPoemAnthologyNav(bodyMatch?.[1] ?? html, anthologyIndexHref);
   const imgSrc = imagePath
     ? relativeToHtmlUrl
       ? relativeToHtmlUrl
@@ -84,7 +118,9 @@ export function wrapHtmlWithPoemBackground(
       "body{font-family:serif;line-height:1.6;color:#1a1a20;background-color:#e8e8ec;display:flex;position:relative}" +
       ".poem-split-wrap{display:flex;flex-direction:row;flex:1;width:100%;min-height:100vh;align-items:center}" +
       ".poem-split-img{display:block;width:42vw;max-width:520px;min-width:180px;height:auto;flex-shrink:0;object-fit:contain;object-position:center center}" +
-      ".poem-content{position:relative;z-index:1;flex:1;align-self:stretch;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;min-height:100vh}" +
+      ".poem-content{position:relative;z-index:1;flex:1;align-self:stretch;max-width:none;padding:2rem 2.5rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto;align-content:stretch;min-height:100vh}" +
+      poemHeaderNavStyles +
+      ".poem-back a{color:#444}" +
       ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#555}p{margin:0.5rem 0}" +
       ".poem-audio-wrap{margin-top:1.5rem;width:100%;max-width:28rem}" +
       ".poem-audio{display:block;width:100%;height:2.5rem}" +
@@ -102,7 +138,9 @@ export function wrapHtmlWithPoemBackground(
     "html,body{min-height:100%;margin:0}" +
     "body{font-family:serif;line-height:1.6;color:#e8e8ed;background-color:#0f0f14;display:flex;position:relative}" +
     ".poem-bg-layer{position:fixed;inset:0;z-index:0;pointer-events:none;background-repeat:no-repeat;background-size:100% auto}" +
-    ".poem-content{position:relative;z-index:1;max-width:36em;padding:2rem}" +
+    ".poem-content{position:relative;z-index:1;max-width:36em;padding:2rem;box-sizing:border-box;display:grid;grid-template-rows:auto 1fr auto;align-content:stretch;min-height:100vh}" +
+    poemHeaderNavStyles +
+    ".poem-back a{color:#ccc}" +
     ".lang-block{margin-bottom:2rem}h1{font-size:1.25rem}h3{font-size:0.9rem;color:#999}p{margin:0.5rem 0}" +
     ".poem-audio-wrap{margin-top:1.75rem;width:100%;max-width:28rem}" +
     ".poem-audio{display:block;width:100%;height:2.5rem;filter:brightness(0.95)}";
