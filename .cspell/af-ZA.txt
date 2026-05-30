@@ -132954,6 +132954,7 @@ hopieplanthegstuk
 hopies
 Hopland
 hoppe
+hoppetie
 hopplukker
 hopsak
 hopsmaak
@@ -308124,6 +308125,7 @@ strandterras
 strandvermaak
 strandvlooi
 strandvlooie
+strandvlooitjies
 strandvoël
 strandvoëls
 strandvonder
