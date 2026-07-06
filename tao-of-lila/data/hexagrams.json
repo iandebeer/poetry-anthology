@@ -1,0 +1,66 @@
+[
+  {
+    "hexagramNumber": 1,
+    "hexagramName": "The Creative",
+    "judgment": "The Creative works sublime success, furthering through perseverance.",
+    "image": "The movement of heaven is full of power; the noble one makes themself strong and untiring.",
+    "upperTrigram": "Heaven",
+    "lowerTrigram": "Heaven"
+  },
+  {
+    "hexagramNumber": 2,
+    "hexagramName": "The Receptive",
+    "judgment": "The Receptive brings about sublime success through the perseverance of a mare.",
+    "image": "The earth's condition is receptive devotion; the noble one carries the outer world with broad character.",
+    "upperTrigram": "Earth",
+    "lowerTrigram": "Earth"
+  },
+  {
+    "hexagramNumber": 3,
+    "hexagramName": "Difficulty at the Beginning",
+    "judgment": "Difficulty at the Beginning works supreme success through perseverance; nothing should be undertaken lightly.",
+    "image": "Clouds and thunder gather; the noble one brings order out of confusion.",
+    "upperTrigram": "Water",
+    "lowerTrigram": "Thunder"
+  },
+  {
+    "hexagramNumber": 11,
+    "hexagramName": "Peace",
+    "judgment": "The small departs, the great approaches; good fortune and success.",
+    "image": "Heaven and earth unite; the ruler divides and completes the course of heaven and earth.",
+    "upperTrigram": "Earth",
+    "lowerTrigram": "Heaven"
+  },
+  {
+    "hexagramNumber": 24,
+    "hexagramName": "Return",
+    "judgment": "Return. Success. Going out and coming in without error.",
+    "image": "Thunder within the earth; the ancient kings closed the passes at the solstice.",
+    "upperTrigram": "Earth",
+    "lowerTrigram": "Thunder"
+  },
+  {
+    "hexagramNumber": 29,
+    "hexagramName": "The Abysmal",
+    "judgment": "Repeated water. If you are sincere, you have success in your heart, and whatever you do succeeds.",
+    "image": "Water flows on uninterruptedly; the noble one walks in lasting virtue and carries on teaching.",
+    "upperTrigram": "Water",
+    "lowerTrigram": "Water"
+  },
+  {
+    "hexagramNumber": 52,
+    "hexagramName": "Keeping Still",
+    "judgment": "Keeping still. Keeping the back still so there is no body; walking in the courtyard without seeing people.",
+    "image": "Mountains standing close together; the noble one does not permit thoughts to go beyond the situation.",
+    "upperTrigram": "Mountain",
+    "lowerTrigram": "Mountain"
+  },
+  {
+    "hexagramNumber": 64,
+    "hexagramName": "Before Completion",
+    "judgment": "Before Completion. Success, if the little fox nearly across does not get its tail wet.",
+    "image": "Fire over water; the noble one carefully distinguishes things so each finds its place.",
+    "upperTrigram": "Fire",
+    "lowerTrigram": "Water"
+  }
+]

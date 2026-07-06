@@ -1,0 +1,53 @@
+cabal-version:      3.0
+name:               tao-of-lila
+version:            0.1.0.0
+synopsis:           A contemplative Leela and I Ching self-inquiry engine
+description:        Pure Haskell domain model and Servant API for The Tao of Lila.
+license:            MIT
+author:             Tao of Lila contributors
+maintainer:         maintainers@example.com
+build-type:         Simple
+
+common warnings
+  ghc-options: -Wall -Wcompat -Widentities -Wincomplete-record-updates
+               -Wincomplete-uni-patterns -Wmissing-export-lists
+               -Wpartial-fields -Wredundant-constraints
+
+library
+  import:           warnings
+  exposed-modules:  API.Server
+                  , Domain.Loading
+                  , Domain.Types
+                  , Engine.Reading
+                  , Interpretation.Engine
+  hs-source-dirs:   src
+  build-depends:    base >=4.17 && <5
+                  , aeson >=2.0
+                  , bytestring
+                  , filepath
+                  , scientific
+                  , servant
+                  , servant-server
+                  , text
+                  , wai
+                  , wai-app-static
+  default-language: Haskell2010
+
+executable tao-of-lila-api
+  import:           warnings
+  main-is:          Main.hs
+  hs-source-dirs:   app
+  build-depends:    base >=4.17 && <5
+                  , tao-of-lila
+                  , warp
+  default-language: Haskell2010
+
+test-suite tao-of-lila-test
+  import:           warnings
+  type:             exitcode-stdio-1.0
+  main-is:          Main.hs
+  hs-source-dirs:   test
+  build-depends:    base >=4.17 && <5
+                  , tao-of-lila
+                  , text
+  default-language: Haskell2010

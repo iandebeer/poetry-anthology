@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Tao of Lila</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.5;
+      }
+
+      body {
+        margin: 0;
+        background:
+          radial-gradient(circle at top, rgba(171, 132, 73, 0.24), transparent 35rem),
+          #14110e;
+        color: #f6ead7;
+      }
+
+      main {
+        max-width: 56rem;
+        margin: 0 auto;
+        padding: 3rem 1.25rem;
+      }
+
+      section,
+      form {
+        background: rgba(20, 17, 14, 0.78);
+        border: 1px solid rgba(246, 234, 215, 0.18);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-block: 1rem;
+      }
+
+      label,
+      select,
+      textarea,
+      button {
+        display: block;
+        width: 100%;
+      }
+
+      textarea,
+      select,
+      button {
+        box-sizing: border-box;
+        margin-top: 0.35rem;
+        border-radius: 0.6rem;
+        border: 1px solid rgba(246, 234, 215, 0.32);
+        padding: 0.8rem;
+        font: inherit;
+      }
+
+      button {
+        margin-top: 1rem;
+        cursor: pointer;
+        background: #d5a25f;
+        color: #14110e;
+        font-weight: 700;
+      }
+
+      .muted {
+        color: #d9cab7;
+      }
+
+      .card {
+        border-left: 0.25rem solid #d5a25f;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="muted">State -> Change -> Meaning</p>
+        <h1>The Tao of Lila</h1>
+        <p>
+          A contemplative Leela and I Ching reading engine written with a pure
+          functional Haskell core.
+        </p>
+      </header>
+
+      <form id="reading-form">
+        <label>
+          Inquiry
+          <textarea
+            id="question"
+            rows="4"
+            required
+            placeholder="What state is asking to be seen?"
+          ></textarea>
+        </label>
+
+        <label>
+          Leela state
+          <select id="state-select">
+            <option value="">Let the engine select</option>
+          </select>
+        </label>
+
+        <button type="submit">Generate reading</button>
+      </form>
+
+      <section id="result" hidden></section>
+    </main>
+
+    <script>
+      const stateSelect = document.querySelector("#state-select");
+      const form = document.querySelector("#reading-form");
+      const result = document.querySelector("#result");
+
+      async function loadStates() {
+        const response = await fetch("/states");
+        const states = await response.json();
+
+        for (const state of states) {
+          const option = document.createElement("option");
+          option.value = state.stateId;
+          option.textContent = `${state.stateId}. ${state.stateName}`;
+          stateSelect.append(option);
+        }
+      }
+
+      function renderReading(reading) {
+        const interpretation = reading.readingInterpretation;
+        const lines = reading.readingMovingLines
+          .map((line) => `${line.number}. ${escapeHtml(line.name)}`)
+          .join(", ");
+
+        result.hidden = false;
+        result.innerHTML = `
+          <article class="card">
+            <h2>${escapeHtml(interpretation.summary)}</h2>
+            <p><strong>Moving lines:</strong> ${lines}</p>
+            <p>${escapeHtml(interpretation.stateReflection)}</p>
+            <p>${escapeHtml(interpretation.changeReflection)}</p>
+            <h3>Line reflections</h3>
+            <ul>
+              ${interpretation.lineReflections.map((item) => `<li>${escapeHtml(item)}</li>`).join("")}
+            </ul>
+            <h3>Practice</h3>
+            <p>${escapeHtml(interpretation.practice)}</p>
+          </article>
+        `;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const selectedState = stateSelect.value;
+        const payload = {
+          question: document.querySelector("#question").value,
+          leelaStateId: selectedState ? Number(selectedState) : null,
+        };
+
+        const response = await fetch("/reading", {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          result.hidden = false;
+          result.textContent = "The reading could not be generated.";
+          return;
+        }
+
+        renderReading(await response.json());
+      });
+
+      loadStates().catch(() => {
+        result.hidden = false;
+        result.textContent = "Could not load the Leela states.";
+      });
+    </script>
+  </body>
+</html>

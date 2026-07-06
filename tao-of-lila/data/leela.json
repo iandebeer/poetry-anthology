@@ -1,0 +1,62 @@
+[
+  {
+    "stateId": 1,
+    "stateName": "Innocence",
+    "stateDescription": "The mind returns to direct experience before strategy, blame, or self-protection.",
+    "stateSeed": "Beginner's mind"
+  },
+  {
+    "stateId": 2,
+    "stateName": "Seeking",
+    "stateDescription": "Longing becomes movement, and movement reveals the shape of the question.",
+    "stateSeed": "The pilgrim steps onto the path"
+  },
+  {
+    "stateId": 3,
+    "stateName": "Discipline",
+    "stateDescription": "Freedom is tested by rhythm, repetition, and fidelity to practice.",
+    "stateSeed": "The vessel is formed"
+  },
+  {
+    "stateId": 4,
+    "stateName": "Compassion",
+    "stateDescription": "The boundary between self and other softens without collapsing discernment.",
+    "stateSeed": "The heart recognizes itself elsewhere"
+  },
+  {
+    "stateId": 5,
+    "stateName": "Pride",
+    "stateDescription": "Identity gathers around achievement and asks to be seen without being obeyed.",
+    "stateSeed": "The crown becomes a mirror"
+  },
+  {
+    "stateId": 6,
+    "stateName": "Acceptance",
+    "stateDescription": "What is present is no longer treated as an interruption to the path.",
+    "stateSeed": "Yes to the given moment"
+  },
+  {
+    "stateId": 7,
+    "stateName": "Discernment",
+    "stateDescription": "Attention separates signal from noise and chooses the next true action.",
+    "stateSeed": "The sword of clarity"
+  },
+  {
+    "stateId": 8,
+    "stateName": "Surrender",
+    "stateDescription": "Control relaxes enough for a deeper intelligence to participate.",
+    "stateSeed": "The river carries the raft"
+  },
+  {
+    "stateId": 9,
+    "stateName": "Integration",
+    "stateDescription": "Insight descends into habit, relationship, body, and speech.",
+    "stateSeed": "Wisdom takes form"
+  },
+  {
+    "stateId": 10,
+    "stateName": "Liberation",
+    "stateDescription": "The player recognizes the board, the dice, and the witness of the game.",
+    "stateSeed": "The play is seen as play"
+  }
+]
