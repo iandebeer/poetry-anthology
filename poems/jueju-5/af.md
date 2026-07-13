@@ -1,7 +1,6 @@
 #
-
-Swartsuikerbekkie in sy vlug gevang
-waar hy bo die Suikerbossie hang
-wat sal jou mamma daarvan sê 
-as ons vra wat vandag vir ons voorlê 
+Swartsuikerbekkie in jou vlug gevang,
+waar jy bo die Suikerbossie hang:
+"Kan jou mamma vir ons sê,
+waar die liefde lê?"
 
