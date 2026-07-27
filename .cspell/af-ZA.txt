@@ -70830,6 +70830,8 @@ dawee
 dawer
 dawerend
 dawerende
+dawerening
+dawering
 dawerlag
 dawerstem
 Dawid
@@ -280017,6 +280019,7 @@ ruis
 ruisanalise
 ruisbegrenser
 ruisbron
+ruiseling
 ruiserig
 ruising
 ruismeter
