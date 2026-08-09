@@ -1,18 +1,16 @@
 # Reverie
 
-On my way back,  
-I lingered awhile  
-at the upper camp,  
+On the way back,  
+I lingered at the upper camp,  
 leaning against the gate,  
-with chin resting in my hand;  
+my chin resting in my hand;  
   
-how long, I cannot recall,  
+for how long, I cannot recall,  
 nor where my thoughts had wandered,  
-but as I turned to leave,  
-I found myself looking back,  
-still seeing myself there —  
+but as I stepped away  
+I found myself turning back  
+and still saw me standing there —  
   
 lost in the moment,  
 yet a beacon,  
-where I can rediscover  
-   myself.
+where I can find myself again.  

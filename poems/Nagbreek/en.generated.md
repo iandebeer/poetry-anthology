@@ -1,13 +1,13 @@
-# Dawnbreak (Vanderbijlpark - 1973)
+# Dawnbreaking (Vanderbijlpark - 1973)
 
-The sun’s flight before the gray griffin,
-casts a trailing gash of blood in filthy vermilion,
-where the night’s shadows creep ahead.
+The sun's retreat before the gray griffon,
+leaves a trickle of blood in soiled vermilion,
+the night’s shadows creeping forth.
 
-And over the pale yellow growth, a somber gray,
-until only the red-tinted points of clouds
-reveal the day’s last embrace.
+Over the gnarled yellow, a somber gray ascends,
+until only the edges of clouds, tinted red,
+reveal the last of day's awakening.
 
-While the day’s greenest tree stands still and meek,
-awaiting the eastern light, dressed in whispers
-of dawn's gentle sheen.
+And the greenest tree of the day stands still and shy,
+waiting for the eastern light, cloaked in a shimmer, 
+the dawn's soft touch.

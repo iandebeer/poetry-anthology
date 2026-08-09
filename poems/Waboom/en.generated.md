@@ -1,38 +1,36 @@
-# Ode to a Wattle Tree
+# Ode to a Waboom
 
 If I were a tree,  
 somewhere in a desert,  
-or in a crevice of stone  
-to find my growth,  
+or in a crack of stone  
+finding strength to grow,  
 
-I would flee in thought  
-to the shepherd Moses  
-and the thornbush fire  
-that eternally glows;  
+I’d escape in thought  
+to the shepherd Moses,  
+and the bush aflame  
+with a fire that won’t cease;  
 
-And if I dare glance by  
-the physical form of the tree,  
-and arrange in my mind's eye  
-the inner vital force,  
-the Prana – the Qi:  
+and if I dared to gaze  
+beyond the tree’s existence,  
+to the inner life force,  
+the Prana—the Qi, arranged in my mind’s eye:  
 
-To see the unquenchable fire of being –  
-fiercely enduring through the ages,  
-defying the harshest climes,  
-with gnarled roots still anchored deep —  
+to behold, the unquenchable fire of being—  
+that fiercely through the ages,  
+anchored firmly in stubborn roots,  
+defies the unyielding climate,  
 
-Then, when the season arrives,  
-to burst forth anew  
-in an expression of pure joy —  
+and then, when the season comes,  
+to burst forth again  
+in purest expressions of joy—  
 
-Simply to be,  
-for no one to witness  
-or cherish,  
-only to proclaim:  
-I Am!  
+just to be,  
+for no one to see  
+or to cherish,  
+only to proclaim: I Am!  
 
-And I, ...  
-I must remove the shoes from my feet,  
-on this sacred ground where I may only stand in silence —  
-a stutterer with no words to erase  
-in the presence of that which is eternal.
+And I, …  
+must remove the shoes from my feet,  
+on this sacred land where I stand in silence—  
+a stutterer who cannot find words,  
+in the presence of that which is eternal.  

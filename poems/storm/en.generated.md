@@ -1,14 +1,14 @@
 # Storm Shower
 
 Soaked to the skin,  
-with rain as my only cloak,  
-while drops  
-like old women with walking sticks dance around my pool,  
-and the scent of water, soil, and grass—  
-now washed clean from dust and haze,  
+with just the rain as my coat,  
+while drops,  
+like old women with canes, dance around my puddle,  
+and the scent of water, earth, and grass—  
+now cleansed from dust and haze,  
   
-unfolds a thunder-flash scene  
-like a jigsaw that suddenly fits,  
-and I find the missing piece,  
-my place,  
-safely embraced, securely held fast.
+unfolds with thunder and lightning's display  
+like a jigsaw that finds its missing piece,  
+and I, the block that was always amiss,  
+find my place,  
+safely cradled, embraced at last.

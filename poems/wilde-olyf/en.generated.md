@@ -1,19 +1,19 @@
 *Sonnet to a Wild Olive*
 
 I bow my head in deep humility  
-Before the ancient fallen olive tree,  
-Who, defying storms and flames that be,  
-Out of nature’s whim has clung to dignity.
+To the old, fallen Olive tree,  
+Who, despite the winds and storms and fire's fury,  
+Stands bold, a nature's prank for its own decree.  
 
-With roots that cling to craggy stone so tight,  
-A chance for further growth is granted here;  
-And from my point of view, a sacred sight,  
-It kneels in prayer, so earnest and sincere.
+With roots that cling to craggy stone,  
+Allowed a chance for further growth,  
+From this perspective, I have grown,  
+Seeing him kneel now in prayer's soft oath.  
 
-I reach out, to touch its rugged bark,  
-In quiet hope to draw its gaze my way,  
-To ask that it might join me in the dark,  
-As Jesus woke his disciples to pray.
+I reach out, to touch his rugged bark,  
+To draw his eyes, so still, with heartfelt plea,  
+And ask him to keep watch with me in dark,  
+As Jesus once roused his disciples by the sea.  
 
-And humbly for the coming trials we face,  
-“Let Thy will be done, O Father,” — no trace of grace.
+In humble spirit for what lies ahead,  
+“Thy will be done, O Father”—be it said.

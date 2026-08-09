@@ -1,19 +1,13 @@
-# Second Verse Offering (Keurboomstrand)
+# Second Stanza (Keurboomstrand)
 
-like self-empowered car guards, circling,
-the sea gulls approach, insistent,
-while the last few anglers, for the final time, 
-reel in their lines,
-casting their unused bait, like alms,
-onto the rounded rock 
-which already casts long shadows 
-across the dry sand,
-where the thousands of footprints 
-of the day linger once more,
-without any discernible purpose or pattern,
-like traces of fleeting thoughts,
-waiting for the coming tide,
-to sweep it all away 
-with pure white foam—
-until tomorrow, perhaps... 
+like self-empowered car guards, circling, bold and unrepentant,  
+as the last few anglers reel in their lines one final time,  
+leaving their unused bait as alms upon the round rock  
+that already casts long shadows over the dry sand,  
+where the thousands of footprints from the day, once more,  
+without discernible purpose or pattern,  
+like imprints of fleeting thoughts,  
+wait for the tide to rise,  
+to cleanse it all with pure white foam,  
+— until tomorrow, perhaps...  
 d.v.

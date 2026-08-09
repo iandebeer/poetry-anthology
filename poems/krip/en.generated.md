@@ -1,10 +1,10 @@
-# Old Man by the Crib
+# Old Man at the Cradle
 
-That wretched beer presses hard on my bladder,  
-and I know myself, I’m bound to be a tad faster;  
-the queue stretches long, right up to the door,  
-but determined, I push my way to the fore;  
-struggling, struggling, I take my stand,  
-aiming for the stream just over the land;  
-around me the men, with froth flying wide,  
-I "squeeze a kidney" and soak my shoes inside.
+That dreadful beer weighs heavy on my bladder,  
+And I know myself, I'm in for a mad dash;  
+The line stretches long—right up to the door,  
+But resolutely I step up to the fore;  
+Struggling, struggling, I steady my stance  
+And aim for the trickle, just on the chance;  
+Around me the men cheer, the froth flies high,  
+I "squeeze a kidney" and soak my shoes dry.

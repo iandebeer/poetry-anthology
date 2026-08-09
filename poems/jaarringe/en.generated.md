@@ -1,14 +1,14 @@
-# Annual Rings (for Analda - October 17, 1995)
+# Year Rings (for Analda - October 17, 1995)
 
 months,  
      seasons,  
            years...  
 shaped in concentric circles  
-ripples in space-time  
+rippling through space-time  
 radiating from the Self  
   
-so resonates “I Am”  
-      from what exists  
-and molds in vein and grain,  
+thus resonates "I Am"  
+      from what is  
+and forms in vein and grain,  
       in scar and knot  
-that must become  
+that which must be  

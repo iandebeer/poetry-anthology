@@ -1,17 +1,17 @@
 # To Be Able to Walk  
 
-Grunts, groans, crackles and pops —  
+clatter, clack, crack, crash —  
 dusty boots  
-and socks with clumpy grass,  
+and socks with grass entangled,
 
-with the cadence of footsteps  
-and rhythmic breaths,  
-the calmness of body  
-that deeply delights the heart;  
+with the measured rhythm  
+of footsteps falling,  
+the gentle calm of the body  
+that brings such deep delight;
 
-for from wherever I might have found myself,  
-I am now here, as if destined from the start.  
+for wherever I might have found myself,  
+now I am here, as if preordained.
 
-There ahead lie markers where the path may still lead,  
+before me, markers point where the path may lead,  
 but here, now, my soul soars like an eagle,  
-on winds — unbound from beaten tracks indeed.  
+on winds — free from the paved ways.

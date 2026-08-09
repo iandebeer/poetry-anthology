@@ -1,12 +1,12 @@
 # Be Still
 
-If I were to lift my eyes to the mountains  
-and dare to wonder where my help will come;  
-or like Elijah in a cave perhaps  
+If I were to lift my eyes to the mountains,  
+and dare to wonder where my help might come;  
+or like Elijah, in a cave perhaps,  
 waiting for a guiding hand;  
-I would still find in wind,  
-or earth, or fire that burns,  
-the answers to my search -  
-but in the stillness...  
-the silence, that holds all:  
-Hari Om Tat Sat
+still I might find, in wind,  
+or earth, or fire that blazes bright,  
+an answer to my search—  
+but in the silence...  
+the silence that holds all:  
+Hari Om Tat Sat.

@@ -1,28 +1,28 @@
 # Quo Vadis
 
-Speak, you who splash in the brook:  
-"I am so fortunate,  
-in the hollow where I’m bound,  
-it’s tailored just for me,  
-I fill it up from edge to ground."
+Says the one who pools by the stream:  
+"I'm so privileged here,  
+in this little hollow where I find myself,  
+it’s perfectly crafted for me,  
+I fill it from edge to edge."
 
-But the brook says nothing—  
-it flows quietly around the bend...
+but the stream says nothing –  
+it flows quietly around the bend…
 
-Speak, you who splash in the brook:  
-"You hold yourself so proud,  
-where you ripple and dance,  
-at least I’m safe here—  
-who might cross your path by chance?"
+Says the one who pools by the stream:  
+"You hold yourself so nobly,  
+where you ripple and surge,  
+at least I'm safe –  
+with whom might your path converge?"
 
-But the river says nothing—  
-it rushes loudly over the falls...
+but the river says nothing –  
+it rushes loudly over the falls…
 
-Speak, you who splash in the brook:  
-"I might just understand  
-under the sun’s relentless glare,  
+Says the one who pools by the stream:  
+"I might understand  
+under the sun’s blazing arc,  
 but I’ve lingered here so long,  
-I’ve nowhere better to plan."
+I have nowhere better to embark."
 
-But the sea just rests—  
-in her eternal span.
+but the sea rests still –  
+in her eternal being.
