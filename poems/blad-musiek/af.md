@@ -1,4 +1,4 @@
-# Blad musiek 
+# Bladmusiek 
 
 Klank verewig op papier,  
 in afgemete notasie -  
@@ -13,7 +13,7 @@ om vir die nageslag te behou.
 Geskape na die beeld van 'n Skepper,  
 vervul ons ons hoogste doel wanneer ons skep.
   
-  
+
 
 
 ￼
