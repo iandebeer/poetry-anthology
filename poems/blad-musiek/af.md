@@ -11,7 +11,7 @@ maar aan één toevertrou
 om vir die nageslag te behou.  
 
 Geskape na die beeld van 'n Skepper,  
-vervul ons ons hoogste doel wanneer ons skep.
+vervul ons ons hoogste doel wanneer ons deel in die skepping.
   
 
 
