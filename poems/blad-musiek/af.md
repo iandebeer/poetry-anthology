@@ -9,9 +9,11 @@ ontsluit die melodie,
 in die kosmiese bewussyn,  
 maar aan één toevertrou   
 om vir die nageslag te behou.  
-  
-Vir Reghardt  
 
+Geskape na die beeld van 'n Skepper,  
+vervul ons ons hoogste doel wanneer ons skep.
+  
+  
 
 
 ￼
