@@ -16,4 +16,8 @@ As ek meer kon sien,
 sou my hart oop bars soos 'n ryp granaat.  
   
 "Genoeg", roep ek, "Genoeg. Ek is gevul in oormaat!"  
+  
+
+Sabh Gobind hai, sabh Gobind hai, Gobind bin nahin koi.
+All is the Divine; all is the Divine; there is nothing apart from the Divine.
 
