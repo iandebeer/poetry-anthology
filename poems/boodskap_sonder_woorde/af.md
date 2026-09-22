@@ -3,12 +3,12 @@
 daar bo by die hoogwaterlyn
 waar sand teen die kreupelhout duin
 en vet vygies gedy in fel sonskyn
-kniel ’n knoetsige dryfhout soos die "Dagga-roker" van, van Wouw
+kniel ’n knoetsige dryfhout soos die "Dagga-roker" van Anton van Wouw
 voor ’n koeël ronde spoelklip met ’n strepie wat om sy middellyn vou
 digby 'n skulp so half verskuil onder die sand
 met spring-gety en die ruising van die see, in sy spiraal daar gestrand
 
-en so word ek onwillekeurigheid gelei om wiskundige dimensies te formuleer
+en so word ek onwillekeurig gelei om wiskundige dimensies te formuleer
 betekenis en doel op my omgewing te projekteer
 en met duisend gedagtes wat malend opkom
 oor die skulp, die see en die pers fygblom

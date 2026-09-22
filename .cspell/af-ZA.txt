@@ -183184,6 +183184,7 @@ lokettreffers
 lokfilm
 lokiasie
 lokke
+lokkend
 lokkertjie
 lokkertjies
 lokkie
@@ -201460,6 +201461,7 @@ niksdoeners
 niksdoenery
 nikse
 nikses
+niksheid
 niksnut
 niksnuts
 niksnutse
