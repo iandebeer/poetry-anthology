@@ -1,6 +1,6 @@
-## Stamboom
+# Stamboom
 
-**Meegaande skets**
+**Meegaande skets**  
 Frantz Claassen (my kleinseun)
 
 As ek die legkaart van my voorsate probeer bou,  
@@ -19,4 +19,3 @@ Oer-ouma Eva, ek huldig jou menswees in my.
 > Wanneer jy die Moeder ken, ken jy haar kinders. 
 > Wanneer jy haar kinders ken, 
 > keer terug en hou vas aan die Moeder.
-

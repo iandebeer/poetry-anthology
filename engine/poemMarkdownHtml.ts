@@ -36,12 +36,12 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
 
   while (i < lines.length && lines[i].trim() === "") i++;
 
-  if (!skipTitle && lines[i]?.trim().startsWith("# ")) {
-    const title = lines[i].replace(/^#\s+/, "").trim();
-    parts.push(`<h1 class="poem-title">${formatPoemInlineMarkdown(title)}</h1>`);
+  const titleMatch = lines[i]?.trim().match(/^#{1,6}\s+(.+)$/);
+  if (titleMatch) {
+    if (!skipTitle) {
+      parts.push(`<${titleTag} class="poem-title">${formatPoemInlineMarkdown(titleMatch[1])}</${titleTag}>`);
+    }
     i++;
-  } else if (skipTitle) {
-    while (i < lines.length && lines[i].trim().startsWith("# ")) i++;
   }
 
   const stanzas: string[][] = [];
@@ -55,14 +55,25 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
         current = [];
       }
     } else {
+      // A quotation can begin or end without a blank line separating it.
+      if (current.length > 0 && /^\s*>/.test(line) !== /^\s*>/.test(current[0])) {
+        stanzas.push(current);
+        current = [];
+      }
       current.push(line.trimEnd());
     }
   }
   if (current.length > 0) stanzas.push(current);
 
   for (const stanza of stanzas) {
-    const inner = stanza.map((l) => formatPoemInlineMarkdown(l)).join("<br>\n  ");
-    parts.push(`<p>\n  ${inner}\n</p>`);
+    const isQuote = /^\s*>/.test(stanza[0]);
+    const inner = stanza.map((line) => {
+      const content = isQuote ? line.replace(/^\s*> ?/, "") : line;
+      // Physical poem lines already become <br>; consume explicit hard breaks.
+      return formatPoemInlineMarkdown(content.replace(/(?<!\\)\\$/, ""));
+    }).join("<br>\n  ");
+    const paragraph = `<p>\n  ${inner}\n</p>`;
+    parts.push(isQuote ? `<blockquote>\n${paragraph}\n</blockquote>` : paragraph);
   }
 
   return parts.join("\n\n");
