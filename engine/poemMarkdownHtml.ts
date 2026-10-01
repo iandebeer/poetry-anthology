@@ -30,7 +30,26 @@ export interface PoemMarkdownToHtmlOptions {
 /** Headings and blank-line stanzas; line breaks within a stanza become `<br>`. */
 export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOptions = {}): string {
   const { skipTitle = false, titleTag = "h1" } = options;
-  const lines = md.split("\n");
+  const definitions = new Map<string, string>();
+  const lines = md.split("\n").filter((line) => {
+    const definition = line.match(/^\[\^([^\]]+)\]:\s*(.*)$/);
+    if (!definition) return true;
+    definitions.set(definition[1], definition[2]);
+    return false;
+  });
+  const references = new Map<string, { number: number; count: number }>();
+  const formatInline = (raw: string): string => raw.split(/(\[\^[^\]]+\])/g).map((chunk) => {
+    const reference = chunk.match(/^\[\^([^\]]+)\]$/);
+    if (!reference || !definitions.has(reference[1])) return formatPoemInlineMarkdown(chunk);
+    const label = reference[1];
+    let entry = references.get(label);
+    if (!entry) {
+      entry = { number: references.size + 1, count: 0 };
+      references.set(label, entry);
+    }
+    entry.count++;
+    return `<sup id="fnref-${entry.number}-${entry.count}"><a href="#fn-${entry.number}" role="doc-noteref">${entry.number}</a></sup>`;
+  }).join("");
   const parts: string[] = [];
   let i = 0;
 
@@ -70,10 +89,20 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
     const inner = stanza.map((line) => {
       const content = isQuote ? line.replace(/^\s*> ?/, "") : line;
       // Physical poem lines already become <br>; consume explicit hard breaks.
-      return formatPoemInlineMarkdown(content.replace(/(?<!\\)\\$/, ""));
+      return formatInline(content.replace(/(?<!\\)\\$/, ""));
     }).join("<br>\n  ");
     const paragraph = `<p>\n  ${inner}\n</p>`;
     parts.push(isQuote ? `<blockquote>\n${paragraph}\n</blockquote>` : paragraph);
+  }
+
+  if (references.size > 0) {
+    const notes = Array.from(references, ([label, { number, count }]) => {
+      const backlinks = Array.from({ length: count }, (_, index) =>
+        `<a href="#fnref-${number}-${index + 1}" aria-label="Back to reference ${number}${count > 1 ? ` (${index + 1})` : ""}">↩</a>`
+      ).join(" ");
+      return `<li id="fn-${number}">${formatPoemInlineMarkdown(definitions.get(label)!)} ${backlinks}</li>`;
+    });
+    parts.push(`<section class="footnotes" role="doc-endnotes" aria-label="Footnotes">\n<hr>\n<ol>\n${notes.join("\n")}\n</ol>\n</section>`);
   }
 
   return parts.join("\n\n");
