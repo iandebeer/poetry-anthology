@@ -2,6 +2,8 @@
  * Shared markdown → HTML for poem files (headings, stanzas, inline emphasis).
  */
 
+import { poemReferenceStyles } from "./poemReferenceStyles.js";
+
 export function escapeHtml(s: string): string {
   return s
     .replace(/&/g, "&amp;")
@@ -112,6 +114,7 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
 export function poemMarkdownToHtmlDocument(md: string): string {
   const body = poemMarkdownToHtmlBody(md);
   const plainStyles =
+    poemReferenceStyles +
     "body{font-family:serif;line-height:1.6;color:#1a1a20;max-width:36em;margin:2rem auto;padding:0 1.5rem}" +
     ".poem-back{text-align:center;font-size:1.15rem}" +
     ".poem-back-top{margin-bottom:1.25rem}" +

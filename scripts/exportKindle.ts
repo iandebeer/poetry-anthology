@@ -16,6 +16,7 @@ import {
 import { syncPoemMediaToPoemDir, bundledPoemImagePath } from "../engine/syncPoemBundledMedia.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
 import { escapeHtml, poemMarkdownToHtmlBody } from "../engine/poemMarkdownHtml.js";
+import { poemReferenceStyles } from "../engine/poemReferenceStyles.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
 const DIST_DIR = join(process.cwd(), "dist");
@@ -142,6 +143,7 @@ async function main() {
     appendChapterTitles: false,
     lang: lang === "af" ? "af" : "en",
     css: `
+      ${poemReferenceStyles}
       body { font-family: Georgia, serif; font-size: 0.9em; line-height: 1.6; margin: 1.5em; }
       h2, h3 { font-size: 1.05em; margin-top: 1.5em; margin-bottom: 0.5em; }
       .poem-chapter { page-break-before: always; page-break-after: always; }

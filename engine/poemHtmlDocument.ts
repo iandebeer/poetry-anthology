@@ -5,6 +5,7 @@
  */
 
 import { dominantRgbFromImageFile, lightTintFromRgb, rgbToCss, type Rgb } from "./dominantColor.js";
+import { poemReferenceStyles } from "./poemReferenceStyles.js";
 
 /** Placement from filename: t-image.jpg=top, b=bottom, l=left, r=right, o-=split (image left, text right) */
 export type PoemImagePlacement = "top" | "bottom" | "left" | "right" | "split-left" | null;
@@ -56,6 +57,7 @@ function poemAudioMarkup(audioSrc: string | null): string {
 export const DEFAULT_ANTHOLOGY_INDEX_HREF = "../index.html";
 
 const poemHeaderNavStyles =
+  poemReferenceStyles +
   ".poem-back{width:100%;text-align:center;font-size:1.15rem}" +
   ".poem-back-top{margin-bottom:1.25rem}" +
   ".poem-back-bottom{margin-top:1.25rem}" +
