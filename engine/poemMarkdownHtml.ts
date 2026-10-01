@@ -98,11 +98,8 @@ export function poemMarkdownToHtmlBody(md: string, options: PoemMarkdownToHtmlOp
   }
 
   if (references.size > 0) {
-    const notes = Array.from(references, ([label, { number, count }]) => {
-      const backlinks = Array.from({ length: count }, (_, index) =>
-        `<a href="#fnref-${number}-${index + 1}" aria-label="Back to reference ${number}${count > 1 ? ` (${index + 1})` : ""}">↩</a>`
-      ).join(" ");
-      return `<li id="fn-${number}">${formatPoemInlineMarkdown(definitions.get(label)!)} ${backlinks}</li>`;
+    const notes = Array.from(references, ([label, { number }]) => {
+      return `<li id="fn-${number}">${formatPoemInlineMarkdown(definitions.get(label)!)}</li>`;
     });
     parts.push(`<section class="footnotes" role="doc-endnotes" aria-label="Footnotes">\n<hr>\n<ol>\n${notes.join("\n")}\n</ol>\n</section>`);
   }

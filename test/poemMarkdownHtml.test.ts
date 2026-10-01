@@ -15,12 +15,12 @@ test("Goed preserves its title, nine verse lines, and linked footnotes", () => {
   assert.match(html, /<li id="fn-2">Epicurus, <em>Brief aan Menoeceus<\/em>, 125\./);
 });
 
-test("footnotes escape HTML and link back to each occurrence", () => {
+test("footnotes escape HTML and repeated references link to notes without return symbols", () => {
   const html = poemMarkdownToHtmlBody("Verse[^note] again[^note] unknown[^missing]\n\n[^note]: <script>alert(1)</script>");
   assert.match(html, /id="fnref-1-1"/);
   assert.match(html, /id="fnref-1-2"/);
-  assert.match(html, /href="#fnref-1-1"/);
-  assert.match(html, /href="#fnref-1-2"/);
+  assert.equal((html.match(/href="#fn-1"/g) ?? []).length, 2);
+  assert.doesNotMatch(html, /↩|Back to reference/);
   assert.match(html, /unknown\[\^missing\]/);
   assert.doesNotMatch(html, /<script>/);
   assert.match(html, /&lt;script&gt;/);
