@@ -8,3 +8,6 @@ output/audio/*.mp3
 *.epub
 dist/
 export/
+
+# Private Curator drafts, candidates and publication staging
+drafts/

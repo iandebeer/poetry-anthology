@@ -1,11 +1,12 @@
 /**
  * Loads poems from the poems/ folder.
  * Afrikaans: af.md, or af-translate.md (e.g. English-sourced poems translated to Afrikaans).
- * English: en.md or en.generated.md; if missing, English lines mirror Afrikaans.
+ * English: en.md or legacy en.generated.md; legacy missing English mirrors Afrikaans.
+ * Curator poems can start in either language and never mirror missing translations.
  * Resolves per-poem media from public/media/poems/<id>/ when not in config.
  */
 
-import { readFileSync, readdirSync, existsSync, mkdirSync } from "fs";
+import { readFileSync, readdirSync, existsSync } from "fs";
 import { join } from "path";
 import type { PoemConfig, PoemData } from "./types.js";
 
@@ -17,6 +18,7 @@ const IMAGE_EXTS = [".jpg", ".jpeg", ".png", ".webp"];
 const AUDIO_EXTS = [".mp3", ".wav", ".m4a"];
 
 function findFile(basePath: string, names: string[], exts: string[]): string | null {
+  if (!existsSync(basePath)) return null;
   for (const name of names) {
     for (const ext of exts) {
       const file = `${name}${ext}`;
@@ -35,7 +37,6 @@ function logicalMediaFileExists(logicalPath: string): boolean {
 
 function resolvePoemMedia(id: string, config: PoemConfig): PoemConfig {
   const poemMediaDir = join(MEDIA_POEMS_DIR, id);
-  mkdirSync(poemMediaDir, { recursive: true });
 
   const out = { ...config };
   const prefix = `poems/${id}`;
@@ -65,10 +66,16 @@ function parseMarkdownLines(content: string): string[] {
     .filter((line) => line.length > 0);
 }
 
+function isCuratorPoem(dir: string): boolean {
+  if (existsSync(join(dir, 'approval.json'))) return true;
+  try { return Boolean(JSON.parse(readFileSync(join(dir, 'config.json'), 'utf8')).curator); } catch { return false; }
+}
+
 /** Prefer af.md; else af-translate.md (machine translation from English source). */
 export function resolveAfrikaansMarkdownPath(poemDir: string): string | null {
   const primary = join(poemDir, "af.md");
   if (existsSync(primary)) return primary;
+  if (isCuratorPoem(poemDir)) return null;
   const translated = join(poemDir, "af-translate.md");
   if (existsSync(translated)) return translated;
   return null;
@@ -78,6 +85,7 @@ export function resolveAfrikaansMarkdownPath(poemDir: string): string | null {
 export function resolveEnglishMarkdownPath(poemDir: string): string | null {
   const manual = join(poemDir, "en.md");
   if (existsSync(manual)) return manual;
+  if (isCuratorPoem(poemDir)) return null;
   const generated = join(poemDir, "en.generated.md");
   if (existsSync(generated)) return generated;
   return null;
@@ -117,14 +125,14 @@ export function loadPoems(): PoemData[] {
 
     const poemDir = join(POEMS_DIR, entry.name);
     const afPath = resolveAfrikaansMarkdownPath(poemDir);
-    if (!afPath) continue;
+    const enPath = resolveEnglishMarkdownPath(poemDir);
+    if (!afPath && !enPath) continue;
 
     const config = loadConfig(poemDir, entry.name);
-    const af = parseMarkdownLines(readFileSync(afPath, "utf-8"));
-    const enPath = resolveEnglishMarkdownPath(poemDir);
+    const af = afPath ? parseMarkdownLines(readFileSync(afPath, "utf-8")) : [];
     const en = enPath
       ? parseMarkdownLines(readFileSync(enPath, "utf-8"))
-      : [...af];
+      : config.curator ? [] : [...af];
 
     poems.push({ id: entry.name, config, af, en });
   }

@@ -193,3 +193,44 @@ If you use **both** apex and `www` in GitHub, both need correct records; **“al
 ## Resolution
 
 Videos are rendered at **1920×1080** at 30fps.
+
+## AI-assisted ingestion in Ian's Poetry Curator
+
+Run `npm run admin` and sign in at `http://localhost:3333/admin`. The **Add & review a poem** card extends the existing admin interface:
+
+1. **Submit:** paste Afrikaans or English, or import a UTF-8 `.md` / `.txt` file. The source title is extracted from a Markdown heading when omitted, and a lowercase ID is generated from the title. Enter the author and adjust metadata as needed. Keep commentary and background in the separate commentary fields; add citations with **Add reference**.
+2. **Editorial review:** compare the AI proposal with the current text. Accept the proposal, reject it, or edit the working poem to retain only selected corrections, then approve that working version. The exact original submission remains archived privately.
+3. **Translation:** generate a candidate or enter one manually, then explicitly approve it. You may explicitly continue without a translation. Generated candidates are never published as language files automatically.
+4. **Illustration:** upload a still PNG, JPEG or WebP up to 20 MiB, or generate a portrait illustration from a brief. Review the optimized result and approve it. Images keep their proportions and must be strictly below 2 MiB before saving.
+5. **Preview & files:** inspect the complete poem, translation, image, commentary and references. **Inspect proposed files** shows each new source file. Approve the final preview.
+6. **Save locally:** validates the current approvals, builds in a private staging directory, then adds the new poem and optimized image to the working tree, regenerates `src/poemsData.json`, and replaces the ignored local `export/` bundle. Open the local poem or anthology to inspect the result.
+
+**Save locally never commits, pushes or deploys.** Inspect the working tree and Git diff before committing. A later push to a branch listed in `.github/workflows/deploy-pages.yml` activates the existing deployment workflow. The Curator does not monitor deployment status and labels saved drafts **Saved locally — not deployed**.
+
+### Drafts, approvals and publication files
+
+Private drafts, immutable original text, illustration candidates and staging files are stored in gitignored `drafts/`. They require the admin session to view and are excluded from the public media and static export routes. Back up this directory separately if you need to retain drafts across machines. Saving is explicit; the interface warns before closing a page with unsaved changes.
+
+Approvals are tied to the reviewed content. Source changes revoke translation approval; changes to metadata, supporting material, translation or image require a fresh final review. Concurrent edits are rejected rather than silently overwriting a newer revision. Duplicate IDs, existing poem/media destinations and matching poem text are blocked. This first version adds new poems; it deliberately refuses to overwrite an existing published poem.
+
+New poems use the existing `poems/<id>/af.md`, `en.md`, `config.json` and `public/media/poems/<id>/o-image.png` conventions. Optional `commentary.af.md`, `commentary.en.md` and `references.json` keep supporting prose separate from verse. Citations accept an ID, citation text, optional HTTP(S) source URL and optional quotation. Footnotes within verse continue to use the existing `[^label]` / `[^label]: definition` syntax.
+
+`approval.json` and the configuration's `curator` record retain hashes of the approved files, metadata and illustration. `npm run validate-poems` checks these before `pages:build`; manual changes to approved files require another reviewed preparation rather than silently deploying. Existing poems remain on the legacy path, with invalid legacy configurations reported as warnings. This avoids changing existing poems or their generated translations. The existing Reisflits configuration needs a separate repair.
+
+Local preparation uses a publication lock and a write-ahead journal. Build failures leave published source files untouched. The next local save rolls back an interrupted promotion before proceeding. If a process was forcefully stopped, retry **Save locally** to recover; do not manually delete journal or backup files. This recovery applies to the Curator's own operations; avoid running other file-writing admin operations or editing destination files during a local save.
+
+### AI configuration
+
+The existing server-side `OPENAI_API_KEY` enables editorial proposals, translation and illustration. `OPENAI_TEXT_MODEL` optionally overrides the text model (default `gpt-4o-mini`); `OPENAI_IMAGE_MODEL` overrides the image model (default `gpt-image-1`). API access to the configured models is required. The API key never goes to the browser. Text and supporting context are sent to OpenAI only when an AI text action is requested; an illustration action sends its art brief. API charges may apply. Manual editing, translation entry and image upload remain available without a key.
+
+Implementation follows the official [text generation documentation](https://developers.openai.com/api/docs/guides/text) and [image generation API reference](https://developers.openai.com/api/reference/resources/images/methods/generate). AI failures leave draft content intact; incomplete or stale responses are rejected.
+
+### Eendagsvlieg acceptance example and checks
+
+`npm run draft:eendagsvlieg` creates the supplied Eendagsvlieg example as a private, unapproved draft, or reports its existing draft ID. The original verse, philosophical context and biological explanation are retained in `test/fixtures/eendagsvlieg.json`; the commentary and citations are separate from the poem. No translation or illustration is fabricated by the seed command. Review the supplied background and citations editorially; ingestion does not independently verify their factual claims.
+
+- `npm test`: source preservation, approvals, duplicate prevention, staged builds, failure recovery, image processing and authenticated-route integration.
+- `npx tsc --noEmit`: TypeScript checks.
+- `npm run test:browser`: optional end-to-end check in local Chrome using temporary data and a test image. Set `BROWSER_EXECUTABLE` if Chrome is installed elsewhere. The test makes no AI calls and performs no Git operations. A preview screenshot is written to the system temporary directory (or `CURATOR_SCREENSHOT`).
+
+The Remotion source files referenced by existing video commands remain absent from `src/`; repairing that unrelated video setup is outside this ingestion change.

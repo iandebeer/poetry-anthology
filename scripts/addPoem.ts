@@ -45,6 +45,7 @@ function extractTitle(md: string): string | undefined {
 export async function addPoem(options: AddPoemOptions): Promise<string> {
   const { id, afContent, author, titleAf, titleEn, translate: doTranslate } = options;
 
+  if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/i.test(id)) throw new Error("Invalid poem ID.");
   const poemDir = join(POEMS_DIR, id);
   if (existsSync(poemDir)) {
     throw new Error(`Poem already exists: ${id}`);

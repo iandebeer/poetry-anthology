@@ -79,6 +79,7 @@ async function extractAfrikaansFromImage(imagePath: string): Promise<ExtractedAf
 
 function writePoemAf(poemId: string, extracted: ExtractedAf): void {
   const dir = path.join(POEMS, poemId);
+  if (fs.existsSync(dir)) throw new Error(`Poem already exists: ${poemId}. Import into a reviewed draft instead.`);
   fs.mkdirSync(dir, { recursive: true });
 
   const afMd = `# ${extracted.titleAf}\n\n${extracted.bodyAf}\n`;

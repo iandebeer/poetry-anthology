@@ -5,6 +5,8 @@
 export interface PoemConfig {
   /** Poem identifier (folder name) */
   id: string;
+  /** Approval manifest for new Curator submissions; absent for legacy poems. */
+  curator?: { version: 1; sourceLanguage: PoemLanguage; metadataHash: string; originalHash: string; imageHash: string; approvedFiles: Record<string, string> };
   /** Title in Afrikaans */
   titleAf?: string;
   /** Title in English */

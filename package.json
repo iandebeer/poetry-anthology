@@ -17,11 +17,15 @@
     "generate-poems": "npx tsx scripts/generatePoemsData.ts",
     "export-kindle": "npx tsx scripts/exportKindle.ts",
     "export-html": "npx tsx scripts/exportHtml.ts",
-    "pages:build": "npm run convert-poems && npm run export-html",
+    "pages:build": "npm run validate-poems && npm run convert-poems && npm run export-html",
     "optimize-pngs": "npx tsx scripts/optimizePoemPngs.ts",
     "shrink-poem-media": "npx tsx scripts/shrinkPoemMedia.ts",
     "crop-temp-images": "python3 scripts/cropTempImages.py",
-    "import-temp-poems": "npx tsx scripts/importTempPoems.ts"
+    "import-temp-poems": "npx tsx scripts/importTempPoems.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "validate-poems": "node --import tsx scripts/validatePoems.ts",
+    "draft:eendagsvlieg": "node --import tsx scripts/seedEendagsvlieg.ts",
+    "test:browser": "node --import tsx test/curator.browser.ts"
   },
   "dependencies": {
     "@remotion/bundler": "^4.0.0",

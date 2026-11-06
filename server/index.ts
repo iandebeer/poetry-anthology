@@ -19,6 +19,9 @@ import session from "express-session";
 import { exec } from "child_process";
 import { promisify } from "util";
 import { writeFileSync, existsSync, readFileSync } from "fs";
+import { curatorRouter } from "./curator/routes.js";
+import { DraftStore } from "./curator/store.js";
+import { readSupportingHtml } from "../engine/poemSupporting.js";
 import { addPoem } from "../scripts/addPoem.js";
 import {
   loadPoems,
@@ -139,6 +142,8 @@ app.get("/api/auth-status", (_req, res) => {
     usingDefaultPassword: ADMIN_PASSWORD === "changeme",
   });
 });
+
+app.use("/api/drafts", requireAuth, curatorRouter(new DraftStore(process.cwd())));
 
 // Protected API
 app.get("/api/poems", requireAuth, (req, res) => {
@@ -261,9 +266,9 @@ app.get("/api/poems/:id/html", requireAuth, (req, res) => {
     /* ignore */
   }
   let body = "";
-  if (lang === "af") body = mdToHtml(af);
-  else if (lang === "en") body = mdToHtml(en);
-  else body = `<div class="lang-block"><h3>Afrikaans</h3>${mdToHtml(af)}</div><div class="lang-block"><h3>English</h3>${mdToHtml(en)}</div>`;
+  if (lang === "af") body = mdToHtml(af) + readSupportingHtml(poemDir, "af");
+  else if (lang === "en") body = mdToHtml(en) + readSupportingHtml(poemDir, "en");
+  else body = `<div class="lang-block"><h3>Afrikaans</h3>${mdToHtml(af)}${readSupportingHtml(poemDir, "af")}</div><div class="lang-block"><h3>English</h3>${mdToHtml(en)}${readSupportingHtml(poemDir, "en")}</div>`;
   const html = `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>${body}</body></html>`;
   res.setHeader("Content-Type", "text/html; charset=utf-8");
   res.send(htmlForAdminResponse(html, imagePath, musicPath));
@@ -378,6 +383,7 @@ app.post("/api/translate/:id", requireAuth, async (req, res) => {
   const poemsDir = join(process.cwd(), "poems");
   const poemDir = safePoemDir(poemsDir, paramId(req.params.id));
   if (!poemDir) return res.status(400).json({ error: "Invalid poem id" });
+  if (existsSync(join(poemDir, "approval.json"))) return res.status(409).json({ error: "Use the reviewed Curator workflow for this poem." });
   const afPath = resolveAfrikaansMarkdownPath(poemDir);
   const enPath = join(poemDir, "en.md");
   if (!afPath) return res.status(404).json({ error: "Poem not found" });

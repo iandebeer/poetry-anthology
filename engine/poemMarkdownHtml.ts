@@ -26,7 +26,7 @@ export interface PoemMarkdownToHtmlOptions {
   /** Omit the leading `# title` line from output. */
   skipTitle?: boolean;
   /** Heading level for the poem title (default `h1`). */
-  titleTag?: "h1" | "h2";
+  titleTag?: "h1" | "h2" | "h3";
 }
 
 /** Headings and blank-line stanzas; line breaks within a stanza become `<br>`. */

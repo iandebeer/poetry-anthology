@@ -16,6 +16,7 @@ import {
 import { syncPoemMediaToPoemDir, bundledPoemImagePath } from "../engine/syncPoemBundledMedia.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
 import { escapeHtml, poemMarkdownToHtmlBody } from "../engine/poemMarkdownHtml.js";
+import { readSupportingHtml } from "../engine/poemSupporting.js";
 import { poemReferenceStyles } from "../engine/poemReferenceStyles.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
@@ -41,6 +42,8 @@ function splitPoemIntoChunks(poemHtml: string, stanzasPerPage = 4): string[] {
   for (let i = 0; i < stanzas.length; i += stanzasPerPage) {
     chunks.push(stanzas.slice(i, i + stanzasPerPage).join("\n\n"));
   }
+  const notes = poemHtml.match(/<section class="footnotes"[\s\S]*?<\/section>/g) ?? [];
+  if (notes.length) chunks[chunks.length - 1] += '\n' + notes.join('\n');
   return chunks;
 }
 
@@ -94,9 +97,9 @@ async function main() {
     const poemDir = join(POEMS_DIR, poem.id);
     const afPath = resolveAfrikaansMarkdownPath(poemDir);
     const enPath = resolveEnglishMarkdownPath(poemDir);
-    if (!afPath) continue;
-    const afMd = readFileSync(afPath, "utf-8");
-    const enMd = enPath ? readFileSync(enPath, "utf-8") : afMd;
+    if ((lang === "af" && !afPath) || (lang === "en" && !enPath)) continue;
+    const afMd = afPath ? readFileSync(afPath, "utf-8") : "";
+    const enMd = enPath ? readFileSync(enPath, "utf-8") : poem.config.curator ? "" : afMd;
 
     const chapterTitle = poem.config.titleAf || poem.config.titleEn || poem.id;
     let html = '<div class="poem-chapter">';
@@ -128,6 +131,11 @@ async function main() {
       html += `<h1 class="poem-heading">${escapeHtml(chapterTitle)}</h1><div class="poem-text-page">${poemBody}</div>`;
     }
     html += "</div>";
+
+    // Add supporting prose after verse pagination so references are not discarded as non-stanza HTML.
+    for (const language of (lang === "both" ? ["af", "en"] as const : [lang])) {
+      html += readSupportingHtml(poemDir, language);
+    }
 
     content.push({
       title: chapterTitle,

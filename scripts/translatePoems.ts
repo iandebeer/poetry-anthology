@@ -37,6 +37,7 @@ async function translate(text: string) {
 
 function shouldSkipPoem(poemId: string): { skip: true; reason: string } | { skip: false } {
   const dir = path.join(poemsDir, poemId);
+  if (fs.existsSync(path.join(dir, "approval.json"))) return { skip: true, reason: "Curator poem: use reviewed draft translation" };
   const afPath = path.join(dir, "af.md");
   const enPath = path.join(dir, "en.md");
 

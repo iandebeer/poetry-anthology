@@ -13,6 +13,7 @@ import {
 import { syncPoemBundledAssets } from "../engine/syncPoemBundledMedia.js";
 import { wrapHtmlWithPoemBackground, injectPoemAnthologyNav } from "../engine/poemHtmlDocument.js";
 import { getPoemIdsFilterFromEnv } from "../engine/poemIdsFilter.js";
+import { readSupportingHtml } from "../engine/poemSupporting.js";
 import { poemMarkdownToHtmlDocument } from "../engine/poemMarkdownHtml.js";
 
 const POEMS_DIR = join(process.cwd(), "poems");
@@ -36,7 +37,8 @@ function convertOneSource(
   const md = readFileSync(mdPath, "utf-8");
   const base = join(dirPath, outBasename);
 
-  const html = poemMarkdownToHtmlDocument(md);
+  const supporting = readSupportingHtml(dirPath, outBasename === "af" ? "af" : "en");
+  const html = poemMarkdownToHtmlDocument(md).replace("</body>", `${supporting}</body>`);
   const htmlPath = base + ".html";
   const needsWrap = Boolean(bundledMediaUrl || bundledAudioUrl);
   let outHtml = html;

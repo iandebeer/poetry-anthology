@@ -16,7 +16,7 @@ import { safePoemDir } from "../engine/safePoemPath.js";
 
 const MEDIA_POEMS_ROOT = resolve(join(process.cwd(), "public", "media", "poems"));
 /** Strictly smaller than 2 MiB (same ceiling as prior manual ImageMagick pass). */
-const MAX_BYTES = 2 * 1024 * 1024 - 1;
+export const MAX_BYTES = 2 * 1024 * 1024 - 1;
 
 const SCALES = [
   98, 95, 92, 90, 88, 85, 82, 80, 78, 75, 72, 70, 68, 65, 62, 60, 58, 55, 52, 50, 48, 45, 42, 40, 38, 35, 32,
@@ -74,7 +74,7 @@ async function resizeEncode(buf: Buffer, ext: string, nw: number, nh: number): P
   throw new Error(`unsupported extension: ${ext}`);
 }
 
-async function shrinkOne(absPath: string): Promise<{ before: number; after: number; changed: boolean }> {
+export async function shrinkOne(absPath: string): Promise<{ before: number; after: number; changed: boolean }> {
   const buf = readFileSync(absPath);
   const before = buf.length;
   if (before <= MAX_BYTES) return { before, after: before, changed: false };
@@ -154,7 +154,7 @@ async function main() {
   console.log("Run: npm run convert-poems  (refresh poems/<id>/media/ copies; use POEM_IDS when scope is partial)");
 }
 
-main().catch((e) => {
+if (process.argv[1]?.endsWith("shrinkPoemMedia.ts") || process.argv[1]?.endsWith("shrinkPoemMedia.js")) main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
