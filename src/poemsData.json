@@ -2175,6 +2175,44 @@
     ]
   },
   {
+    "id": "oor-ditjies-en-datjies",
+    "config": {
+      "titleAf": "Oor ditjies en datjies",
+      "titleEn": "On This and That",
+      "author": "Ian de Beer",
+      "image": "poems/oor-ditjies-en-datjies/o-image.png",
+      "lineDuration": 5,
+      "linePause": 1,
+      "introDuration": 3,
+      "outroDuration": 5,
+      "id": "oor-ditjies-en-datjies"
+    },
+    "af": [
+      "# Oor ditjies en datjies",
+      "Jy praat so glad oor dit en dat:",
+      "jy sê dat dát, is dít, wat dít nie is nie;",
+      "en dát is dít wat dát nie wis nie.",
+      "Maar as ek uit my perspektief die spul bekyk,",
+      "begin jou dít al meer vir my soos dát te lyk.",
+      "Kan ons maar sê, net om die vrede te bewaar,",
+      "die verskil tussen ons lê in hier en daar.",
+      "Nog dít, nog dát —",
+      "neti neti."
+    ],
+    "en": [
+      "# On This and That",
+      "You talk so smoothly of this and that:",
+      "you say that that is this which this is not;",
+      "and that is this which that knew not.",
+      "But when I view the lot from my perspective,",
+      "your this begins to look more and more like that to me.",
+      "Can we just say, to keep the peace,",
+      "the difference between us lies in here and there.",
+      "Neither thís, nor thát —",
+      "neti neti."
+    ]
+  },
+  {
     "id": "ou-wonde",
     "config": {
       "titleAf": "Ou wonde heel stadig",
